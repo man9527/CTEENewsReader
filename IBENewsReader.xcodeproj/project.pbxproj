@@ -1,0 +1,697 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D3623260D0F684500981E51 /* IBENewsReaderAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* IBENewsReaderAppDelegate.m */; };
+		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
+		A91072BE12D6068200DE1453 /* NewsPlateListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A91072BC12D6068200DE1453 /* NewsPlateListViewController.m */; };
+		A91072BF12D6068200DE1453 /* NewsPlateListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A91072BD12D6068200DE1453 /* NewsPlateListViewController.xib */; };
+		A91072C212D6075F00DE1453 /* NewsPlateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A91072C112D6075F00DE1453 /* NewsPlateViewController.m */; };
+		A926C09012B7AF8D0049CC54 /* UserPassRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = A926C08F12B7AF8D0049CC54 /* UserPassRepository.m */; };
+		A926C09312B7AFC40049CC54 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = A926C09212B7AFC40049CC54 /* User.m */; };
+		A926C0BA12B7B3BF0049CC54 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = A926C0B912B7B3BF0049CC54 /* Constants.m */; };
+		A926C3B912B91CEB0049CC54 /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A926C3B812B91CEB0049CC54 /* LoginManager.m */; };
+		A926C5BC12BA6AAF0049CC54 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = A926C5BB12BA6AAF0049CC54 /* UserService.m */; };
+		A926C5EC12BA6EB50049CC54 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = A926C5E312BA6EB40049CC54 /* NSObject+SBJSON.m */; };
+		A926C5ED12BA6EB50049CC54 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = A926C5E512BA6EB40049CC54 /* NSString+SBJSON.m */; };
+		A926C5EE12BA6EB50049CC54 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = A926C5E712BA6EB50049CC54 /* SBJsonBase.m */; };
+		A926C5EF12BA6EB50049CC54 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A926C5E912BA6EB50049CC54 /* SBJsonParser.m */; };
+		A926C5F012BA6EB50049CC54 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = A926C5EB12BA6EB50049CC54 /* SBJsonWriter.m */; };
+		A926C7B912BAF9340049CC54 /* NewsTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A926C7B712BAF9340049CC54 /* NewsTabBarViewController.m */; };
+		A926C7C412BAF9FB0049CC54 /* NewsTabBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A926C7C312BAF9FB0049CC54 /* NewsTabBarViewController.xib */; };
+		A926C7D112BAFCDB0049CC54 /* NewsDigestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A926C7CF12BAFCDB0049CC54 /* NewsDigestViewController.m */; };
+		A926C7D212BAFCDB0049CC54 /* NewsDigestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A926C7D012BAFCDB0049CC54 /* NewsDigestViewController.xib */; };
+		A926C7D612BAFCF40049CC54 /* NewsIndustryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A926C7D412BAFCF40049CC54 /* NewsIndustryViewController.m */; };
+		A926C7D712BAFCF40049CC54 /* NewsIndustryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A926C7D512BAFCF40049CC54 /* NewsIndustryViewController.xib */; };
+		A926C7DB12BAFD0A0049CC54 /* NewsBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A926C7D912BAFD0A0049CC54 /* NewsBoardViewController.m */; };
+		A926C7DC12BAFD0A0049CC54 /* NewsBoardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A926C7DA12BAFD0A0049CC54 /* NewsBoardViewController.xib */; };
+		A926C7E112BAFD1D0049CC54 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A926C7DF12BAFD1D0049CC54 /* SettingViewController.xib */; };
+		A926C94F12BB4FB30049CC54 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A926C94E12BB4FB30049CC54 /* MBProgressHUD.m */; };
+		A926CBD812BC86580049CC54 /* URLManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A926CBD712BC86580049CC54 /* URLManager.m */; };
+		A926CC5112BDA6600049CC54 /* UserIndustrySetting.m in Sources */ = {isa = PBXBuildFile; fileRef = A926CC5012BDA6600049CC54 /* UserIndustrySetting.m */; };
+		A926CDAC12BE39030049CC54 /* UINavigationBarWithCustomBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = A926CDAB12BE39030049CC54 /* UINavigationBarWithCustomBackground.m */; };
+		A926CDDA12BE3DE20049CC54 /* SettingHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A926CDD812BE3DE20049CC54 /* SettingHomeViewController.m */; };
+		A926CDDB12BE3DE20049CC54 /* SettingHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A926CDD912BE3DE20049CC54 /* SettingHomeViewController.xib */; };
+		A926CFD212BE68DC0049CC54 /* SettingIndustryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A926CFD012BE68DC0049CC54 /* SettingIndustryViewController.m */; };
+		A926CFD312BE68DC0049CC54 /* SettingIndustryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A926CFD112BE68DC0049CC54 /* SettingIndustryViewController.xib */; };
+		A926D16512BF9D320049CC54 /* SettingIndustryCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = A926D16312BF9D320049CC54 /* SettingIndustryCellView.m */; };
+		A926D16612BF9D320049CC54 /* SettingIndustryCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A926D16412BF9D320049CC54 /* SettingIndustryCellView.xib */; };
+		A926D23112BFA9440049CC54 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A926D22F12BFA9440049CC54 /* Localizable.strings */; };
+		A941FC8F12E1B4D800E47D14 /* IndustryList.plist in Resources */ = {isa = PBXBuildFile; fileRef = A941FC8E12E1B4D800E47D14 /* IndustryList.plist */; };
+		A941FD6F12E1EF9600E47D14 /* NewsDigestContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A941FD6E12E1EF9600E47D14 /* NewsDigestContainerViewController.xib */; };
+		A941FD7412E1EFD800E47D14 /* NewsPlateContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A941FD7312E1EFD800E47D14 /* NewsPlateContainerViewController.xib */; };
+		A941FD9412E1F10100E47D14 /* information.png in Resources */ = {isa = PBXBuildFile; fileRef = A941FD9212E1F10100E47D14 /* information.png */; };
+		A941FD9512E1F10100E47D14 /* information@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A941FD9312E1F10100E47D14 /* information@2x.png */; };
+		A941FD9D12E1F13300E47D14 /* checkbox-checked.png in Resources */ = {isa = PBXBuildFile; fileRef = A941FD9A12E1F13300E47D14 /* checkbox-checked.png */; };
+		A941FD9E12E1F13300E47D14 /* checkbox-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = A941FD9B12E1F13300E47D14 /* checkbox-pressed.png */; };
+		A941FD9F12E1F13300E47D14 /* checkbox.png in Resources */ = {isa = PBXBuildFile; fileRef = A941FD9C12E1F13300E47D14 /* checkbox.png */; };
+		A94DAE8612C8D8A3002BB8C8 /* ADViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A94DAE8412C8D8A3002BB8C8 /* ADViewController.m */; };
+		A94DAE8712C8D8A3002BB8C8 /* ADViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A94DAE8512C8D8A3002BB8C8 /* ADViewController.xib */; };
+		A94DB0FA12CA1E9E002BB8C8 /* UILoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = A94DB0F812CA1E9E002BB8C8 /* UILoginView.m */; };
+		A94DB2BF12CA3BAC002BB8C8 /* UILoginFailDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A94DB2BE12CA3BAC002BB8C8 /* UILoginFailDelegate.m */; };
+		A9932D0E12DAA9A800597DE1 /* URLConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A9932D0D12DAA9A800597DE1 /* URLConnectionManager.m */; };
+		A9932E1012DABC9500597DE1 /* advertisement-selected.html in Resources */ = {isa = PBXBuildFile; fileRef = A9932E0F12DABC9500597DE1 /* advertisement-selected.html */; };
+		A9932FE812DB58D200597DE1 /* NewsPlateContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9932FE712DB58D200597DE1 /* NewsPlateContainerViewController.m */; };
+		A993306212DB5EAD00597DE1 /* NewsPlateHeadContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A993306012DB5EAD00597DE1 /* NewsPlateHeadContainerViewController.m */; };
+		A993306312DB5EAD00597DE1 /* NewsPlateHeadContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A993306112DB5EAD00597DE1 /* NewsPlateHeadContainerViewController.xib */; };
+		A9CF0C3412D020480060CB26 /* about@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = A9CF0C2A12D020480060CB26 /* about@2X.png */; };
+		A9CF0C3512D020480060CB26 /* about.png in Resources */ = {isa = PBXBuildFile; fileRef = A9CF0C2B12D020480060CB26 /* about.png */; };
+		A9CF0C3612D020480060CB26 /* star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9CF0C2C12D020480060CB26 /* star@2x.png */; };
+		A9CF0C3712D020480060CB26 /* newspaper@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9CF0C2D12D020480060CB26 /* newspaper@2x.png */; };
+		A9CF0C3812D020480060CB26 /* gears@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9CF0C2E12D020480060CB26 /* gears@2x.png */; };
+		A9CF0C3912D020480060CB26 /* eye@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9CF0C2F12D020480060CB26 /* eye@2x.png */; };
+		A9CF0C3A12D020480060CB26 /* eye.png in Resources */ = {isa = PBXBuildFile; fileRef = A9CF0C3012D020480060CB26 /* eye.png */; };
+		A9CF0C3B12D020480060CB26 /* newspaper.png in Resources */ = {isa = PBXBuildFile; fileRef = A9CF0C3112D020480060CB26 /* newspaper.png */; };
+		A9CF0C3C12D020480060CB26 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = A9CF0C3212D020480060CB26 /* star.png */; };
+		A9CF0C3D12D020480060CB26 /* gears.png in Resources */ = {isa = PBXBuildFile; fileRef = A9CF0C3312D020480060CB26 /* gears.png */; };
+		A9F3004F12CC666200FD2A0E /* IconDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F3004B12CC666200FD2A0E /* IconDownloader.m */; };
+		A9F3007712CC686900FD2A0E /* NewsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F3007512CC686900FD2A0E /* NewsListViewController.m */; };
+		A9F3007812CC686900FD2A0E /* NewsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9F3007612CC686900FD2A0E /* NewsListViewController.xib */; };
+		A9F3012D12CC8DAA00FD2A0E /* NewsListFooterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F3012B12CC8DAA00FD2A0E /* NewsListFooterViewController.m */; };
+		A9F3012E12CC8DAA00FD2A0E /* NewsListFooterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9F3012C12CC8DAA00FD2A0E /* NewsListFooterViewController.xib */; };
+		A9F301F812CCC66500FD2A0E /* NewsDigestContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F301F712CCC66500FD2A0E /* NewsDigestContainerViewController.m */; };
+		A9F3023312CCD80F00FD2A0E /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F3023212CCD80F00FD2A0E /* CacheManager.m */; };
+		A9F30B5912D2C85800FD2A0E /* NewsIndustryItemListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F30B5712D2C85800FD2A0E /* NewsIndustryItemListViewController.m */; };
+		A9F30B5A12D2C85800FD2A0E /* NewsIndustryItemListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9F30B5812D2C85800FD2A0E /* NewsIndustryItemListViewController.xib */; };
+		A9F30EB312D4648F00FD2A0E /* NewsSelectedContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F30EB212D4648F00FD2A0E /* NewsSelectedContainerView.m */; };
+		A9F30F2312D46A4E00FD2A0E /* NewsIndustryContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F30F2112D46A4E00FD2A0E /* NewsIndustryContainerViewController.m */; };
+		A9F30F2412D46A4E00FD2A0E /* NewsIndustryContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9F30F2212D46A4E00FD2A0E /* NewsIndustryContainerViewController.xib */; };
+		A9F3100C12D4A3CB00FD2A0E /* reload.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3100A12D4A3CB00FD2A0E /* reload.png */; };
+		A9F3100D12D4A3CB00FD2A0E /* reload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F3100B12D4A3CB00FD2A0E /* reload@2x.png */; };
+		A9F3FED212CAE64300FD2A0E /* AddPayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F3FED112CAE64300FD2A0E /* AddPayManager.m */; };
+		A9F3FF3C12CAFC1B00FD2A0E /* UIAddPayView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F3FF3B12CAFC1B00FD2A0E /* UIAddPayView.m */; };
+		A9F3FF5812CB087D00FD2A0E /* UIAddPayFailDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F3FF5712CB087D00FD2A0E /* UIAddPayFailDelegate.m */; };
+		A9F5AC5612CF1B10006EE8B5 /* NewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F5AC5412CF1B10006EE8B5 /* NewsDetailViewController.m */; };
+		A9F5AC5712CF1B10006EE8B5 /* NewsDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9F5AC5512CF1B10006EE8B5 /* NewsDetailViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D3623240D0F684500981E51 /* IBENewsReaderAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBENewsReaderAppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* IBENewsReaderAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBENewsReaderAppDelegate.m; sourceTree = "<group>"; };
+		1D6058910D05DD3D006BFB54 /* IBENewsReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IBENewsReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* IBENewsReader_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBENewsReader_Prefix.pch; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* IBENewsReader-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "IBENewsReader-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		A91072BB12D6068200DE1453 /* NewsPlateListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsPlateListViewController.h; sourceTree = "<group>"; };
+		A91072BC12D6068200DE1453 /* NewsPlateListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsPlateListViewController.m; sourceTree = "<group>"; };
+		A91072BD12D6068200DE1453 /* NewsPlateListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewsPlateListViewController.xib; path = Classes/NewsPlateListViewController.xib; sourceTree = "<group>"; };
+		A91072C012D6075F00DE1453 /* NewsPlateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsPlateViewController.h; sourceTree = "<group>"; };
+		A91072C112D6075F00DE1453 /* NewsPlateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsPlateViewController.m; sourceTree = "<group>"; };
+		A926C08E12B7AF8D0049CC54 /* UserPassRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPassRepository.h; sourceTree = "<group>"; };
+		A926C08F12B7AF8D0049CC54 /* UserPassRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPassRepository.m; sourceTree = "<group>"; };
+		A926C09112B7AFC40049CC54 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		A926C09212B7AFC40049CC54 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		A926C0B812B7B3BF0049CC54 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		A926C0B912B7B3BF0049CC54 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		A926C3B712B91CEB0049CC54 /* LoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginManager.h; sourceTree = "<group>"; };
+		A926C3B812B91CEB0049CC54 /* LoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginManager.m; sourceTree = "<group>"; };
+		A926C5BA12BA6AAF0049CC54 /* UserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserService.h; sourceTree = "<group>"; };
+		A926C5BB12BA6AAF0049CC54 /* UserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserService.m; sourceTree = "<group>"; };
+		A926C5E112BA6EB40049CC54 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		A926C5E212BA6EB40049CC54 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
+		A926C5E312BA6EB40049CC54 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
+		A926C5E412BA6EB40049CC54 /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
+		A926C5E512BA6EB40049CC54 /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
+		A926C5E612BA6EB40049CC54 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
+		A926C5E712BA6EB50049CC54 /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
+		A926C5E812BA6EB50049CC54 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		A926C5E912BA6EB50049CC54 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		A926C5EA12BA6EB50049CC54 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		A926C5EB12BA6EB50049CC54 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		A926C7B612BAF9340049CC54 /* NewsTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsTabBarViewController.h; sourceTree = "<group>"; };
+		A926C7B712BAF9340049CC54 /* NewsTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsTabBarViewController.m; sourceTree = "<group>"; };
+		A926C7C312BAF9FB0049CC54 /* NewsTabBarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewsTabBarViewController.xib; path = Classes/NewsTabBarViewController.xib; sourceTree = "<group>"; };
+		A926C7CE12BAFCDB0049CC54 /* NewsDigestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsDigestViewController.h; sourceTree = "<group>"; };
+		A926C7CF12BAFCDB0049CC54 /* NewsDigestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsDigestViewController.m; sourceTree = "<group>"; };
+		A926C7D012BAFCDB0049CC54 /* NewsDigestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewsDigestViewController.xib; path = Classes/NewsDigestViewController.xib; sourceTree = "<group>"; };
+		A926C7D312BAFCF40049CC54 /* NewsIndustryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsIndustryViewController.h; sourceTree = "<group>"; };
+		A926C7D412BAFCF40049CC54 /* NewsIndustryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsIndustryViewController.m; sourceTree = "<group>"; };
+		A926C7D512BAFCF40049CC54 /* NewsIndustryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewsIndustryViewController.xib; path = Classes/NewsIndustryViewController.xib; sourceTree = "<group>"; };
+		A926C7D812BAFD0A0049CC54 /* NewsBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsBoardViewController.h; sourceTree = "<group>"; };
+		A926C7D912BAFD0A0049CC54 /* NewsBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsBoardViewController.m; sourceTree = "<group>"; };
+		A926C7DA12BAFD0A0049CC54 /* NewsBoardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewsBoardViewController.xib; path = Classes/NewsBoardViewController.xib; sourceTree = "<group>"; };
+		A926C7DF12BAFD1D0049CC54 /* SettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SettingViewController.xib; path = Classes/SettingViewController.xib; sourceTree = "<group>"; };
+		A926C94D12BB4FB30049CC54 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		A926C94E12BB4FB30049CC54 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		A926CBD612BC86580049CC54 /* URLManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLManager.h; sourceTree = "<group>"; };
+		A926CBD712BC86580049CC54 /* URLManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLManager.m; sourceTree = "<group>"; };
+		A926CC4F12BDA6600049CC54 /* UserIndustrySetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserIndustrySetting.h; sourceTree = "<group>"; };
+		A926CC5012BDA6600049CC54 /* UserIndustrySetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserIndustrySetting.m; sourceTree = "<group>"; };
+		A926CDAA12BE39030049CC54 /* UINavigationBarWithCustomBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UINavigationBarWithCustomBackground.h; sourceTree = "<group>"; };
+		A926CDAB12BE39030049CC54 /* UINavigationBarWithCustomBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UINavigationBarWithCustomBackground.m; sourceTree = "<group>"; };
+		A926CDD712BE3DE20049CC54 /* SettingHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingHomeViewController.h; sourceTree = "<group>"; };
+		A926CDD812BE3DE20049CC54 /* SettingHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingHomeViewController.m; sourceTree = "<group>"; };
+		A926CDD912BE3DE20049CC54 /* SettingHomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SettingHomeViewController.xib; path = Classes/SettingHomeViewController.xib; sourceTree = "<group>"; };
+		A926CFCF12BE68DC0049CC54 /* SettingIndustryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingIndustryViewController.h; sourceTree = "<group>"; };
+		A926CFD012BE68DC0049CC54 /* SettingIndustryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingIndustryViewController.m; sourceTree = "<group>"; };
+		A926CFD112BE68DC0049CC54 /* SettingIndustryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SettingIndustryViewController.xib; path = Classes/SettingIndustryViewController.xib; sourceTree = "<group>"; };
+		A926D16212BF9D320049CC54 /* SettingIndustryCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingIndustryCellView.h; sourceTree = "<group>"; };
+		A926D16312BF9D320049CC54 /* SettingIndustryCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingIndustryCellView.m; sourceTree = "<group>"; };
+		A926D16412BF9D320049CC54 /* SettingIndustryCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SettingIndustryCellView.xib; path = Classes/SettingIndustryCellView.xib; sourceTree = "<group>"; };
+		A926D23012BFA9440049CC54 /* zh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = zh; path = Classes/zh.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A941FC8E12E1B4D800E47D14 /* IndustryList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = IndustryList.plist; sourceTree = "<group>"; };
+		A941FD6E12E1EF9600E47D14 /* NewsDigestContainerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewsDigestContainerViewController.xib; path = Classes/NewsDigestContainerViewController.xib; sourceTree = "<group>"; };
+		A941FD7312E1EFD800E47D14 /* NewsPlateContainerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewsPlateContainerViewController.xib; path = Classes/NewsPlateContainerViewController.xib; sourceTree = "<group>"; };
+		A941FD9212E1F10100E47D14 /* information.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = information.png; path = images/tabbarIcon/information.png; sourceTree = "<group>"; };
+		A941FD9312E1F10100E47D14 /* information@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "information@2x.png"; path = "images/tabbarIcon/information@2x.png"; sourceTree = "<group>"; };
+		A941FD9A12E1F13300E47D14 /* checkbox-checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "checkbox-checked.png"; path = "images/checkbox-checked.png"; sourceTree = "<group>"; };
+		A941FD9B12E1F13300E47D14 /* checkbox-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "checkbox-pressed.png"; path = "images/checkbox-pressed.png"; sourceTree = "<group>"; };
+		A941FD9C12E1F13300E47D14 /* checkbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkbox.png; path = images/checkbox.png; sourceTree = "<group>"; };
+		A94DAE8312C8D8A3002BB8C8 /* ADViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADViewController.h; sourceTree = "<group>"; };
+		A94DAE8412C8D8A3002BB8C8 /* ADViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADViewController.m; sourceTree = "<group>"; };
+		A94DAE8512C8D8A3002BB8C8 /* ADViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ADViewController.xib; path = Classes/ADViewController.xib; sourceTree = "<group>"; };
+		A94DB0F812CA1E9E002BB8C8 /* UILoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILoginView.m; sourceTree = "<group>"; };
+		A94DB0F912CA1E9E002BB8C8 /* UILoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILoginView.h; sourceTree = "<group>"; };
+		A94DB2BD12CA3BAC002BB8C8 /* UILoginFailDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILoginFailDelegate.h; sourceTree = "<group>"; };
+		A94DB2BE12CA3BAC002BB8C8 /* UILoginFailDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILoginFailDelegate.m; sourceTree = "<group>"; };
+		A9932D0C12DAA9A800597DE1 /* URLConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLConnectionManager.h; sourceTree = "<group>"; };
+		A9932D0D12DAA9A800597DE1 /* URLConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLConnectionManager.m; sourceTree = "<group>"; };
+		A9932E0F12DABC9500597DE1 /* advertisement-selected.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "advertisement-selected.html"; sourceTree = "<group>"; };
+		A9932FE612DB58D200597DE1 /* NewsPlateContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsPlateContainerViewController.h; sourceTree = "<group>"; };
+		A9932FE712DB58D200597DE1 /* NewsPlateContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsPlateContainerViewController.m; sourceTree = "<group>"; };
+		A993305F12DB5EAD00597DE1 /* NewsPlateHeadContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsPlateHeadContainerViewController.h; sourceTree = "<group>"; };
+		A993306012DB5EAD00597DE1 /* NewsPlateHeadContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsPlateHeadContainerViewController.m; sourceTree = "<group>"; };
+		A993306112DB5EAD00597DE1 /* NewsPlateHeadContainerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewsPlateHeadContainerViewController.xib; path = Classes/NewsPlateHeadContainerViewController.xib; sourceTree = "<group>"; };
+		A9CF0C2A12D020480060CB26 /* about@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "about@2X.png"; path = "images/tabbarIcon/about@2X.png"; sourceTree = "<group>"; };
+		A9CF0C2B12D020480060CB26 /* about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = about.png; path = images/tabbarIcon/about.png; sourceTree = "<group>"; };
+		A9CF0C2C12D020480060CB26 /* star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "star@2x.png"; path = "images/tabbarIcon/star@2x.png"; sourceTree = "<group>"; };
+		A9CF0C2D12D020480060CB26 /* newspaper@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "newspaper@2x.png"; path = "images/tabbarIcon/newspaper@2x.png"; sourceTree = "<group>"; };
+		A9CF0C2E12D020480060CB26 /* gears@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gears@2x.png"; path = "images/tabbarIcon/gears@2x.png"; sourceTree = "<group>"; };
+		A9CF0C2F12D020480060CB26 /* eye@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "eye@2x.png"; path = "images/tabbarIcon/eye@2x.png"; sourceTree = "<group>"; };
+		A9CF0C3012D020480060CB26 /* eye.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = eye.png; path = images/tabbarIcon/eye.png; sourceTree = "<group>"; };
+		A9CF0C3112D020480060CB26 /* newspaper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = newspaper.png; path = images/tabbarIcon/newspaper.png; sourceTree = "<group>"; };
+		A9CF0C3212D020480060CB26 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star.png; path = images/tabbarIcon/star.png; sourceTree = "<group>"; };
+		A9CF0C3312D020480060CB26 /* gears.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gears.png; path = images/tabbarIcon/gears.png; sourceTree = "<group>"; };
+		A9F3004A12CC666200FD2A0E /* IconDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconDownloader.h; sourceTree = "<group>"; };
+		A9F3004B12CC666200FD2A0E /* IconDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconDownloader.m; sourceTree = "<group>"; };
+		A9F3007412CC686900FD2A0E /* NewsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsListViewController.h; sourceTree = "<group>"; };
+		A9F3007512CC686900FD2A0E /* NewsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsListViewController.m; sourceTree = "<group>"; };
+		A9F3007612CC686900FD2A0E /* NewsListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewsListViewController.xib; path = Classes/NewsListViewController.xib; sourceTree = "<group>"; };
+		A9F3012A12CC8DAA00FD2A0E /* NewsListFooterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsListFooterViewController.h; sourceTree = "<group>"; };
+		A9F3012B12CC8DAA00FD2A0E /* NewsListFooterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsListFooterViewController.m; sourceTree = "<group>"; };
+		A9F3012C12CC8DAA00FD2A0E /* NewsListFooterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewsListFooterViewController.xib; path = Classes/NewsListFooterViewController.xib; sourceTree = "<group>"; };
+		A9F301F712CCC66500FD2A0E /* NewsDigestContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsDigestContainerViewController.m; sourceTree = "<group>"; };
+		A9F3023112CCD80F00FD2A0E /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
+		A9F3023212CCD80F00FD2A0E /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
+		A9F30B5612D2C85800FD2A0E /* NewsIndustryItemListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsIndustryItemListViewController.h; sourceTree = "<group>"; };
+		A9F30B5712D2C85800FD2A0E /* NewsIndustryItemListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsIndustryItemListViewController.m; sourceTree = "<group>"; };
+		A9F30B5812D2C85800FD2A0E /* NewsIndustryItemListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewsIndustryItemListViewController.xib; path = Classes/NewsIndustryItemListViewController.xib; sourceTree = "<group>"; };
+		A9F30EB112D4648F00FD2A0E /* NewsSelectedContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsSelectedContainerView.h; sourceTree = "<group>"; };
+		A9F30EB212D4648F00FD2A0E /* NewsSelectedContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsSelectedContainerView.m; sourceTree = "<group>"; };
+		A9F30F2012D46A4E00FD2A0E /* NewsIndustryContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsIndustryContainerViewController.h; sourceTree = "<group>"; };
+		A9F30F2112D46A4E00FD2A0E /* NewsIndustryContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsIndustryContainerViewController.m; sourceTree = "<group>"; };
+		A9F30F2212D46A4E00FD2A0E /* NewsIndustryContainerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewsIndustryContainerViewController.xib; path = Classes/NewsIndustryContainerViewController.xib; sourceTree = "<group>"; };
+		A9F3100A12D4A3CB00FD2A0E /* reload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = reload.png; path = images/reload.png; sourceTree = "<group>"; };
+		A9F3100B12D4A3CB00FD2A0E /* reload@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "reload@2x.png"; path = "images/reload@2x.png"; sourceTree = "<group>"; };
+		A9F3FED012CAE64300FD2A0E /* AddPayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPayManager.h; sourceTree = "<group>"; };
+		A9F3FED112CAE64300FD2A0E /* AddPayManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPayManager.m; sourceTree = "<group>"; };
+		A9F3FF3A12CAFC1B00FD2A0E /* UIAddPayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIAddPayView.h; sourceTree = "<group>"; };
+		A9F3FF3B12CAFC1B00FD2A0E /* UIAddPayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIAddPayView.m; sourceTree = "<group>"; };
+		A9F3FF5612CB087D00FD2A0E /* UIAddPayFailDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIAddPayFailDelegate.h; sourceTree = "<group>"; };
+		A9F3FF5712CB087D00FD2A0E /* UIAddPayFailDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIAddPayFailDelegate.m; sourceTree = "<group>"; };
+		A9F3FFF712CC618A00FD2A0E /* NewsDigestContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsDigestContainerViewController.h; sourceTree = "<group>"; };
+		A9F5AC5312CF1B10006EE8B5 /* NewsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsDetailViewController.h; sourceTree = "<group>"; };
+		A9F5AC5412CF1B10006EE8B5 /* NewsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsDetailViewController.m; sourceTree = "<group>"; };
+		A9F5AC5512CF1B10006EE8B5 /* NewsDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewsDetailViewController.xib; path = Classes/NewsDetailViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				A926C94C12BB4FB30049CC54 /* MBProgressHUD */,
+				A926C5E012BA6EB40049CC54 /* JSON */,
+				1D3623240D0F684500981E51 /* IBENewsReaderAppDelegate.h */,
+				1D3623250D0F684500981E51 /* IBENewsReaderAppDelegate.m */,
+				A9F30EB112D4648F00FD2A0E /* NewsSelectedContainerView.h */,
+				A9F30EB212D4648F00FD2A0E /* NewsSelectedContainerView.m */,
+				A926C7B612BAF9340049CC54 /* NewsTabBarViewController.h */,
+				A926C7B712BAF9340049CC54 /* NewsTabBarViewController.m */,
+				A926C7CE12BAFCDB0049CC54 /* NewsDigestViewController.h */,
+				A926C7CF12BAFCDB0049CC54 /* NewsDigestViewController.m */,
+				A9F3FFF712CC618A00FD2A0E /* NewsDigestContainerViewController.h */,
+				A9F301F712CCC66500FD2A0E /* NewsDigestContainerViewController.m */,
+				A91072BB12D6068200DE1453 /* NewsPlateListViewController.h */,
+				A91072BC12D6068200DE1453 /* NewsPlateListViewController.m */,
+				A9932FE612DB58D200597DE1 /* NewsPlateContainerViewController.h */,
+				A9932FE712DB58D200597DE1 /* NewsPlateContainerViewController.m */,
+				A993305F12DB5EAD00597DE1 /* NewsPlateHeadContainerViewController.h */,
+				A993306012DB5EAD00597DE1 /* NewsPlateHeadContainerViewController.m */,
+				A9F3007412CC686900FD2A0E /* NewsListViewController.h */,
+				A9F3007512CC686900FD2A0E /* NewsListViewController.m */,
+				A9F3012A12CC8DAA00FD2A0E /* NewsListFooterViewController.h */,
+				A9F3012B12CC8DAA00FD2A0E /* NewsListFooterViewController.m */,
+				A9F5AC5312CF1B10006EE8B5 /* NewsDetailViewController.h */,
+				A9F5AC5412CF1B10006EE8B5 /* NewsDetailViewController.m */,
+				A926C7D312BAFCF40049CC54 /* NewsIndustryViewController.h */,
+				A926C7D412BAFCF40049CC54 /* NewsIndustryViewController.m */,
+				A9F30B5612D2C85800FD2A0E /* NewsIndustryItemListViewController.h */,
+				A9F30B5712D2C85800FD2A0E /* NewsIndustryItemListViewController.m */,
+				A9F30F2012D46A4E00FD2A0E /* NewsIndustryContainerViewController.h */,
+				A9F30F2112D46A4E00FD2A0E /* NewsIndustryContainerViewController.m */,
+				A926CFCF12BE68DC0049CC54 /* SettingIndustryViewController.h */,
+				A926CFD012BE68DC0049CC54 /* SettingIndustryViewController.m */,
+				A926D16212BF9D320049CC54 /* SettingIndustryCellView.h */,
+				A926D16312BF9D320049CC54 /* SettingIndustryCellView.m */,
+				A926C09112B7AFC40049CC54 /* User.h */,
+				A926C09212B7AFC40049CC54 /* User.m */,
+				A94DB0F912CA1E9E002BB8C8 /* UILoginView.h */,
+				A94DB0F812CA1E9E002BB8C8 /* UILoginView.m */,
+				A926C3B712B91CEB0049CC54 /* LoginManager.h */,
+				A926C3B812B91CEB0049CC54 /* LoginManager.m */,
+				A9F3FF3A12CAFC1B00FD2A0E /* UIAddPayView.h */,
+				A9F3FF3B12CAFC1B00FD2A0E /* UIAddPayView.m */,
+				A9F3FED012CAE64300FD2A0E /* AddPayManager.h */,
+				A9F3FED112CAE64300FD2A0E /* AddPayManager.m */,
+				A926C5BA12BA6AAF0049CC54 /* UserService.h */,
+				A926C5BB12BA6AAF0049CC54 /* UserService.m */,
+				A9F3004A12CC666200FD2A0E /* IconDownloader.h */,
+				A9F3004B12CC666200FD2A0E /* IconDownloader.m */,
+				A926C7D812BAFD0A0049CC54 /* NewsBoardViewController.h */,
+				A926C7D912BAFD0A0049CC54 /* NewsBoardViewController.m */,
+				A926CBD612BC86580049CC54 /* URLManager.h */,
+				A926CBD712BC86580049CC54 /* URLManager.m */,
+				A926CC4F12BDA6600049CC54 /* UserIndustrySetting.h */,
+				A926CC5012BDA6600049CC54 /* UserIndustrySetting.m */,
+				A94DB2BD12CA3BAC002BB8C8 /* UILoginFailDelegate.h */,
+				A94DB2BE12CA3BAC002BB8C8 /* UILoginFailDelegate.m */,
+				A9F3FF5612CB087D00FD2A0E /* UIAddPayFailDelegate.h */,
+				A9F3FF5712CB087D00FD2A0E /* UIAddPayFailDelegate.m */,
+				A926CDD712BE3DE20049CC54 /* SettingHomeViewController.h */,
+				A926CDD812BE3DE20049CC54 /* SettingHomeViewController.m */,
+				A94DAE8312C8D8A3002BB8C8 /* ADViewController.h */,
+				A94DAE8412C8D8A3002BB8C8 /* ADViewController.m */,
+				A9F3023112CCD80F00FD2A0E /* CacheManager.h */,
+				A9F3023212CCD80F00FD2A0E /* CacheManager.m */,
+				A91072C012D6075F00DE1453 /* NewsPlateViewController.h */,
+				A91072C112D6075F00DE1453 /* NewsPlateViewController.m */,
+				A9932D0C12DAA9A800597DE1 /* URLConnectionManager.h */,
+				A9932D0D12DAA9A800597DE1 /* URLConnectionManager.m */,
+				A926C0B812B7B3BF0049CC54 /* Constants.h */,
+				A926C0B912B7B3BF0049CC54 /* Constants.m */,
+				A926C08E12B7AF8D0049CC54 /* UserPassRepository.h */,
+				A926C08F12B7AF8D0049CC54 /* UserPassRepository.m */,
+				A926CDAA12BE39030049CC54 /* UINavigationBarWithCustomBackground.h */,
+				A926CDAB12BE39030049CC54 /* UINavigationBarWithCustomBackground.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* IBENewsReader.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* IBENewsReader_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A9CF0C1312D01F9D0060CB26 /* images */,
+				8D1107310486CEB800E47090 /* IBENewsReader-Info.plist */,
+				A926D22F12BFA9440049CC54 /* Localizable.strings */,
+				A941FC8E12E1B4D800E47D14 /* IndustryList.plist */,
+				A9932E0F12DABC9500597DE1 /* advertisement-selected.html */,
+				A993306112DB5EAD00597DE1 /* NewsPlateHeadContainerViewController.xib */,
+				A91072BD12D6068200DE1453 /* NewsPlateListViewController.xib */,
+				A9F30F2212D46A4E00FD2A0E /* NewsIndustryContainerViewController.xib */,
+				A941FD6E12E1EF9600E47D14 /* NewsDigestContainerViewController.xib */,
+				A9F30B5812D2C85800FD2A0E /* NewsIndustryItemListViewController.xib */,
+				A9F5AC5512CF1B10006EE8B5 /* NewsDetailViewController.xib */,
+				A9F3012C12CC8DAA00FD2A0E /* NewsListFooterViewController.xib */,
+				A9F3007612CC686900FD2A0E /* NewsListViewController.xib */,
+				A94DAE8512C8D8A3002BB8C8 /* ADViewController.xib */,
+				A926D16412BF9D320049CC54 /* SettingIndustryCellView.xib */,
+				A926CFD112BE68DC0049CC54 /* SettingIndustryViewController.xib */,
+				A926CDD912BE3DE20049CC54 /* SettingHomeViewController.xib */,
+				A926C7DF12BAFD1D0049CC54 /* SettingViewController.xib */,
+				A926C7DA12BAFD0A0049CC54 /* NewsBoardViewController.xib */,
+				A926C7D512BAFCF40049CC54 /* NewsIndustryViewController.xib */,
+				A926C7D012BAFCDB0049CC54 /* NewsDigestViewController.xib */,
+				A926C7C312BAF9FB0049CC54 /* NewsTabBarViewController.xib */,
+				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
+				A941FD7312E1EFD800E47D14 /* NewsPlateContainerViewController.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A926C5E012BA6EB40049CC54 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				A926C5E112BA6EB40049CC54 /* JSON.h */,
+				A926C5E212BA6EB40049CC54 /* NSObject+SBJSON.h */,
+				A926C5E312BA6EB40049CC54 /* NSObject+SBJSON.m */,
+				A926C5E412BA6EB40049CC54 /* NSString+SBJSON.h */,
+				A926C5E512BA6EB40049CC54 /* NSString+SBJSON.m */,
+				A926C5E612BA6EB40049CC54 /* SBJsonBase.h */,
+				A926C5E712BA6EB50049CC54 /* SBJsonBase.m */,
+				A926C5E812BA6EB50049CC54 /* SBJsonParser.h */,
+				A926C5E912BA6EB50049CC54 /* SBJsonParser.m */,
+				A926C5EA12BA6EB50049CC54 /* SBJsonWriter.h */,
+				A926C5EB12BA6EB50049CC54 /* SBJsonWriter.m */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
+		A926C94C12BB4FB30049CC54 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				A926C94D12BB4FB30049CC54 /* MBProgressHUD.h */,
+				A926C94E12BB4FB30049CC54 /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		A9CF0C1312D01F9D0060CB26 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				A941FD9A12E1F13300E47D14 /* checkbox-checked.png */,
+				A941FD9B12E1F13300E47D14 /* checkbox-pressed.png */,
+				A941FD9C12E1F13300E47D14 /* checkbox.png */,
+				A9F3100A12D4A3CB00FD2A0E /* reload.png */,
+				A9F3100B12D4A3CB00FD2A0E /* reload@2x.png */,
+				A9CF0C1412D01FB00060CB26 /* tabbarIcon */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
+		A9CF0C1412D01FB00060CB26 /* tabbarIcon */ = {
+			isa = PBXGroup;
+			children = (
+				A941FD9212E1F10100E47D14 /* information.png */,
+				A941FD9312E1F10100E47D14 /* information@2x.png */,
+				A9CF0C2A12D020480060CB26 /* about@2X.png */,
+				A9CF0C2B12D020480060CB26 /* about.png */,
+				A9CF0C2C12D020480060CB26 /* star@2x.png */,
+				A9CF0C2D12D020480060CB26 /* newspaper@2x.png */,
+				A9CF0C2E12D020480060CB26 /* gears@2x.png */,
+				A9CF0C2F12D020480060CB26 /* eye@2x.png */,
+				A9CF0C3012D020480060CB26 /* eye.png */,
+				A9CF0C3112D020480060CB26 /* newspaper.png */,
+				A9CF0C3212D020480060CB26 /* star.png */,
+				A9CF0C3312D020480060CB26 /* gears.png */,
+			);
+			name = tabbarIcon;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* IBENewsReader */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "IBENewsReader" */;
+			buildPhases = (
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IBENewsReader;
+			productName = IBENewsReader;
+			productReference = 1D6058910D05DD3D006BFB54 /* IBENewsReader.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "IBENewsReader" */;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+				zh,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* IBENewsReader */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
+				A926C7C412BAF9FB0049CC54 /* NewsTabBarViewController.xib in Resources */,
+				A926C7D212BAFCDB0049CC54 /* NewsDigestViewController.xib in Resources */,
+				A926C7D712BAFCF40049CC54 /* NewsIndustryViewController.xib in Resources */,
+				A926C7DC12BAFD0A0049CC54 /* NewsBoardViewController.xib in Resources */,
+				A926C7E112BAFD1D0049CC54 /* SettingViewController.xib in Resources */,
+				A926CDDB12BE3DE20049CC54 /* SettingHomeViewController.xib in Resources */,
+				A926CFD312BE68DC0049CC54 /* SettingIndustryViewController.xib in Resources */,
+				A926D16612BF9D320049CC54 /* SettingIndustryCellView.xib in Resources */,
+				A926D23112BFA9440049CC54 /* Localizable.strings in Resources */,
+				A94DAE8712C8D8A3002BB8C8 /* ADViewController.xib in Resources */,
+				A9F3007812CC686900FD2A0E /* NewsListViewController.xib in Resources */,
+				A9F3012E12CC8DAA00FD2A0E /* NewsListFooterViewController.xib in Resources */,
+				A9F5AC5712CF1B10006EE8B5 /* NewsDetailViewController.xib in Resources */,
+				A9CF0C3412D020480060CB26 /* about@2X.png in Resources */,
+				A9CF0C3512D020480060CB26 /* about.png in Resources */,
+				A9CF0C3612D020480060CB26 /* star@2x.png in Resources */,
+				A9CF0C3712D020480060CB26 /* newspaper@2x.png in Resources */,
+				A9CF0C3812D020480060CB26 /* gears@2x.png in Resources */,
+				A9CF0C3912D020480060CB26 /* eye@2x.png in Resources */,
+				A9CF0C3A12D020480060CB26 /* eye.png in Resources */,
+				A9CF0C3B12D020480060CB26 /* newspaper.png in Resources */,
+				A9CF0C3C12D020480060CB26 /* star.png in Resources */,
+				A9CF0C3D12D020480060CB26 /* gears.png in Resources */,
+				A9F30B5A12D2C85800FD2A0E /* NewsIndustryItemListViewController.xib in Resources */,
+				A9F30F2412D46A4E00FD2A0E /* NewsIndustryContainerViewController.xib in Resources */,
+				A9F3100C12D4A3CB00FD2A0E /* reload.png in Resources */,
+				A9F3100D12D4A3CB00FD2A0E /* reload@2x.png in Resources */,
+				A91072BF12D6068200DE1453 /* NewsPlateListViewController.xib in Resources */,
+				A9932E1012DABC9500597DE1 /* advertisement-selected.html in Resources */,
+				A993306312DB5EAD00597DE1 /* NewsPlateHeadContainerViewController.xib in Resources */,
+				A941FC8F12E1B4D800E47D14 /* IndustryList.plist in Resources */,
+				A941FD6F12E1EF9600E47D14 /* NewsDigestContainerViewController.xib in Resources */,
+				A941FD7412E1EFD800E47D14 /* NewsPlateContainerViewController.xib in Resources */,
+				A941FD9412E1F10100E47D14 /* information.png in Resources */,
+				A941FD9512E1F10100E47D14 /* information@2x.png in Resources */,
+				A941FD9D12E1F13300E47D14 /* checkbox-checked.png in Resources */,
+				A941FD9E12E1F13300E47D14 /* checkbox-pressed.png in Resources */,
+				A941FD9F12E1F13300E47D14 /* checkbox.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				1D3623260D0F684500981E51 /* IBENewsReaderAppDelegate.m in Sources */,
+				A926C09012B7AF8D0049CC54 /* UserPassRepository.m in Sources */,
+				A926C09312B7AFC40049CC54 /* User.m in Sources */,
+				A926C0BA12B7B3BF0049CC54 /* Constants.m in Sources */,
+				A926C3B912B91CEB0049CC54 /* LoginManager.m in Sources */,
+				A926C5BC12BA6AAF0049CC54 /* UserService.m in Sources */,
+				A926C5EC12BA6EB50049CC54 /* NSObject+SBJSON.m in Sources */,
+				A926C5ED12BA6EB50049CC54 /* NSString+SBJSON.m in Sources */,
+				A926C5EE12BA6EB50049CC54 /* SBJsonBase.m in Sources */,
+				A926C5EF12BA6EB50049CC54 /* SBJsonParser.m in Sources */,
+				A926C5F012BA6EB50049CC54 /* SBJsonWriter.m in Sources */,
+				A926C7B912BAF9340049CC54 /* NewsTabBarViewController.m in Sources */,
+				A926C7D112BAFCDB0049CC54 /* NewsDigestViewController.m in Sources */,
+				A926C7D612BAFCF40049CC54 /* NewsIndustryViewController.m in Sources */,
+				A926C7DB12BAFD0A0049CC54 /* NewsBoardViewController.m in Sources */,
+				A926C94F12BB4FB30049CC54 /* MBProgressHUD.m in Sources */,
+				A926CBD812BC86580049CC54 /* URLManager.m in Sources */,
+				A926CC5112BDA6600049CC54 /* UserIndustrySetting.m in Sources */,
+				A926CDAC12BE39030049CC54 /* UINavigationBarWithCustomBackground.m in Sources */,
+				A926CDDA12BE3DE20049CC54 /* SettingHomeViewController.m in Sources */,
+				A926CFD212BE68DC0049CC54 /* SettingIndustryViewController.m in Sources */,
+				A926D16512BF9D320049CC54 /* SettingIndustryCellView.m in Sources */,
+				A94DAE8612C8D8A3002BB8C8 /* ADViewController.m in Sources */,
+				A94DB0FA12CA1E9E002BB8C8 /* UILoginView.m in Sources */,
+				A94DB2BF12CA3BAC002BB8C8 /* UILoginFailDelegate.m in Sources */,
+				A9F3FED212CAE64300FD2A0E /* AddPayManager.m in Sources */,
+				A9F3FF3C12CAFC1B00FD2A0E /* UIAddPayView.m in Sources */,
+				A9F3FF5812CB087D00FD2A0E /* UIAddPayFailDelegate.m in Sources */,
+				A9F3004F12CC666200FD2A0E /* IconDownloader.m in Sources */,
+				A9F3007712CC686900FD2A0E /* NewsListViewController.m in Sources */,
+				A9F3012D12CC8DAA00FD2A0E /* NewsListFooterViewController.m in Sources */,
+				A9F301F812CCC66500FD2A0E /* NewsDigestContainerViewController.m in Sources */,
+				A9F3023312CCD80F00FD2A0E /* CacheManager.m in Sources */,
+				A9F5AC5612CF1B10006EE8B5 /* NewsDetailViewController.m in Sources */,
+				A9F30B5912D2C85800FD2A0E /* NewsIndustryItemListViewController.m in Sources */,
+				A9F30EB312D4648F00FD2A0E /* NewsSelectedContainerView.m in Sources */,
+				A9F30F2312D46A4E00FD2A0E /* NewsIndustryContainerViewController.m in Sources */,
+				A91072BE12D6068200DE1453 /* NewsPlateListViewController.m in Sources */,
+				A91072C212D6075F00DE1453 /* NewsPlateViewController.m in Sources */,
+				A9932D0E12DAA9A800597DE1 /* URLConnectionManager.m in Sources */,
+				A9932FE812DB58D200597DE1 /* NewsPlateContainerViewController.m in Sources */,
+				A993306212DB5EAD00597DE1 /* NewsPlateHeadContainerViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A926D22F12BFA9440049CC54 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A926D23012BFA9440049CC54 /* zh */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = IBENewsReader_Prefix.pch;
+				INFOPLIST_FILE = "IBENewsReader-Info.plist";
+				PRODUCT_NAME = IBENewsReader;
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = IBENewsReader_Prefix.pch;
+				INFOPLIST_FILE = "IBENewsReader-Info.plist";
+				PRODUCT_NAME = IBENewsReader;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: b HUNGYANG (TBNC279923)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				ONLY_ACTIVE_ARCH = NO;
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "94BB7E53-2CD2-488B-A909-B35CF3CA2188";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PREBINDING = NO;
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "IBENewsReader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "IBENewsReader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

@@ -1,0 +1,2 @@
+/Users/man9527/Documents/Xcode/0102/IBENewsReader/Classes/NewsDigestContainerViewController.m:439: warning: property 'queue' requires method '-queue' to be defined - use @synthesize, @dynamic or provide a method implementation
+/Users/man9527/Documents/Xcode/0102/IBENewsReader/Classes/NewsDigestContainerViewController.m:439: warning: property 'queue' requires the method 'setQueue:' to be defined - use @synthesize, @dynamic or provide a method implementation

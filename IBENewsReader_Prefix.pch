@@ -1,0 +1,8 @@
+//
+// Prefix header for all source files of the 'IBENewsReader' target in the 'IBENewsReader' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+#endif
