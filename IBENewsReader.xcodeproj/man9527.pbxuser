@@ -25,7 +25,7 @@
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
 		activeBuildConfigurationName = Debug;
 		activeExecutable = A926C06512B7AC210049CC54 /* IBENewsReader */;
-		activeSDKPreference = iphonesimulator4.2;
+		activeSDKPreference = iphoneos4.2;
 		activeTarget = 1D6058900D05DD3D006BFB54 /* IBENewsReader */;
 		addToTargets = (
 			1D6058900D05DD3D006BFB54 /* IBENewsReader */,
@@ -241,6 +241,17 @@
 			A941FDAE12E1F37A00E47D14 /* PBXTextBookmark */ = A941FDAE12E1F37A00E47D14 /* PBXTextBookmark */;
 			A941FDAF12E1F37A00E47D14 /* PlistBookmark */ = A941FDAF12E1F37A00E47D14 /* PlistBookmark */;
 			A941FDB012E1F37A00E47D14 /* PBXTextBookmark */ = A941FDB012E1F37A00E47D14 /* PBXTextBookmark */;
+			A941FDB612E32C5400E47D14 /* PBXTextBookmark */ = A941FDB612E32C5400E47D14 /* PBXTextBookmark */;
+			A941FDB712E32C5400E47D14 /* PBXTextBookmark */ = A941FDB712E32C5400E47D14 /* PBXTextBookmark */;
+			A941FDB812E32C5400E47D14 /* PBXTextBookmark */ = A941FDB812E32C5400E47D14 /* PBXTextBookmark */;
+			A941FDB912E32C5400E47D14 /* PBXTextBookmark */ = A941FDB912E32C5400E47D14 /* PBXTextBookmark */;
+			A941FDBA12E32C5400E47D14 /* PBXTextBookmark */ = A941FDBA12E32C5400E47D14 /* PBXTextBookmark */;
+			A941FDBB12E32C5400E47D14 /* PBXTextBookmark */ = A941FDBB12E32C5400E47D14 /* PBXTextBookmark */;
+			A941FDBC12E32C5400E47D14 /* PBXTextBookmark */ = A941FDBC12E32C5400E47D14 /* PBXTextBookmark */;
+			A941FDBD12E32C5400E47D14 /* PBXTextBookmark */ = A941FDBD12E32C5400E47D14 /* PBXTextBookmark */;
+			A941FDC412E32FFF00E47D14 /* PBXTextBookmark */ = A941FDC412E32FFF00E47D14 /* PBXTextBookmark */;
+			A941FDC512E32FFF00E47D14 /* PBXTextBookmark */ = A941FDC512E32FFF00E47D14 /* PBXTextBookmark */;
+			A941FDC612E32FFF00E47D14 /* PBXTextBookmark */ = A941FDC612E32FFF00E47D14 /* PBXTextBookmark */;
 			A94DB1DC12CA2CC7002BB8C8 = A94DB1DC12CA2CC7002BB8C8 /* PBXTextBookmark */;
 			A94DB2B812CA36BC002BB8C8 = A94DB2B812CA36BC002BB8C8 /* PBXTextBookmark */;
 			A97664A712D0ACCA0099A96D = A97664A712D0ACCA0099A96D /* PBXTextBookmark */;
@@ -442,9 +453,9 @@
 	};
 	A91072BC12D6068200DE1453 /* NewsPlateListViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1172, 6045}}";
-			sepNavSelRange = "{1516, 0}";
-			sepNavVisRange = "{2649, 956}";
+			sepNavIntBoundsRect = "{{0, 0}, {1188, 5902}}";
+			sepNavSelRange = "{8698, 0}";
+			sepNavVisRange = "{3687, 921}";
 			sepNavWindowFrame = "{{165, 11}, {1201, 735}}";
 		};
 	};
@@ -458,8 +469,8 @@
 	A91072C112D6075F00DE1453 /* NewsPlateViewController.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1139, 858}}";
-			sepNavSelRange = "{1196, 0}";
-			sepNavVisRange = "{160, 1241}";
+			sepNavSelRange = "{902, 0}";
+			sepNavVisRange = "{0, 1126}";
 		};
 	};
 	A910734C12D6197C00DE1453 /* NewsDigestContainerViewController.m:104 */ = {
@@ -677,7 +688,7 @@
 	A926C7D412BAFCF40049CC54 /* NewsIndustryViewController.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1146, 780}}";
-			sepNavSelRange = "{1227, 0}";
+			sepNavSelRange = "{1278, 0}";
 			sepNavVisRange = "{610, 861}";
 		};
 	};
@@ -1784,6 +1795,116 @@
 		vrLen = 701;
 		vrLoc = 8686;
 	};
+	A941FDB612E32C5400E47D14 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A94DB0F812CA1E9E002BB8C8 /* UILoginView.m */;
+		name = "UILoginView.m: 309";
+		rLen = 0;
+		rLoc = 9333;
+		rType = 0;
+		vrLen = 671;
+		vrLoc = 8716;
+	};
+	A941FDB712E32C5400E47D14 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A91072C112D6075F00DE1453 /* NewsPlateViewController.m */;
+		name = "NewsPlateViewController.m: 36";
+		rLen = 0;
+		rLoc = 902;
+		rType = 0;
+		vrLen = 1126;
+		vrLoc = 0;
+	};
+	A941FDB812E32C5400E47D14 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A91072BC12D6068200DE1453 /* NewsPlateListViewController.m */;
+		name = "NewsPlateListViewController.m: 293";
+		rLen = 0;
+		rLoc = 8698;
+		rType = 0;
+		vrLen = 921;
+		vrLoc = 3687;
+	};
+	A941FDB912E32C5400E47D14 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A926C7D412BAFCF40049CC54 /* NewsIndustryViewController.m */;
+		name = "NewsIndustryViewController.m: 45";
+		rLen = 0;
+		rLoc = 1278;
+		rType = 0;
+		vrLen = 861;
+		vrLoc = 610;
+	};
+	A941FDBA12E32C5400E47D14 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A9F30B5712D2C85800FD2A0E /* NewsIndustryItemListViewController.m */;
+		name = "NewsIndustryItemListViewController.m: 57";
+		rLen = 0;
+		rLoc = 1899;
+		rType = 0;
+		vrLen = 1409;
+		vrLoc = 0;
+	};
+	A941FDBB12E32C5400E47D14 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A9F3004B12CC666200FD2A0E /* IconDownloader.m */;
+		name = "IconDownloader.m: 45";
+		rLen = 0;
+		rLoc = 910;
+		rType = 0;
+		vrLen = 936;
+		vrLoc = 258;
+	};
+	A941FDBC12E32C5400E47D14 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A9F5AC5412CF1B10006EE8B5 /* NewsDetailViewController.m */;
+		name = "NewsDetailViewController.m: 289";
+		rLen = 0;
+		rLoc = 8738;
+		rType = 0;
+		vrLen = 902;
+		vrLoc = 7898;
+	};
+	A941FDBD12E32C5400E47D14 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A9F5AC5412CF1B10006EE8B5 /* NewsDetailViewController.m */;
+		name = "NewsDetailViewController.m: 289";
+		rLen = 0;
+		rLoc = 8738;
+		rType = 0;
+		vrLen = 871;
+		vrLoc = 7897;
+	};
+	A941FDC412E32FFF00E47D14 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A9F5AC5412CF1B10006EE8B5 /* NewsDetailViewController.m */;
+		name = "NewsDetailViewController.m: 289";
+		rLen = 0;
+		rLoc = 8738;
+		rType = 0;
+		vrLen = 871;
+		vrLoc = 7897;
+	};
+	A941FDC512E32FFF00E47D14 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A9F3004B12CC666200FD2A0E /* IconDownloader.m */;
+		name = "IconDownloader.m: 45";
+		rLen = 0;
+		rLoc = 910;
+		rType = 0;
+		vrLen = 884;
+		vrLoc = 310;
+	};
+	A941FDC612E32FFF00E47D14 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = A9F3004B12CC666200FD2A0E /* IconDownloader.m */;
+		name = "IconDownloader.m: 97";
+		rLen = 0;
+		rLoc = 2676;
+		rType = 0;
+		vrLen = 1484;
+		vrLoc = 1196;
+	};
 	A94DAE8312C8D8A3002BB8C8 /* ADViewController.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {936, 531}}";
@@ -1821,7 +1942,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1070, 4628}}";
 			sepNavSelRange = "{9333, 0}";
-			sepNavVisRange = "{8686, 701}";
+			sepNavVisRange = "{8716, 671}";
 			sepNavWindowFrame = "{{60, 7}, {1306, 712}}";
 		};
 	};
@@ -2807,9 +2928,9 @@
 	};
 	A9F3004B12CC666200FD2A0E /* IconDownloader.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {938, 1287}}";
-			sepNavSelRange = "{1624, 0}";
-			sepNavVisRange = "{1111, 1545}";
+			sepNavIntBoundsRect = "{{0, 0}, {893, 1326}}";
+			sepNavSelRange = "{2676, 0}";
+			sepNavVisRange = "{1196, 1484}";
 			sepNavWindowFrame = "{{75, 6}, {1201, 735}}";
 		};
 	};
@@ -3009,9 +3130,9 @@
 	};
 	A9F30B5712D2C85800FD2A0E /* NewsIndustryItemListViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1209, 3198}}";
-			sepNavSelRange = "{1449, 0}";
-			sepNavVisRange = "{1411, 1262}";
+			sepNavIntBoundsRect = "{{0, 0}, {1209, 3159}}";
+			sepNavSelRange = "{1899, 0}";
+			sepNavVisRange = "{0, 1409}";
 		};
 	};
 	A9F30EB112D4648F00FD2A0E /* NewsSelectedContainerView.h */ = {
@@ -3201,9 +3322,9 @@
 	};
 	A9F5AC5412CF1B10006EE8B5 /* NewsDetailViewController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1139, 3666}}";
-			sepNavSelRange = "{367, 0}";
-			sepNavVisRange = "{3, 1566}";
+			sepNavIntBoundsRect = "{{0, 0}, {893, 3978}}";
+			sepNavSelRange = "{8738, 0}";
+			sepNavVisRange = "{7897, 871}";
 			sepNavWindowFrame = "{{63, 0}, {1303, 746}}";
 		};
 	};

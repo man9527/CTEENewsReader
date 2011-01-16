@@ -273,7 +273,7 @@ static NSString *savedImageKey = @"savetimg";
 }
 
 - (void)dealloc {
-
+	[iconDownloader release];   
 	[container release];
 	[maintitle release];
 	[subtitle release];
@@ -285,7 +285,6 @@ static NSString *savedImageKey = @"savetimg";
 	[news release];
 	[backData release];
 	[relatedNewsData release];
-	[iconDownloader release];   
 	
     [super dealloc];
 }

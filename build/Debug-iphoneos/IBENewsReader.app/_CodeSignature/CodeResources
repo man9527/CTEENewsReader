@@ -6,7 +6,11 @@
 	<dict>
 		<key>ADViewController.nib</key>
 		<data>
-		Emh9GBCCw8Q35xG4fmeE6I6pjok=
+		xA+G5vC6hyt/op2jZGfUfTqj2BA=
+		</data>
+		<key>IndustryList.plist</key>
+		<data>
+		BN/kry7ou4CC7WI0GxFw5tsSEjs=
 		</data>
 		<key>MainWindow.nib</key>
 		<data>
@@ -18,11 +22,11 @@
 		</data>
 		<key>NewsDetailViewController.nib</key>
 		<data>
-		WObdH+LXpkW9A0iVy5EHMaVRGUk=
+		tRZ5Rv/6pu0W/uGh+Ww82czDNb4=
 		</data>
 		<key>NewsDigestContainerViewController.nib</key>
 		<data>
-		HzIapDkBQvfVEa1Uds/UMakiSRY=
+		I0Fl4UHd0nAfWrnU4euGN2qhWpY=
 		</data>
 		<key>NewsDigestViewController.nib</key>
 		<data>
@@ -42,7 +46,7 @@
 		</data>
 		<key>NewsListFooterViewController.nib</key>
 		<data>
-		GyuRPWi5L2UwL+sTbthn5EmCDlc=
+		jarG2KE5tketk9uS1jKfW45zGwY=
 		</data>
 		<key>NewsListViewController.nib</key>
 		<data>
@@ -50,7 +54,7 @@
 		</data>
 		<key>NewsPlateContainerViewController.nib</key>
 		<data>
-		y+fctnfIIEpZzk7FxU4DhDtzJXg=
+		xXr4WDqe8P3gFFYsJRe6QRE8Zus=
 		</data>
 		<key>NewsPlateHeadContainerViewController.nib</key>
 		<data>
@@ -62,7 +66,7 @@
 		</data>
 		<key>NewsTabBarViewController.nib</key>
 		<data>
-		LqUyKYoUzFx2komo73rIuIzsNYo=
+		4hEhdn0ATCcO2oEFX/A2zgyE6Yk=
 		</data>
 		<key>PkgInfo</key>
 		<data>
