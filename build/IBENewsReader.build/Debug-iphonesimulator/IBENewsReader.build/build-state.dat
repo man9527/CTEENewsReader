@@ -1,7 +1,7 @@
 TIBENewsReader
 v7
 r0
-t316797809.717302
+t316842211.012517
 cCheck dependencies
 cProcessInfoPlistFile /Users/man9527/Documents/Xcode/0102/IBENewsReader/build/Debug-iphonesimulator/IBENewsReader.app/Info.plist IBENewsReader-Info.plist
 cCompileXIB /Users/man9527/Documents/Xcode/0102/IBENewsReader/MainWindow.xib
@@ -4938,9 +4938,9 @@ i"NewsTabBarViewController.h"
 i"UserIndustrySetting.h"
 
 N/Users/man9527/Documents/Xcode/0102/IBENewsReader/Classes/NewsTabBarViewController.xib
-c000000004D2C021A000000000000D284
-t1294729754
-s53892
+c000000004D32695C000000000000D421
+t1295149404
+s54305
 
 N/Users/man9527/Documents/Xcode/0102/IBENewsReader/Classes/ParseOperation.h
 c000000004D1EE3480000000000000276
@@ -5333,7 +5333,7 @@ t1294632282
 s489
 
 N/Users/man9527/Documents/Xcode/0102/IBENewsReader/build/Debug-iphonesimulator/IBENewsReader.app
-t1295105009
+t1295149411
 s1496
 
 N/Users/man9527/Documents/Xcode/0102/IBENewsReader/build/Debug-iphonesimulator/IBENewsReader.app.dSYM
@@ -5417,8 +5417,8 @@ t1295104195
 s979
 
 N/Users/man9527/Documents/Xcode/0102/IBENewsReader/build/Debug-iphonesimulator/IBENewsReader.app/NewsTabBarViewController.nib
-t1295104190
-s3309
+t1295149410
+s3334
 
 N/Users/man9527/Documents/Xcode/0102/IBENewsReader/build/Debug-iphonesimulator/IBENewsReader.app/PkgInfo
 t1295104189
@@ -9671,7 +9671,7 @@ lSLF07#2@64"Analyze /Users/man9527/Documents/Xcode/0102/IBENewsReader/main.m3167
 
 CCheck dependencies
 r0
-lSLF07#2@18"Check dependencies316797807#316797807#0(0"0(0#1#0"8609550912#0"0#
+lSLF07#2@18"Check dependencies316842210#316842210#0(0"0(0#1#0"8634616352#0"0#
 
 CCompileC build/IBENewsReader.build/Debug-iphonesimulator/IBENewsReader.build/Objects-normal/i386/ADViewCell.o /Users/man9527/Documents/IBENewsReader/Classes/ADViewCell.m normal i386 objective-c com.apple.compilers.gcc.4_2
 s315151521.487856
@@ -14568,12 +14568,12 @@ x/Users/man9527/Documents/Xcode/0102/IBENewsReader/Classes/NewsPlateListViewCont
 lSLF07#2@50"CompileXIB Classes/NewsPlateListViewController.xib316796995#316796995#0(0"0(0#0#89"/Users/man9527/Documents/Xcode/0102/IBENewsReader/Classes/NewsPlateListViewController.xib8642011072#651"    cd /Users/man9527/Documents/Xcode/0102/IBENewsReader    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.0    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/man9527/Documents/Xcode/0102/IBENewsReader/build/Debug-iphonesimulator/IBENewsReader.app/NewsPlateListViewController.nib /Users/man9527/Documents/Xcode/0102/IBENewsReader/Classes/NewsPlateListViewController.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk0#
 
 CCompileXIB /Users/man9527/Documents/Xcode/0102/IBENewsReader/Classes/NewsTabBarViewController.xib
-s316796989.662201
-e316796990.606964
+s316842210.111745
+e316842210.996669
 r1
 xCompileXIB
 x/Users/man9527/Documents/Xcode/0102/IBENewsReader/Classes/NewsTabBarViewController.xib
-lSLF07#2@47"CompileXIB Classes/NewsTabBarViewController.xib316796989#316796990#0(0"0(0#0#86"/Users/man9527/Documents/Xcode/0102/IBENewsReader/Classes/NewsTabBarViewController.xib8611685152#645"    cd /Users/man9527/Documents/Xcode/0102/IBENewsReader    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.0    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/man9527/Documents/Xcode/0102/IBENewsReader/build/Debug-iphonesimulator/IBENewsReader.app/NewsTabBarViewController.nib /Users/man9527/Documents/Xcode/0102/IBENewsReader/Classes/NewsTabBarViewController.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk0#
+lSLF07#2@47"CompileXIB Classes/NewsTabBarViewController.xib316842210#316842210#0(0"0(0#0#86"/Users/man9527/Documents/Xcode/0102/IBENewsReader/Classes/NewsTabBarViewController.xib8623157920#645"    cd /Users/man9527/Documents/Xcode/0102/IBENewsReader    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 4.0    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/man9527/Documents/Xcode/0102/IBENewsReader/build/Debug-iphonesimulator/IBENewsReader.app/NewsTabBarViewController.nib /Users/man9527/Documents/Xcode/0102/IBENewsReader/Classes/NewsTabBarViewController.xib --sdk /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator4.2.sdk0#
 
 CCompileXIB /Users/man9527/Documents/Xcode/0102/IBENewsReader/Classes/SettingHomeViewController.xib
 s316796992.035981
@@ -15641,12 +15641,12 @@ x/Users/man9527/Documents/IBENewsReader/build/Debug-iphonesimulator/IBENewsReade
 lSLF07#2@90"Touch /Users/man9527/Documents/IBENewsReader/build/Debug-iphonesimulator/IBENewsReader.app315250055#315250055#0(0"0(0#0#0"8638235008#284"    cd /Users/man9527/Documents/IBENewsReader    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /usr/bin/touch -c /Users/man9527/Documents/IBENewsReader/build/Debug-iphonesimulator/IBENewsReader.app0#
 
 CTouch /Users/man9527/Documents/Xcode/0102/IBENewsReader/build/Debug-iphonesimulator/IBENewsReader.app
-s316797809.709828
-e316797809.717222
+s316842211.006454
+e316842211.012444
 r1
 xTouch
 x/Users/man9527/Documents/Xcode/0102/IBENewsReader/build/Debug-iphonesimulator/IBENewsReader.app
-lSLF07#2@101"Touch /Users/man9527/Documents/Xcode/0102/IBENewsReader/build/Debug-iphonesimulator/IBENewsReader.app316797809#316797809#0(0"0(0#0#0"8635876672#306"    cd /Users/man9527/Documents/Xcode/0102/IBENewsReader    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /usr/bin/touch -c /Users/man9527/Documents/Xcode/0102/IBENewsReader/build/Debug-iphonesimulator/IBENewsReader.app0#
+lSLF07#2@101"Touch /Users/man9527/Documents/Xcode/0102/IBENewsReader/build/Debug-iphonesimulator/IBENewsReader.app316842211#316842211#0(0"0(0#0#0"8623385888#306"    cd /Users/man9527/Documents/Xcode/0102/IBENewsReader    setenv PATH "/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin"    /usr/bin/touch -c /Users/man9527/Documents/Xcode/0102/IBENewsReader/build/Debug-iphonesimulator/IBENewsReader.app0#
 
 CTouch /Users/man9527/Documents/Xcode/1228/IBENewsReader/build/Debug-iphonesimulator/IBENewsReader.app
 s315312920.122054
