@@ -25,11 +25,11 @@
 }
 
 #pragma mark need to override these methods
-/*
 - (void)initSubViews
 {
-	self.adViewController = [[ADViewController alloc] initWithNibName:@"ADViewController" bundle:nil];
-	
+	self.adViewController = [[ADViewController alloc] initWithNibName:@"ADViewController" bundle:nil zoneid:@"1" sub:requestKey];
+	self.adViewController.delegate = self;
+
 	self.newsListViewController = [[NewsListViewController alloc] initWithNibName:@"NewsListViewController" bundle:nil];
 	self.newsListViewController.entries = [NSMutableArray array];
 	self.newsListViewController.delegate = self;
@@ -38,6 +38,7 @@
 	self.footer.delegate = self;
 }
 
+/*
 - (void)layoutSubViews
 {
 	int position = 0;
@@ -64,7 +65,8 @@
 - (NSString*)getNewsRequestURL
 {
 	User *user = [UserService currentLogonUser];
-	NSString *url = [URLManager getNewsByPlateURLForUser:user withPlate:@"A01AA1"];
+	NSString *url = [URLManager getNewsByIndustryURLForUser:user withIndustry:requestKey];
+	
 	return url;
 }
 
@@ -84,14 +86,6 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-}
-*/
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations.
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 */
 

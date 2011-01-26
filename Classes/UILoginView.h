@@ -12,7 +12,7 @@
 #import "MBProgressHUD.h"
 #import "UILoginFailDelegate.h"
 
-@interface UILoginView : UIAlertView <UIAlertViewDelegate, UIWebViewDelegate, DidLoginDelegate, DidAddPayDelegate> {
+@interface UILoginView : UIAlertView <UIAlertViewDelegate, UIWebViewDelegate, DidLoginDelegate, UITextFieldDelegate> {
 	UITextField *idTextField;
 	UITextField *passwordTextField;
 	UITextField *addPayTextField;
@@ -35,6 +35,8 @@
 @property (nonatomic,retain) UITextField *passwordTextField;
 @property (nonatomic,retain) UITextField *addPayTextField;
 @property (nonatomic,retain) UILoginFailDelegate *failDelegate;
+@property (nonatomic,retain) LoginManager *loginManager;	
+@property (nonatomic,retain) AddPayManager *addPayManager;
 
 -(void)showResultDialogWithTitle:(NSString*)title message:(NSString*)message showAgain:(bool)show;
 -(void)doLogin:(User*)user;

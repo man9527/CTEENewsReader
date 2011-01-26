@@ -40,7 +40,7 @@
 {
 	User *user = [UserService currentLogonUser];
 	NSString *url = [URLManager getNewsByPlateURLForUser:user withPlate:self.requestKey];
-
+	NSLog(@"url %@", url);
 	return url;
 }
 

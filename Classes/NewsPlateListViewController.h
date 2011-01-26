@@ -7,11 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NewsListFooterViewController.h"
 
-@interface NewsPlateListViewController : UITableViewController <UIAlertViewDelegate, UINavigationControllerDelegate>{
+@interface NewsPlateListViewController : UIViewController <UIAlertViewDelegate, UINavigationControllerDelegate, NewsReloadDelegate, UITableViewDelegate, UITableViewDataSource>{
+
+	IBOutlet NewsListFooterViewController *footer;
+	IBOutlet UITableView *listTableView;
 	NSMutableArray *entries;   // the main data model for our UITableView
 	NSMutableArray *plateName;
 	NSString *NewsTypeName;
+	
+	BOOL doAutoReload;
 	
 	NSDictionary			*newsData;
 	NSDictionary			*expiredCachedData;
@@ -20,7 +26,13 @@
     NSURLConnection         *appListFeedConnection;
     NSMutableData           *appListData;
 	NSString				*cachekey;
+	
+	NSMutableDictionary		*cachedControllers;
 }
+@property(nonatomic,retain) IBOutlet	NewsListFooterViewController *footer;
+@property(nonatomic,retain) IBOutlet UITableView *listTableView;
+
+@property(nonatomic,assign) BOOL doAutoReload;
 
 @property (nonatomic, retain) NSMutableArray *entries;
 @property (nonatomic, retain) NSMutableArray *plateName;
@@ -30,9 +42,10 @@
 @property (nonatomic, retain) NSURLConnection *appListFeedConnection;
 @property (nonatomic, retain) NSMutableData *appListData;
 @property (nonatomic, retain) NSString *cachekey;
+@property (nonatomic, retain) NSMutableDictionary		*cachedControllers;
 
 - (void)loadNewsData:(bool)forceReload;
 - (NSString*)getNewsRequestURL;
 - (void)handleNewsData:(NSDictionary*)data;
-// - (void)handleLoadedApps;
+- (void)setFooterLabel;
 @end

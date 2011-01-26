@@ -20,5 +20,6 @@
 @property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
 @property (nonatomic, assign) id<NewsDetailDelegate> delegate;
 
+
 - (void)appImageDidLoad:(NSIndexPath *)indexPath;
 @end

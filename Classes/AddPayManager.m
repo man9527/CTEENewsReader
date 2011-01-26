@@ -13,6 +13,10 @@
 #import "JSON.h"
 #import "URLConnectionManager.h"
 
+#define kAddPayStatusSuccess		0
+#define kAddPayStatusLoginFail		1
+#define kAddPayStatusFail			4
+
 @implementation AddPayManager
 
 @synthesize delegate, addPayConnection, addPayResultData, user;
@@ -20,8 +24,6 @@
 -(void)addPay:(User*) u withPayCode:(NSString*)paycode
 {
 	self.user = u;
-	// NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[URLManager getAddPayURLForUser:self.user withPayCode:paycode]]];
-	// addPayConnection = [[[NSURLConnection alloc] initWithRequest:urlRequest delegate:self] autorelease];
 	self.addPayConnection = [URLConnectionManager getURLConnectionWithURL:[URLManager getAddPayURLForUser:self.user withPayCode:paycode] delegate:self];
 }
 
@@ -48,7 +50,7 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
 	if (delegate!=nil)
-		[delegate didAddPayResult:false andReason:@"連線錯誤" For:self.user];
+		[delegate didAddPayResult:kAddPayStatusFail andReason:@"此功能需要網路連線" For:self.user];
 }
 
 // -------------------------------------------------------------------------------
@@ -56,19 +58,27 @@
 // -------------------------------------------------------------------------------
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-	// NSString* json_string = [[NSString alloc] initWithData:self.addPayResultData encoding:NSUTF8StringEncoding];
-	
-	// used for temporary
-	NSString* json_string = @"{\"status\":\"0\",\"errdesc\":\"aaa\",\"newenddate\":\"2011/12/31 22:00:00\"}";
-	
+	NSString* json_string = [[NSString alloc] initWithData:self.addPayResultData encoding:NSUTF8StringEncoding];
 	NSDictionary *jsonObj = [json_string JSONValue];
 	self.addPayConnection = nil;
+	NSLog(@"add pay %@", json_string);
+	NSString* result =nil;
+	NSString* errdesc =nil;
+	NSString* enddate=nil;
 
-	NSString* result = [jsonObj objectForKey:@"status"];
-	NSString* errdesc = [jsonObj objectForKey:@"errdesc"];
-	NSString* enddate = [jsonObj objectForKey:@"newenddate"];
-	
-	if([result isEqualToString: @"0"]) {
+	if (jsonObj==nil)
+	{
+		result=[NSString stringWithFormat:@"%d",kAddPayStatusFail];
+	}
+	else 
+	{
+		result = [jsonObj objectForKey:@"status"];
+		errdesc = [jsonObj objectForKey:@"errdesc"];
+		enddate = [jsonObj objectForKey:@"newenddate"];
+	}
+
+		
+	if([result isEqualToString:[NSString stringWithFormat:@"%d",kAddPayStatusSuccess]]) {
 		[self.user setExpireDateByString:enddate];
 		[UserService setCurrentLogonUser:self.user];
 	}

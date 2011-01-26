@@ -14,12 +14,12 @@
 #import "AddPayManager.h"
 
 @implementation UILoginView
-@synthesize idTextField, passwordTextField, addPayTextField, failDelegate;
+@synthesize idTextField, passwordTextField, addPayTextField, failDelegate, loginManager, addPayManager;
 
 - (id)initWithFrame:(CGRect)frame {
 	if (self = [super initWithFrame:frame]) {
-		loginManager = [[LoginManager alloc] init];
-		addPayManager = [[AddPayManager alloc] init];
+		//loginManager = [[LoginManager alloc] init];
+		//addPayManager = [[AddPayManager alloc] init];
 
 		failDelegate = [[UILoginFailDelegate alloc]init];
 
@@ -33,8 +33,6 @@
 		[idTextField setBorderStyle:UITextBorderStyleRoundedRect];
 		idTextField.autocorrectionType = UITextAutocorrectionTypeNo;
 		idTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-		idTextField.clearButtonMode = UITextFieldViewModeAlways;
-		//[idTextField becomeFirstResponder];
 		
 		passwordLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 		passwordLabel.backgroundColor = [UIColor clearColor];
@@ -44,8 +42,7 @@
 
 		passwordTextField = [[UITextField alloc] initWithFrame:CGRectZero]; 
 		[passwordTextField setBorderStyle:UITextBorderStyleRoundedRect];
-		passwordTextField.secureTextEntry = TRUE;
-		passwordTextField.clearButtonMode = UITextFieldViewModeAlways;
+		passwordTextField.secureTextEntry = YES;
 		
 		addPayLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 		addPayLabel.backgroundColor = [UIColor clearColor];
@@ -125,7 +122,7 @@
 	buttonTop -= 35;
 	passwordLabel.frame = CGRectMake(32, buttonTop, self.frame.size.width - 52, 30);
 	passwordTextField.frame = CGRectMake(80, passwordLabel.frame.origin.y, 185, passwordLabel.frame.size.height);
-	
+
 	buttonTop -= 35;
 	idLabel.frame = CGRectMake(32, buttonTop, self.frame.size.width - 52, 30);
 	idTextField.frame = CGRectMake(80, idLabel.frame.origin.y, 185, idLabel.frame.size.height);
@@ -149,20 +146,16 @@
 	IBENewsReaderAppDelegate *appDelegate = (IBENewsReaderAppDelegate*)[[UIApplication sharedApplication] delegate];
 	[appDelegate showLoading:TRUE withText:@"登入中..."];
 	
-	loginManager.delegate = self;
-	
 	[loginManager login:user];
 }
 
 -(void)doLoginAndPay:(User*)user withPayCode:(NSString*)payCode
 {
 	IBENewsReaderAppDelegate *appDelegate = (IBENewsReaderAppDelegate*)[[UIApplication sharedApplication] delegate];
-	[appDelegate showLoading:TRUE withText:@"登入並儲值中"];
+	[appDelegate showLoading:TRUE withText:@"儲值中"];
 	
-	addPayManager.delegate = self;
 	[addPayManager addPay:user withPayCode:payCode];
 }
-
 
 #pragma mark handle button click event
 - (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -177,35 +170,11 @@
 					user.username = idTextField.text;
 					user.password = passwordTextField.text;
 					
-					if (addPayTextField.text!=nil && addPayTextField.text != @"")
-					{
-						[self doLoginAndPay:user withPayCode:addPayTextField.text];
-					}
-					else {
-						[self doLogin:user];
-					}
-					// [user release];
+					[self doLogin:user];
 				}
 			}
 	}
 }
-/*
-- (void)alertView:(UIAlertView*)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-	IBENewsReaderAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-	
-	if (alertView.tag==2000)
-	{
-		[appDelegate showLoginForm];
-	}
-}
-/*
--(void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(BOOL)animated {
-	if (buttonIndex==1)
-		return;
-	[super dismissWithClickedButtonIndex:buttonIndex animated:animated];
-}
-*/
 
 #pragma mark handle login event
 - (void)didLoginResult:(bool)isSuccessful andReason:(NSString*)reason For:(User*) u
@@ -220,10 +189,18 @@
 		[self showResultDialogWithTitle:@"登入失敗" message:reason showAgain:YES];
 	}
 	else {
-		[self showResultDialogWithTitle:@"登入成功" message:reason  showAgain:NO];
+		if (addPayTextField.text!=nil && ![addPayTextField.text isEqual:@""])
+		{
+			NSLog(@"add pay text %@", addPayTextField.text);
+			[self doLoginAndPay:u withPayCode:addPayTextField.text];
+		}
+		else {
+			[self showResultDialogWithTitle:@"登入成功" message:reason  showAgain:NO];
+		}
 	}
 }
 
+/*
 - (void)didAddPayResult:(int)status andReason:(NSString*)reason For:(User*) u
 {
 	NSLog(@"in add pay result");
@@ -247,7 +224,7 @@
 		[self doLogin:u];
 	}
 
-}
+}*/
 
 - (bool)checkInput
 {
@@ -287,11 +264,13 @@
 	[alert release];
 }
 
+
 - (void)show
 {
 	[super show];
-	[idTextField becomeFirstResponder];
+	passwordTextField.text=@"";
 }
+
 -(void) dealloc
 {
 	[idTextField release];

@@ -11,6 +11,8 @@
 
 @interface SettingHomeViewController : UITableViewController <UIAlertViewDelegate> {
 	User *user;
+	UIImageView *selectedBackground; 
+	UIImage *selectedImage;
 }
 
 @property (nonatomic,retain) IBOutlet UIButton* addPayButton;

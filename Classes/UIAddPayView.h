@@ -20,6 +20,7 @@
 
 @property (nonatomic,retain) UITextField *addPayTextField;
 @property (nonatomic,retain) UIAddPayFailDelegate *failDelegate;
+@property (nonatomic,retain) AddPayManager *addPayManager;
 
 -(void)showResultDialogWithTitle:(NSString*)title message:(NSString*)message showAgain:(bool)show;
 

@@ -14,6 +14,8 @@
 
 -(IBAction)forceReload:sender
 {
+	[delegate reloadAD];
+
 	[delegate loadNewsData:YES];
 }
 

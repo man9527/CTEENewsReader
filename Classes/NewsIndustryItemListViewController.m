@@ -14,7 +14,7 @@
 #import "IBENewsReaderAppDelegate.h"
 
 @implementation NewsIndustryItemListViewController
-@synthesize userIndustrySetting, selectedIndustry;
+@synthesize userIndustrySetting, selectedIndustry, cachedControllers;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -28,7 +28,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+	
+	self.cachedControllers = [NSMutableDictionary dictionary];
 	self.userIndustrySetting = [UserIndustrySetting sharedUserIndustrySetting];
 	self.selectedIndustry = [userIndustrySetting getAllSelectedIndustryId];
 	
@@ -113,6 +114,7 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
     
 	cell.textLabel.text =  [UserIndustrySetting getDisplayTextByIndustryId:[selectedIndustry objectAtIndex:indexPath.row]]; // = NSLocalizedString(key, nil);
@@ -172,20 +174,24 @@
 	
 	IBENewsReaderAppDelegate *appDelegate = (IBENewsReaderAppDelegate*)[[UIApplication sharedApplication] delegate];
 	
-	if ( [appDelegate validateForPaidUser] ) {
+	if ([self.selectedIndustry count]>0 && [appDelegate validateForPaidUser] ) {
 		
-		NewsIndustryContainerViewController *container = [[NewsIndustryContainerViewController alloc] initWithNibName:@"NewsIndustryContainerViewController" bundle:nil];
-
-		container.requestKey=[self.selectedIndustry objectAtIndex:indexPath.row];
-
-
-		NSString *keyText = [UserIndustrySetting getDisplayTextByIndustryId:container.requestKey];
-		container.selfTitle = keyText;
-		container.titleTemplate = [NSString stringWithFormat:@"%@ (%@/%@)", keyText, @"%i", @"%i"];
+		NewsIndustryContainerViewController *container = [cachedControllers objectForKey:[self.selectedIndustry objectAtIndex:indexPath.row]];
+		
+		if (container==nil) {
+			container = [[NewsIndustryContainerViewController alloc] initWithNibName:@"NewsIndustryContainerViewController" bundle:nil];
+			container.requestKey=[self.selectedIndustry objectAtIndex:indexPath.row];
+			NSString *keyText = [UserIndustrySetting getDisplayTextByIndustryId:container.requestKey];
+			container.selfTitle = keyText;
+			container.titleTemplate = [NSString stringWithFormat:@"%@ (%@/%@)", keyText, @"%i", @"%i"];
+			[container autorelease];
+			[cachedControllers setObject:container forKey:[self.selectedIndustry objectAtIndex:indexPath.row]];
+		}
+		else {
+			[container viewWillAppear:NO];
+		}
 
 		[self.navigationController pushViewController:container animated:YES];
-	
-		[container release];
 	}
 }
 
@@ -194,6 +200,11 @@
 	if ([viewController isKindOfClass:[NewsIndustryItemListViewController class]])
 	{
 		[self.tableView reloadData];
+	}
+	else if ([viewController isKindOfClass:[NewsIndustryContainerViewController class]])
+	{
+		[self.navigationController setToolbarHidden:YES animated:NO];
+		[(NewsIndustryContainerViewController*)viewController loadNewsData:NO];
 	}
 }
 
@@ -231,7 +242,7 @@
 - (void)dealloc {
 	[userIndustrySetting release];
 	[selectedIndustry release];
-
+	[cachedControllers release];
     [super dealloc];
 }
 

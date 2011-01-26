@@ -74,7 +74,7 @@
 
 + (void) cacheData: (NSDictionary *)data withType:(NSString*)type
 {
-	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *documentsDirectory = [paths objectAtIndex:0];
 
 	
@@ -95,7 +95,7 @@
 
 + (NSMutableDictionary*) getCachedData: (NSString *) type
 {
-	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *documentsDirectory = [paths objectAtIndex:0];
 	NSString *filePath =  [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat: @"%@.txt", type]];
 

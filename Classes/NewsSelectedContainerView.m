@@ -17,11 +17,17 @@
     return self;
 }
 
+- (void)awakeFromNib
+{
+	[super awakeFromNib];
+	self.navigationController.delegate = self;
+}
+
 - (void)setupStaticKeyString
 {
 	NewsTypeName = @"SelectedNews";
-	titleTemplate = @"精選(%i/%i)";
-	selfTitle = @"精選";
+	titleTemplate = @"精選新聞(%i/%i)";
+	selfTitle = @"精選新聞";
 	requestKey = @"";
 }
 
@@ -45,6 +51,16 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 */
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+	if ([viewController isKindOfClass:[NewsSelectedContainerView class]])
+	{
+		[self loadNewsData:NO];
+		[self.navigationController setToolbarHidden:YES animated:NO];
+	}
+}
+
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.

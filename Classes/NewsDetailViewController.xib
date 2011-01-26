@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="16"/>
+			<integer value="1"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -44,18 +44,18 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="IBUIScrollView" id="327309238">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">301</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBUITextView" id="714753418">
 								<reference key="NSNextResponder" ref="327309238"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{-10, 12}, {320, 25}}</string>
+								<string key="NSFrame">{{-10, 12}, {320, 0}}</string>
 								<reference key="NSSuperview" ref="327309238"/>
 								<object class="NSColor" key="IBUIBackgroundColor" id="480498946">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MQA</bytes>
-									<object class="NSColorSpace" key="NSCustomColorSpace">
+									<object class="NSColorSpace" key="NSCustomColorSpace" id="630997068">
 										<int key="NSID">2</int>
 									</object>
 								</object>
@@ -69,6 +69,10 @@
 								<bool key="IBUIBouncesZoom">NO</bool>
 								<bool key="IBUIEditable">NO</bool>
 								<string key="IBUIText"/>
+								<object class="NSColor" key="IBUITextColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC4xNTI5NDExNzY1IDAuMzY0NzA1ODgyNCAwLjYAA</bytes>
+								</object>
 								<object class="IBUITextInputTraits" key="IBUITextInputTraits">
 									<int key="IBUIAutocorrectionType">1</int>
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -77,7 +81,7 @@
 							<object class="IBUITextView" id="488757424">
 								<reference key="NSNextResponder" ref="327309238"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{-10, 45}, {320, 27}}</string>
+								<string key="NSFrame">{{-10, 45}, {320, 0}}</string>
 								<reference key="NSSuperview" ref="327309238"/>
 								<reference key="IBUIBackgroundColor" ref="480498946"/>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -89,6 +93,10 @@
 								<bool key="IBUIShowsVerticalScrollIndicator">NO</bool>
 								<bool key="IBUIEditable">NO</bool>
 								<string key="IBUIText"/>
+								<object class="NSColor" key="IBUITextColor" id="81145903">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MCAwIDAAA</bytes>
+								</object>
 								<object class="IBUITextInputTraits" key="IBUITextInputTraits">
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								</object>
@@ -121,6 +129,7 @@
 								<bool key="IBUIBouncesZoom">NO</bool>
 								<bool key="IBUIEditable">NO</bool>
 								<string key="IBUIText"/>
+								<reference key="IBUITextColor" ref="81145903"/>
 								<object class="IBUITextInputTraits" key="IBUITextInputTraits">
 									<int key="IBUIAutocapitalizationType">2</int>
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -129,9 +138,13 @@
 							<object class="IBUITextView" id="1058571259">
 								<reference key="NSNextResponder" ref="327309238"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{-10, 80}, {320, 33}}</string>
+								<string key="NSFrame">{{-10, 80}, {320, 0}}</string>
 								<reference key="NSSuperview" ref="327309238"/>
-								<reference key="IBUIBackgroundColor" ref="480498946"/>
+								<object class="NSColor" key="IBUIBackgroundColor">
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MQA</bytes>
+									<reference key="NSCustomColorSpace" ref="630997068"/>
+								</object>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIMultipleTouchEnabled">YES</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -142,6 +155,10 @@
 								<bool key="IBUIBouncesZoom">NO</bool>
 								<bool key="IBUIEditable">NO</bool>
 								<string key="IBUIText"/>
+								<object class="NSColor" key="IBUITextColor" id="1071432069">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC40MDc4NDMxMzczIDAuNDA3ODQzMTM3MyAwLjQwNzg0MzEzNzMAA</bytes>
+								</object>
 								<object class="IBUITextInputTraits" key="IBUITextInputTraits">
 									<int key="IBUIAutocorrectionType">1</int>
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -150,9 +167,13 @@
 							<object class="IBUITextView" id="437977880">
 								<reference key="NSNextResponder" ref="327309238"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{-10, 124}, {320, 32}}</string>
+								<string key="NSFrame">{{-10, 124}, {320, 0}}</string>
 								<reference key="NSSuperview" ref="327309238"/>
-								<reference key="IBUIBackgroundColor" ref="480498946"/>
+								<object class="NSColor" key="IBUIBackgroundColor">
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MQA</bytes>
+									<reference key="NSCustomColorSpace" ref="630997068"/>
+								</object>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIMultipleTouchEnabled">YES</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -162,6 +183,7 @@
 								<bool key="IBUIShowsVerticalScrollIndicator">NO</bool>
 								<bool key="IBUIEditable">NO</bool>
 								<string key="IBUIText"/>
+								<reference key="IBUITextColor" ref="1071432069"/>
 								<object class="NSFont" key="IBUIFont">
 									<string key="NSName">Helvetica-Bold</string>
 									<double key="NSSize">17</double>
@@ -173,14 +195,18 @@
 								</object>
 							</object>
 						</object>
-						<string key="NSFrame">{{10, 0}, {310, 416}}</string>
+						<string key="NSFrame">{{10, 0}, {310, 372}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<object class="NSColor" key="IBUIBackgroundColor">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MQA</bytes>
+							<reference key="NSCustomColorSpace" ref="630997068"/>
+						</object>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<bool key="IBUIBounces">NO</bool>
 					</object>
 				</object>
-				<string key="NSFrameSize">{320, 416}</string>
+				<string key="NSFrameSize">{320, 372}</string>
 				<reference key="NSSuperview"/>
 				<reference key="IBUIBackgroundColor" ref="372835541"/>
 				<bool key="IBUIMultipleTouchEnabled">YES</bool>
@@ -344,6 +370,7 @@
 					<string>1.IBEditorWindowLastContentRect</string>
 					<string>1.IBPluginDependency</string>
 					<string>16.IBPluginDependency</string>
+					<string>16.IBViewBoundsToFrameTransform</string>
 					<string>41.IBPluginDependency</string>
 					<string>41.IBViewBoundsToFrameTransform</string>
 					<string>55.IBPluginDependency</string>
@@ -359,9 +386,12 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>NewsDetailViewController</string>
 					<string>UIResponder</string>
-					<string>{{577, 78}, {320, 416}}</string>
+					<string>{{398, 344}, {320, 372}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">AUEgAAAAAAAAA</bytes>
+					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">AQAAAABDGAAAA</bytes>
@@ -398,7 +428,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">66</int>
+			<int key="maxID">72</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

@@ -61,15 +61,23 @@ static NSString *savedImageKey = @"savethumb";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 	int count = [entries count];
+	
+	if (count==0)
+	{
+		return 1;
+	}
     return count;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	IBENewsReaderAppDelegate *appDelegate = (IBENewsReaderAppDelegate*)[[UIApplication sharedApplication] delegate];
+	if ([entries count]>0)
+	{
+		IBENewsReaderAppDelegate *appDelegate = (IBENewsReaderAppDelegate*)[[UIApplication sharedApplication] delegate];
 	
-	if ( [appDelegate validateForPaidUser] ) {
-		[delegate showDetailNews:indexPath.row withBackData:self.entries popPreviousView:NO isRelatedNews:NO];
+		if ( [appDelegate validateForPaidUser] ) {
+			[delegate showDetailNews:indexPath.row withBackData:self.entries popPreviousView:NO isRelatedNews:NO];
+		}
 	}
 }
 
@@ -104,6 +112,7 @@ static NSString *savedImageKey = @"savethumb";
 	{
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle	reuseIdentifier:CellIdentifier] autorelease];
 		cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+		// cell.selectedBackgroundView = selectedBackground;
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;		
     }
 	
@@ -119,7 +128,7 @@ static NSString *savedImageKey = @"savethumb";
 		cell.textLabel.numberOfLines = 2;
 		
 		cell.detailTextLabel.text = [newsRecord objectForKey:@"content"];
-		cell.detailTextLabel.lineBreakMode = UILineBreakModeWordWrap;
+		cell.detailTextLabel.lineBreakMode = UILineBreakModeWordWrap;// UILineBreakModeTailTruncation;
 		cell.detailTextLabel.textColor = [UIColor colorWithRed:104.0f/255.0f green:104.0f/255.0f blue:104.0f/255.0f alpha:1.0f];
 		cell.detailTextLabel.numberOfLines = 2;
 		

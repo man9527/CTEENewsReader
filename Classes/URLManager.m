@@ -10,20 +10,14 @@
 
 static NSString *const RegisterURL=@"https://d9.ctee.com.tw/m/addmember.aspx";
 static NSString *const ForgetPasswordURL=@"https://d9.ctee.com.tw/m/passwordrecovery.aspx";
-
 static NSString *const SubscribeURL=@"https://d9.ctee.com.tw/m/order";
 
 static NSString *const LoginURL=@"https://d9.ctee.com.tw/m/checkmember.aspx?username=%@&password=%@";
-// https://d9.ctee.com.tw/m/checkmember.aspx?username=ctee&password=04196414
-// static NSString *const LoginParameter=@"username=%@&password=%@";
-
-static NSString *const AddPayURL=@"http://ctee.com.tw/m/addpayhistory.aspx?username=%@&password=%@&prememberkey=%@";
-//static NSString *const AddPayParameter=@"username=%@&password=%@&prememberkey=%@";
-
+static NSString *const AddPayURL=@"http://d9.ctee.com.tw/m/addpayhistory.aspx?username=%@&password=%@&prememberkey=%@";
+static NSString *const ModifyDataURL=@"https://d9.ctee.com.tw/m/profile.aspx?username=%@&password=%@";
 
 static NSString *const SelectNewsURL=@"https://d9.ctee.com.tw/m/selectnews.aspx?";
 static NSString *const HeadNewsURL=@"https://d9.ctee.com.tw/m/headnewsbyplate.aspx?";
-//static NSString *const HeadNewsURL=@"https://d9.ctee.com.tw/m/headnewsbyplate.aspx";
 
 static NSString *const NewsByPlateURL=@"https://d9.ctee.com.tw/m/newsbyplate.aspx?plate=%@&";
 static NSString *const NewsByIndustryURL=@"https://d9.ctee.com.tw/m/newsbyindustry.aspx?industry=%@&";
@@ -49,14 +43,24 @@ static NSString *const NewsParameter=@"username=%@&authkey=%@";
 
 +(NSString*) getLoginURLForUser:(User*)u
 {
-	// NSString *loginStr = [DataEncryptor encrypt:[NSString stringWithFormat:LoginParameter, u.username, u.password]];
 	if (u!=nil) {
 		return [NSString stringWithFormat:LoginURL, u.username, u.password];
 	}
 	else {
 		return LoginURL;
 	}
+}
 
++(NSString*) getModifyDataURLForUser:(User*)u
+{
+	// NSString *loginStr = [DataEncryptor encrypt:[NSString stringWithFormat:LoginParameter, u.username, u.password]];
+	if (u!=nil) {
+		return [NSString stringWithFormat:ModifyDataURL, u.username, u.password];
+	}
+	else {
+		return ModifyDataURL;
+	}
+	
 }
 
 +(NSString*) getAddPayURLForUser:(User*)u withPayCode:(NSString*)paycode

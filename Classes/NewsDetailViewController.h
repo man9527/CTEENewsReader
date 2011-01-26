@@ -51,6 +51,9 @@
 -(void)resetFrame:(UIView*)view withY:(int)y;
 -(void)setRelatedNews;
 -(void)setImageViewHeight:(UIImageView*)view ByImage:(UIImage*)image;
+// - (IBAction)moveToPreviousNews:(id)sender;
+// - (IBAction)moveToNextNews:(id)sender;
+
 @end
 
 @protocol NewsDetailDelegate 

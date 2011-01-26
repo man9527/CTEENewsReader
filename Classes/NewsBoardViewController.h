@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 
 
-@interface NewsBoardViewController : UIViewController {
-
+@interface NewsBoardViewController : UIViewController<UIWebViewDelegate> {
+	IBOutlet UIWebView *aboutText;
 }
+
+@property (nonatomic,retain) 	IBOutlet UIWebView *aboutText;
 
 @end

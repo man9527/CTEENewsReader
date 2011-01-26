@@ -17,6 +17,7 @@
 +(NSString*) getForgetPasswordURL;
 +(NSString*) getSubscribeURL;
 +(NSString*) getLoginURLForUser:(User*)u;
++(NSString*) getModifyDataURLForUser:(User*)u;
 +(NSString*) getAddPayURLForUser:(User*)u withPayCode:(NSString*)paycode;
 +(NSString*) getSelectNewsURLForUser:(User*)u;
 +(NSString*) getHeadNewsURLForUser:(User*)u;

@@ -81,13 +81,23 @@ static UserIndustrySetting *userIndustrySetting;
 	}
 	
 	self.selectedIndustry = [prefs objectForKey:@"selectedIndustry"];
+
 	if (self.selectedIndustry==nil)
 	{
 		self.selectedIndustry = [[NSMutableArray alloc] init];
 	}
+	else {
+		// need to verify if the industry still exists
+		for (NSString *industryId in self.selectedIndustry) {
+			if ([ALL_INDUSTRY_ID indexOfObject:industryId]==NSNotFound)
+			{
+				[self.selectedIndustry removeObject: industryId];
+			}		
+		}
+	}
 
 	self.nonSelectedIndustry = [[NSMutableArray alloc] init];
-		
+
 	for (NSString *industryId in ALL_INDUSTRY_ID) {
 		if ([self.selectedIndustry indexOfObject:industryId]==NSNotFound)
 		{

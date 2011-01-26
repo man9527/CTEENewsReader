@@ -29,10 +29,13 @@
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+    [super viewDidLoad];
+
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadView) name:@"AuthenticationEvent" object:nil];
 	
-    [super viewDidLoad];
 	[self determineLoginStatus];
+	selectedImage = [UIImage imageNamed:@"listbg_320_44-1.png"];
+	selectedBackground = [[UIImageView alloc] initWithImage:selectedImage];
 }
 
 -(BOOL)determineLoginStatus
@@ -68,12 +71,13 @@
 	if (user!=nil)
 	{
 		message = @"ShowAddPayForm";
+		[[NSNotificationCenter defaultCenter] postNotificationName:message object:nil userInfo:nil];
 	}
-	else {
-		message = @"ShowLoginForm";
-	}
+	//else {
+	//	message = @"ShowLoginForm";
+	//}
 
-	[[NSNotificationCenter defaultCenter] postNotificationName:message object:nil userInfo:nil];
+	//[[NSNotificationCenter defaultCenter] postNotificationName:message object:nil userInfo:nil];
 }
 
 -(void)authButtonClick
@@ -91,7 +95,8 @@
 
 -(void)changeDataButtonClick
 {
-	
+	NSURL *url = [NSURL URLWithString:[URLManager getModifyDataURLForUser:user]];
+	[[UIApplication sharedApplication] openURL:url];	
 }
 
 -(void)subscribeButtonClick
@@ -150,14 +155,25 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+		cell.textLabel.textAlignment = UITextAlignmentCenter;
+		//cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		//cell.selectedBackgroundView = selectedBackground;
     }
     
 	if (indexPath.section==0)
 	{
 		switch (indexPath.row) {
 			case 0:
-				cell.textLabel.text = @"輸入儲存碼";
+				cell.textLabel.text = @"輸入儲值碼";
+				if (!self.user)
+				{
+					cell.selectionStyle = UITableViewCellSelectionStyleNone;
+				}
+				else {
+					cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+				}
+
 				break;
 			case 1:
 				cell.textLabel.text = @"前往訂閱";
@@ -226,6 +242,8 @@
 				break;
 		}
 	}
+	
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -243,6 +261,8 @@
 
 
 - (void)dealloc {
+	[selectedBackground release];
+	
     [super dealloc];
 }
 

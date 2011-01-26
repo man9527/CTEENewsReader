@@ -12,7 +12,8 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="100"/>
+			<integer value="36"/>
+			<integer value="1"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -38,9 +39,28 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUIView" id="191373211">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
+				<object class="NSMutableArray" key="NSSubviews">
+					<bool key="EncodedWithXMLCoder">YES</bool>
+					<object class="IBUINavigationBar" id="30237999">
+						<reference key="NSNextResponder" ref="191373211"/>
+						<int key="NSvFlags">290</int>
+						<string key="NSFrame">{{0, 208}, {320, 44}}</string>
+						<reference key="NSSuperview" ref="191373211"/>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<object class="NSArray" key="IBUIItems">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBUINavigationItem" id="595464026">
+								<reference key="IBUINavigationBar" ref="30237999"/>
+								<string key="IBUITitle">Title</string>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+							</object>
+						</object>
+					</object>
+				</object>
 				<string key="NSFrameSize">{320, 460}</string>
+				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MAA</bytes>
@@ -61,12 +81,12 @@
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<bool key="IBUIHorizontal">NO</bool>
-				<object class="IBUINavigationController" key="IBUISelectedViewController" id="86084128">
-					<object class="IBUITabBarItem" key="IBUITabBarItem" id="924427765">
-						<string key="IBUITitle">各版</string>
+				<object class="IBUINavigationController" key="IBUISelectedViewController" id="999414591">
+					<object class="IBUITabBarItem" key="IBUITabBarItem" id="1013684570">
+						<string key="IBUITitle">設定</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">about.png</string>
+							<string key="NSResourceName">gears.png</string>
 						</object>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<reference key="IBUITabBar"/>
@@ -76,9 +96,10 @@
 					<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
 						<int key="interfaceOrientation">1</int>
 					</object>
+					<bool key="IBUIWantsFullScreenLayout">YES</bool>
 					<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					<bool key="IBUIHorizontal">NO</bool>
-					<object class="IBUINavigationBar" key="IBUINavigationBar" id="470869229">
+					<object class="IBUINavigationBar" key="IBUINavigationBar" id="178823653">
 						<nil key="NSNextResponder"/>
 						<int key="NSvFlags">256</int>
 						<string key="NSFrameSize">{320, 44}</string>
@@ -86,22 +107,22 @@
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSColor" key="IBUITintColor" id="284617021">
+						<object class="NSColor" key="IBUITintColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4yIDAuNDc4NDMxMzcyNSAwLjc4NDMxMzcyNTUAA</bytes>
 						</object>
 					</object>
 					<object class="NSMutableArray" key="IBUIViewControllers">
 						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="IBUIViewController" id="819026748">
+						<object class="IBUIViewController" id="784059137">
 							<reference key="IBUIToolbarItems" ref="0"/>
-							<object class="IBUINavigationItem" key="IBUINavigationItem" id="833155020">
+							<object class="IBUINavigationItem" key="IBUINavigationItem" id="722119700">
 								<reference key="IBUINavigationBar"/>
-								<string key="IBUITitle">各版</string>
+								<string key="IBUITitle">更多設定</string>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
-							<reference key="IBUIParentViewController" ref="86084128"/>
-							<string key="IBUINibName">NewsPlateListViewController</string>
+							<reference key="IBUIParentViewController" ref="999414591"/>
+							<string key="IBUINibName">SettingHomeViewController</string>
 							<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
 								<int key="interfaceOrientation">1</int>
 							</object>
@@ -141,13 +162,16 @@
 							<bool key="IBUIClipsSubviews">YES</bool>
 							<bool key="IBUIMultipleTouchEnabled">YES</bool>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-							<reference key="IBUITintColor" ref="284617021"/>
+							<object class="NSColor" key="IBUITintColor" id="284617021">
+								<int key="NSColorSpace">1</int>
+								<bytes key="NSRGB">MC4yIDAuNDc4NDMxMzcyNSAwLjc4NDMxMzcyNTUAA</bytes>
+							</object>
 						</object>
 						<object class="NSMutableArray" key="IBUIViewControllers">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBUIViewController" id="911479853">
 								<object class="IBUINavigationItem" key="IBUINavigationItem" id="714184683">
-									<string key="IBUITitle">精選</string>
+									<string key="IBUITitle">精選新聞</string>
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								</object>
 								<reference key="IBUIParentViewController" ref="186667246"/>
@@ -192,7 +216,7 @@
 							<object class="IBUIViewController" id="336818398">
 								<reference key="IBUIToolbarItems" ref="0"/>
 								<object class="IBUINavigationItem" key="IBUINavigationItem" id="428748578">
-									<string key="IBUITitle">產業</string>
+									<string key="IBUITitle">產業新聞</string>
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								</object>
 								<reference key="IBUIParentViewController" ref="306046883"/>
@@ -205,13 +229,12 @@
 							</object>
 						</object>
 					</object>
-					<reference ref="86084128"/>
-					<object class="IBUINavigationController" id="999414591">
-						<object class="IBUITabBarItem" key="IBUITabBarItem" id="1013684570">
-							<string key="IBUITitle">設定</string>
+					<object class="IBUINavigationController" id="86084128">
+						<object class="IBUITabBarItem" key="IBUITabBarItem" id="924427765">
+							<string key="IBUITitle">各版</string>
 							<object class="NSCustomResource" key="IBUIImage">
 								<string key="NSClassName">NSImage</string>
-								<string key="NSResourceName">gears.png</string>
+								<string key="NSResourceName">about.png</string>
 							</object>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							<reference key="IBUITabBar"/>
@@ -221,10 +244,9 @@
 						<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
 							<int key="interfaceOrientation">1</int>
 						</object>
-						<bool key="IBUIWantsFullScreenLayout">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<bool key="IBUIHorizontal">NO</bool>
-						<object class="IBUINavigationBar" key="IBUINavigationBar" id="178823653">
+						<object class="IBUINavigationBar" key="IBUINavigationBar" id="470869229">
 							<nil key="NSNextResponder"/>
 							<int key="NSvFlags">256</int>
 							<string key="NSFrameSize">{320, 44}</string>
@@ -232,21 +254,18 @@
 							<bool key="IBUIClipsSubviews">YES</bool>
 							<bool key="IBUIMultipleTouchEnabled">YES</bool>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-							<object class="NSColor" key="IBUITintColor">
-								<int key="NSColorSpace">1</int>
-								<bytes key="NSRGB">MC4yIDAuNDc4NDMxMzcyNSAwLjc4NDMxMzcyNTUAA</bytes>
-							</object>
+							<reference key="IBUITintColor" ref="284617021"/>
 						</object>
 						<object class="NSMutableArray" key="IBUIViewControllers">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUIViewController" id="784059137">
+							<object class="IBUIViewController" id="819026748">
 								<reference key="IBUIToolbarItems" ref="0"/>
-								<object class="IBUINavigationItem" key="IBUINavigationItem" id="722119700">
-									<string key="IBUITitle">設定</string>
+								<object class="IBUINavigationItem" key="IBUINavigationItem" id="833155020">
+									<string key="IBUITitle">各版新聞</string>
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								</object>
-								<reference key="IBUIParentViewController" ref="999414591"/>
-								<string key="IBUINibName">SettingHomeViewController</string>
+								<reference key="IBUIParentViewController" ref="86084128"/>
+								<string key="IBUINibName">NewsPlateListViewController</string>
 								<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
 									<int key="interfaceOrientation">1</int>
 								</object>
@@ -255,6 +274,7 @@
 							</object>
 						</object>
 					</object>
+					<reference ref="999414591"/>
 					<object class="IBUIViewController" id="814390933">
 						<string key="IBUITitle">工商</string>
 						<object class="IBUITabBarItem" key="IBUITabBarItem" id="778636124">
@@ -330,6 +350,7 @@
 						<reference key="object" ref="191373211"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="30237999"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -387,11 +408,6 @@
 							<reference ref="722119700"/>
 						</object>
 						<reference key="parent" ref="999414591"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">37</int>
-						<reference key="object" ref="722119700"/>
-						<reference key="parent" ref="784059137"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">38</int>
@@ -517,6 +533,28 @@
 						<reference key="object" ref="470869229"/>
 						<reference key="parent" ref="86084128"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">37</int>
+						<reference key="object" ref="722119700"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+						</object>
+						<reference key="parent" ref="784059137"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">108</int>
+						<reference key="object" ref="30237999"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="595464026"/>
+						</object>
+						<reference key="parent" ref="191373211"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">109</int>
+						<reference key="object" ref="595464026"/>
+						<reference key="parent" ref="30237999"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -529,6 +567,9 @@
 					<string>1.IBPluginDependency</string>
 					<string>100.CustomClassName</string>
 					<string>102.CustomClassName</string>
+					<string>108.IBPluginDependency</string>
+					<string>108.IBViewBoundsToFrameTransform</string>
+					<string>109.IBPluginDependency</string>
 					<string>18.IBEditorWindowLastContentRect</string>
 					<string>18.IBPluginDependency</string>
 					<string>19.IBPluginDependency</string>
@@ -544,11 +585,16 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>NewsTabBarViewController</string>
 					<string>UIResponder</string>
-					<string>{{667, 197}, {320, 480}}</string>
+					<string>{{567, 197}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>NewsPlateViewController</string>
 					<string>NewsPlateListViewController</string>
-					<string>{{666, 27}, {320, 480}}</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAAAAAAAAw+UAAA</bytes>
+					</object>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>{{379, 82}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>SettingHomeViewController</string>
@@ -576,7 +622,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">104</int>
+			<int key="maxID">109</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -585,14 +631,35 @@
 					<string key="className">ADViewController</string>
 					<string key="superclassName">UIViewController</string>
 					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">adView</string>
-						<string key="NS.object.0">UIWebView</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>adView</string>
+							<string>delegate</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UIWebView</string>
+							<string>id</string>
+						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<string key="NS.key.0">adView</string>
-						<object class="IBToOneOutletInfo" key="NS.object.0">
-							<string key="name">adView</string>
-							<string key="candidateClassName">UIWebView</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>adView</string>
+							<string>delegate</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">adView</string>
+								<string key="candidateClassName">UIWebView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">delegate</string>
+								<string key="candidateClassName">id</string>
+							</object>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -617,6 +684,17 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">NewsBoardViewController</string>
 					<string key="superclassName">UIViewController</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">aboutText</string>
+						<string key="NS.object.0">UIWebView</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">aboutText</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">aboutText</string>
+							<string key="candidateClassName">UIWebView</string>
+						</object>
+					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/NewsBoardViewController.h</string>
@@ -631,14 +709,12 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>adViewController</string>
 							<string>footer</string>
-							<string>industryViewController</string>
 							<string>newsListViewController</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>ADViewController</string>
 							<string>NewsListFooterViewController</string>
-							<string>SettingIndustryViewController</string>
 							<string>NewsListViewController</string>
 						</object>
 					</object>
@@ -648,7 +724,6 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>adViewController</string>
 							<string>footer</string>
-							<string>industryViewController</string>
 							<string>newsListViewController</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -660,10 +735,6 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">footer</string>
 								<string key="candidateClassName">NewsListFooterViewController</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">industryViewController</string>
-								<string key="candidateClassName">SettingIndustryViewController</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">newsListViewController</string>
@@ -779,7 +850,39 @@
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">NewsPlateListViewController</string>
-					<string key="superclassName">UITableViewController</string>
+					<string key="superclassName">UIViewController</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>footer</string>
+							<string>listTableView</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NewsListFooterViewController</string>
+							<string>UITableView</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>footer</string>
+							<string>listTableView</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">footer</string>
+								<string key="candidateClassName">NewsListFooterViewController</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">listTableView</string>
+								<string key="candidateClassName">UITableView</string>
+							</object>
+						</object>
+					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/NewsPlateListViewController.h</string>
@@ -886,14 +989,6 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/SettingHomeViewController.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">SettingIndustryViewController</string>
-					<string key="superclassName">UITableViewController</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Classes/SettingIndustryViewController.h</string>
 					</object>
 				</object>
 			</object>
@@ -1057,6 +1152,14 @@
 					<reference key="sourceIdentifier" ref="156124233"/>
 				</object>
 				<object class="IBPartialClassDescription">
+					<string key="className">UIScrollView</string>
+					<string key="superclassName">UIView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">UIKit.framework/Headers/UIScrollView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">UISearchBar</string>
 					<string key="superclassName">UIView</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -1094,6 +1197,14 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">UIKit.framework/Headers/UITabBarItem.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UITableView</string>
+					<string key="superclassName">UIScrollView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">UIKit.framework/Headers/UITableView.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

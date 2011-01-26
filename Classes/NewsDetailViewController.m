@@ -30,18 +30,38 @@ static NSString *savedImageKey = @"savetimg";
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+	UIBarButtonItem *btnPrev = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"arrow-left.png"] style:UIBarButtonItemStylePlain target:self action:@selector(moveToPreviousNews)];
+	UIBarButtonItem *btnNext = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"arrow-right.png"] style:UIBarButtonItemStylePlain target:self action:@selector(moveToNextNews)];
+	UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+	
+	NSArray *itemsArray = [[NSArray alloc] initWithObjects:btnPrev, flexibleSpace, btnNext, nil ];
+	[self setToolbarItems:itemsArray animated:NO];
+	
+	[btnPrev release]; [btnNext release]; [flexibleSpace release], [itemsArray release];
+	
 	self.news = [self.backData objectAtIndex:indexPath];
 	
 	NSString *originalContent = [self.news objectForKey:@"content"];
-	NSMutableString *tempContent = [NSMutableString stringWithString:originalContent];
-	[tempContent replaceOccurrencesOfString:@"<p>" withString:@"\n\r" options:NSLiteralSearch range:NSMakeRange(0, [tempContent length])];
-	
-	[self.content setText:tempContent];
+	NSString *lmaintitle = [self.news objectForKey:@"title"];
+	NSString *lsubtitle = [self.news objectForKey:@"subtitle"];
+	NSString *lauthor = [self.news objectForKey:@"author"];
+	NSString *lddate = [self.news objectForKey:@"yyyymmdd"];
+
+	if (![originalContent isEqual:[NSNull null]])
+	{
+		NSMutableString *tempContent = [NSMutableString stringWithString:originalContent];
+		[tempContent replaceOccurrencesOfString:@"<p>" withString:@"\n\r" options:NSLiteralSearch range:NSMakeRange(0, [tempContent length])];
+		[self.content setText:tempContent];
+	}
+
 	CGRect c = self.content.frame;
 	c.size.height = self.content.contentSize.height;
 	self.content.frame = c;
 	
-	[self.maintitle setText:[self.news objectForKey:@"title"]];
+	if (![lmaintitle isEqual:[NSNull null]])
+	{
+		[self.maintitle setText:lmaintitle];
+	}
 	self.maintitle.contentInset = UIEdgeInsetsMake(-4, 0, 0, 0);
 	UIFont *font = [UIFont boldSystemFontOfSize:24.0f];
 	self.maintitle.font = font;
@@ -49,19 +69,36 @@ static NSString *savedImageKey = @"savetimg";
 	c1.size.height = self.maintitle.contentSize.height;
 	self.maintitle.frame = c1;
 	
-	[self.subtitle setText:[self.news objectForKey:@"subtitle"]];
+	if (![lsubtitle isEqual:[NSNull null]])
+	{
+		[self.subtitle setText:lsubtitle];
+	}
+	self.subtitle.contentInset = UIEdgeInsetsMake(-8, 0, 0, 0);
+	UIFont *font2 = [UIFont systemFontOfSize:20.0f];
+	self.subtitle.font=font2;
 	CGRect c2 = self.subtitle.frame;
 	c2.size.height = self.subtitle.contentSize.height;
 	self.subtitle.frame = c2;
-	self.subtitle.contentInset = UIEdgeInsetsMake(-8, 0, 0, 0);
 	
-	[self.authur setText:[self.news objectForKey:@"author"]];
 	CGRect c3 = self.authur.frame;
 	c3.size.height = self.authur.contentSize.height;
 	self.authur.frame = c3;	
 	self.authur.contentInset = UIEdgeInsetsMake(-8, 0, 0, 0);
 
-	[self.ddate setText:[self.news objectForKey:@"yyyymmdd"]];
+	if (![lddate isEqual:[NSNull null]])
+	{
+		NSRange blankPosition = [lddate rangeOfString:@" "];
+		NSString *dateString = [lddate substringToIndex:blankPosition.location+1];
+		
+		if (![lauthor isEqual:[NSNull null]])
+		{
+			dateString = [dateString stringByAppendingString:lauthor];
+		}
+		[self.ddate setText:dateString];
+	}	
+	CGRect c4 = self.ddate.frame;
+	c4.size.height = self.ddate.contentSize.height;
+	self.ddate.frame = c4;		
 	self.ddate.contentInset = UIEdgeInsetsMake(-8, 0, 0, 0);
 
 	[self setRelatedNews];
@@ -90,7 +127,6 @@ static NSString *savedImageKey = @"savetimg";
 
 		[self.container addSubview:self.relatedNewsView];
 	}
-	
 }
 
 - (void)setGesture
@@ -98,12 +134,14 @@ static NSString *savedImageKey = @"savetimg";
 	UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(moveToPreviousNews)];
 	swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
 	swipeRight.delegate = self;
+	//[self.view addGestureRecognizer:swipeRight];
 	[self.container addGestureRecognizer:swipeRight];
 	
 	UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(moveToNextNews)];
 	swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
 	swipeLeft.delegate = self;
-	[self.container addGestureRecognizer:swipeLeft];	
+	// [self.view addGestureRecognizer:swipeLeft];	
+	[self.container addGestureRecognizer:swipeLeft];
 	
 	[swipeRight release];
 	[swipeLeft release];
@@ -149,11 +187,19 @@ static NSString *savedImageKey = @"savetimg";
 	int ypos = 0;
 	
 	for (UIView *view in viewList) {
+
 		[self resetFrame:view withY:ypos];
-		ypos += view.frame.size.height;
-		ypos += space;
+
+		if (view.frame.size.height>0.0)
+		{
+			ypos += view.frame.size.height;
+			ypos += space;
+		}
 	}
 
+	if (ypos < 436.0)
+		ypos = 436.0;
+	
 	[self.container setContentSize:CGSizeMake(container.frame.size.width, ypos)];
 	[viewList release];
 }
@@ -194,11 +240,22 @@ static NSString *savedImageKey = @"savetimg";
     // Return YES for supported orientations.
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
-*/
+ - (IBAction)moveToPreviousNews:(id)sender;
+ {
+ [delegate showPreviousDetailNews:self.indexPath withBackData:self.backData isRelatedNews:NO];
+ }
+ - (IBAction)moveToNextNews:(id)sender;
+ {
+ [delegate showNextDetailNews:self.indexPath withBackData:self.backData isRelatedNews:NO];
+ }
+ 
+ 
+ */
 -(void)moveToPreviousNews
 {
 	[delegate showPreviousDetailNews:self.indexPath withBackData:self.backData isRelatedNews:NO];
 }
+
 
 -(void)moveToNextNews
 {
@@ -242,6 +299,7 @@ static NSString *savedImageKey = @"savetimg";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath2
 {
+	// need to cancel download if it is still downloading
 	[delegate showDetailNews:indexPath2.row withBackData:self.relatedNewsData popPreviousView:YES  isRelatedNews:YES];
 }
 
@@ -273,6 +331,7 @@ static NSString *savedImageKey = @"savetimg";
 }
 
 - (void)dealloc {
+	[iconDownloader cancelDownload];	
 	[iconDownloader release];   
 	[container release];
 	[maintitle release];

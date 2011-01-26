@@ -1,0 +1,1 @@
+ const unsigned char IBENewsReaderVersionString[] __attribute__ ((used)) = "@(#)PROGRAM:IBENewsReader  PROJECT:IBENewsReader-2" "\n"; const double IBENewsReaderVersionNumber __attribute__ ((used)) = (double)2.;

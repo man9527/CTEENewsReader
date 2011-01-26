@@ -13,12 +13,13 @@
 #import "ADViewController.h"
 #import "NewsListFooterViewController.h"
   
-@interface NewsDigestContainerViewController : UIViewController <NewsReloadDelegate, UIAlertViewDelegate,NewsDetailDelegate> {
+@interface NewsDigestContainerViewController : UIViewController <NewsReloadDelegate, UIAlertViewDelegate,NewsDetailDelegate, LoadADDelegate> {
 
 	IBOutlet ADViewController *adViewController;
 	IBOutlet NewsListViewController *newsListViewController;
 	IBOutlet NewsListFooterViewController *footer;
 
+	BOOL doAutoReload;
     // the list of news shared with "NewsDigestNewsListViewController"
 	NSDictionary			*newsData;
 	NSDictionary			*expiredCachedData;
@@ -35,12 +36,11 @@
 	NSString *dataCacheKey;
 }
 
-@property(nonatomic,retain) IBOutlet	SettingIndustryViewController *industryViewController;
 @property(nonatomic,retain) IBOutlet	ADViewController *adViewController;
 @property(nonatomic,retain) IBOutlet	NewsListViewController *newsListViewController;
 @property(nonatomic,retain) IBOutlet	NewsListFooterViewController *footer;
 
-// @property(nonatomic,assign) id delegate;
+@property(nonatomic,assign) BOOL doAutoReload;
 
 @property (nonatomic, retain) NSURLConnection *appListFeedConnection;
 @property (nonatomic, retain) NSMutableData *appListData;
@@ -55,6 +55,7 @@
 
 - (void)initSubViews;
 - (void)layoutSubViews;
+- (void)loadNewsData:(bool)forceReload;
 - (void)handleNewsData:(NSDictionary*)newsData;
 - (void)setFooterLabel;
 - (UIViewController*)createNewsDetailViewControllerWithBackData:(NSArray*)backData andIndex:(int)indexPath  isRelatedNews:(BOOL)isRelatedNews;

@@ -10,12 +10,16 @@
 #import "UserService.h"
 #import "IBENewsReaderAppDelegate.h"
 #import "UIAddPayFailDelegate.h"
+
+#define kAddPayStatusSuccess		0
+#define kAddPayStatusLoginFail		1
+#define kAddPayStatusFail			4
+
 @implementation UIAddPayView
-@synthesize addPayTextField, failDelegate;
+@synthesize addPayTextField, failDelegate, addPayManager;
 
 - (id)initWithFrame:(CGRect)frame {
 	if (self = [super initWithFrame:frame]) {
-		addPayManager = [[AddPayManager alloc] init];
 		failDelegate =  [[UIAddPayFailDelegate alloc]init];;
 		
 		addPayLabel = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -102,15 +106,15 @@
 	
 	NSString *title;
 	bool showAgain;
-	if (status==1)
+	if (status==kAddPayStatusLoginFail)
 	{
 		title = @"登入失敗";
 		showAgain = YES;
 	}
-	else if (status==4)
+	else if (status==kAddPayStatusFail)
 	{
 		title = @"儲值失敗";
-		showAgain = NO;
+		showAgain = YES;
 	}
 	else {
 		title = @"儲值成功";
@@ -119,7 +123,6 @@
 	}
 	
 	[self showResultDialogWithTitle:title message:reason showAgain:showAgain];
-	// [self release];	
 }
 
 - (bool)checkInput
@@ -147,15 +150,9 @@
 		fail = nil;
 	}
 
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message  delegate:fail  cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message  delegate:fail  cancelButtonTitle:nil otherButtonTitles:@"確定", nil];
 	[alert show];
 	[alert release];
-}
-
-- (void)show
-{
-	[super show];
-	[addPayTextField becomeFirstResponder];
 }
 
 -(void) dealloc
@@ -164,6 +161,7 @@
 	[addPayLabel release];
 	[addPayManager release];
 	[failDelegate release];
+	
 	[super dealloc];
 }
 

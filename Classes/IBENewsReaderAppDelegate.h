@@ -12,14 +12,19 @@
 #import "LoginManager.h"
 #import "UILoginView.h"
 #import "UIAddPayView.h"
+#import "LoadingView.h"
+#import "AddPayManager.h"
 
 @interface IBENewsReaderAppDelegate : NSObject <UIApplicationDelegate, DidLoginDelegate, UIAlertViewDelegate> {
     UIWindow *window;
 	NewsTabBarViewController *newsTabBarViewController;
 	MBProgressHUD *loadingView;
 	LoginManager *loginManager;
+	AddPayManager *addPayManager;
 	UILoginView *loginView;
 	UIAddPayView *addPayView;
+	
+	LoadingView *mainLoadingView;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -27,6 +32,7 @@
 @property (nonatomic, retain) LoginManager *loginManager;
 @property (nonatomic, retain) UILoginView *loginView;
 @property (nonatomic, retain) UIAddPayView *addPayView;
+@property (nonatomic, retain) IBOutlet LoadingView *mainLoadingView;
 
 - (void)displayNewView:(UIView *)viewToDisplay;
 - (void)goToNewsTabBarViewController;
@@ -36,4 +42,3 @@
 - (BOOL)validateForPaidUser;
 
 @end
-

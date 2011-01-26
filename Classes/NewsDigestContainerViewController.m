@@ -19,6 +19,8 @@
 #import <CFNetwork/CFNetwork.h>
 
 #define kAnimationSpeed		0.3
+#define kDefaultNewsListHeight 336.0
+#define kDefaultADHeight 50.0
 
 // static NSString *const TopPaidAppsFeed = @"https://d9.ctee.com.tw/m/headnewsbyplate.aspx?username=ctee&authkey=dffe744e-a091-45e6-884c-f4ecdb100316";
 // static NSString *NewsTypeName = @"SelectedNews";
@@ -29,35 +31,40 @@
 // @"http://phobos.apple.com/WebObjects/MZStoreServices.woa/ws/RSS/toppaidapplications/limit=75/xml";
 
 @implementation NewsDigestContainerViewController
-@synthesize adViewController, industryViewController, appListFeedConnection, appListData,newsListViewController, footer;
+@synthesize adViewController, appListFeedConnection, appListData,newsListViewController, footer;
 @synthesize dateformatter, newsData, expiredCachedData, requestKey, selfTitle, titleTemplate;
-@synthesize dataCacheKey;
+@synthesize dataCacheKey, doAutoReload;
 
 - (void)awakeFromNib {
-	NSLog(@"awake from nib");
-
+	doAutoReload = YES;
 	[self setupStaticKeyString];
 	[self initSubViews];
 	
 	dateformatter = [[NSDateFormatter alloc] init]; 
 	[self.dateformatter setDateFormat:@"yyyy/MM/dd HH:mm:ss"];	
+	
+	self.navigationController.toolbar.tintColor = [UIColor colorWithRed:150.0/255.0 green:150.0/255.0 blue:150.0/255.0 alpha:1];
+	
+	UIBarButtonItem *item6 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(viewDidLoad)];
+	NSArray *itemsArray = [[NSArray alloc] initWithObjects:item6, nil ];
+	[self setToolbarItems:itemsArray];
 }
 
 - (void)viewDidLoad {
 
     [super viewDidLoad];
-
+	
 	self.dataCacheKey = [NewsTypeName stringByAppendingString:requestKey];
 	self.navigationItem.title = selfTitle; // [NSString stringWithFormat:selfTitle, [dateStr substringToIndex:10]];
 
 	[self layoutSubViews];
-	[self loadNewsData:false];
 }  
 
 #pragma mark need to override these methods
 - (void)initSubViews
 {
-	self.adViewController = [[ADViewController alloc] initWithNibName:@"ADViewController" bundle:nil adpath:@"advertisement-selected"];
+	self.adViewController = [[ADViewController alloc] initWithNibName:@"ADViewController" bundle:nil zoneid:@"1" sub:@""];
+	self.adViewController.delegate = self;
 
 	self.newsListViewController = [[NewsListViewController alloc] initWithNibName:@"NewsListViewController" bundle:nil];
 	self.newsListViewController.entries = [NSMutableArray array];
@@ -70,11 +77,11 @@
 - (void)layoutSubViews
 {
 	int position = 0;
-	int newsListViewHeight = 336;
+	int newsListViewHeight = kDefaultNewsListHeight;
 	
 	if (self.adViewController)
 	{
-		self.adViewController.view.frame = CGRectMake(10, 0, adViewController.view.frame.size.width, adViewController.view.frame.size.height);
+		self.adViewController.view.frame = CGRectMake(0, 0, adViewController.view.frame.size.width, adViewController.view.frame.size.height);
 		[self.view addSubview:adViewController.view];
 
 		position += self.adViewController.view.frame.size.height;
@@ -93,17 +100,15 @@
 - (NSString*)getNewsRequestURL
 {
 	User *user = [UserService currentLogonUser];
-	NSLog(@"uuu %@", user.username);
-	NSLog(@"ppp %@", user.password);
-	NSString *url = [URLManager getNewsByPlateURLForUser:user withPlate:@"A01AA1"];
+	NSString *url = [URLManager getSelectNewsURLForUser:user];
 	return url;
 }
 
 - (void)setupStaticKeyString
 {
 	NewsTypeName = @"SelectedNews";
-	titleTemplate = @"精選(%i/%i)";
-	selfTitle = @"工商時報 %@ 精選";
+	//titleTemplate = @"精選(%i/%i)";
+	//selfTitle = @"精選新聞";
 }
 
 - (void)loadNewsData:(bool)forceReload
@@ -114,18 +119,21 @@
 	self.expiredCachedData = cachedData;
 	
 	// 2. if no cached data or force reload
-	if (cachedData==nil || forceReload)
+	if ( !self.expiredCachedData || forceReload)
 	{
 		IBENewsReaderAppDelegate *appDelegate = (IBENewsReaderAppDelegate*)[[UIApplication sharedApplication] delegate];
 		[appDelegate showLoading:TRUE withText:@"資料讀取中"];
 		
 		NSString *url = [self getNewsRequestURL];
 		self.appListFeedConnection = [URLConnectionManager getURLConnectionWithURL:url delegate:self];
+		
 		if (self.appListFeedConnection==nil)
 		{
 			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"無法開啟網路連接" message:nil  delegate:self  cancelButtonTitle:@"確定" otherButtonTitles:nil, nil];
 			[alert show];
-			[alert release];		
+			[alert release];	
+			
+			[self performSelectorOnMainThread:@selector(handleLoadedApps) withObject:nil waitUntilDone:NO];		
 		}
 
 		[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;		
@@ -138,11 +146,13 @@
 		switch ([newsExpiredDate compare:now]) {
 			case NSOrderedAscending:
 			case NSOrderedSame:
-				// need to expired
-				//[cachedData release];
-				//[expiredCachedData release];
-				[self loadNewsData:YES];
-				break;				
+				NSLog(@"auto reload %i", doAutoReload);
+				if (doAutoReload)
+				{
+					[self loadNewsData:YES];
+					break;				
+				}
+				// else go to default;
 			default:
 				// use cached data
 				self.newsData = cachedData;
@@ -154,6 +164,13 @@
 	[cachedData release];
 }
 
+- (void)reloadAD
+{
+	if (self.adViewController)
+	{
+		[self.adViewController reload];
+	}
+}
 // -------------------------------------------------------------------------------
 //	handleLoadedApps:notif
 // -------------------------------------------------------------------------------
@@ -179,20 +196,6 @@
 #pragma mark -
 #pragma mark NSURLConnection delegate methods
 
-// -------------------------------------------------------------------------------
-//	handleError:error
-// -------------------------------------------------------------------------------
-- (void)handleError:(NSError *)error
-{
-    NSString *errorMessage = [error localizedDescription];
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Cannot Show Top Paid Apps"
-														message:errorMessage
-													   delegate:nil
-											  cancelButtonTitle:@"OK"
-											  otherButtonTitles:nil];
-    [alertView show];
-    [alertView release];
-}
 
 // The following are delegate methods for NSURLConnection. Similar to callback functions, this is how
 // the connection object,  which is working in the background, can asynchronously communicate back to
@@ -224,12 +227,15 @@
 	[appDelegate showLoading:FALSE withText:nil];
 
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"連線錯誤" message:nil  delegate:self  cancelButtonTitle:@"確定" otherButtonTitles:nil, nil];
-	[alert show];
-	[alert release];		
-    
+	doAutoReload = NO;
+	
     self.appListFeedConnection = nil;   // release our connection
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"此功能需要網路連線" message:nil  delegate:self  cancelButtonTitle:@"確定" otherButtonTitles:nil, nil];
+	[alert show];
+	[alert release];
+	
+	[self setNewsData:self.expiredCachedData];
+	[self performSelectorOnMainThread:@selector(handleLoadedApps) withObject:nil waitUntilDone:NO];		
 }
 
 // -------------------------------------------------------------------------------
@@ -238,54 +244,49 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     self.appListFeedConnection = nil;   // release our connection
-    
+	doAutoReload = YES;
+
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;   
 	IBENewsReaderAppDelegate *appDelegate = (IBENewsReaderAppDelegate*)[[UIApplication sharedApplication] delegate];
 	[appDelegate showLoading:FALSE withText:nil];
     
-	//NSString* json_string = [[NSString alloc] initWithData:appListData encoding:NSUTF8StringEncoding];
-	NSString* json_string =
-	@"{\"status\":\"0\",	   \"errdesc\":null,	   \"updatetime\":\"2012/12/31 08:00:00\",	   \"invalidtime\":\"2012/12/31 22:00:00\",	   \"news\":[{\"clipid\":662999,\"yyyymmdd\":\"2011/1/1\",\"plate\":\"A01AA1\",\"platename\":\"A1 要聞\",\"author\":\"A1 要聞\",\"title\":\"打炒匯巨鱷央行祭重砲打炒匯巨鱷央行祭重砲打炒匯巨鱷央行祭重砲打炒匯巨鱷央行祭重砲\",\"subtitle\":\"|實施間接熱錢稅，加重炒作成本；金管會亦成立專案小組，徹查異常資金\",\"content\":\"content打炒匯巨鱷央行祭重砲打炒匯巨鱷央行祭重砲打炒匯巨鱷央行祭重砲打炒匯巨鱷央行祭重砲打炒匯巨鱷央行祭重砲打炒匯巨鱷央行祭重砲打炒匯巨鱷央行祭重砲打炒匯巨鱷央行祭重砲打炒匯巨鱷央行祭重砲\", \"thumb\":\"http://www.williamlong.info/upload/2427_3.jpg\", \"img\":\"http://blog.lib.umn.edu/rade0117/architecture/baby.jpg\"}, 	{\"clipid\":663000,\"yyyymmdd\":\"2011/1/1\",\"plate\":\"A01AA1\",\"platename\":\"A2 要聞\",\"author\":\"A1 要聞\",\"title\":\"打炒匯巨鱷央行祭重砲 2\",\"subtitle\":\"|實施間接熱錢稅，加重炒作成本；金管會亦成立專案小組，徹查異常資金\", \"content\":\"打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒\",\"thumb\":\"http://designexcite.com/images/s-logo.png\",\"img\":\"http://www.thefrogandtheprincess.com/Images/baby-aspen-welcome-home-baby-blue-set-2.jpg\",\"related\":[{\"clipid\":663001,\"yyyymmdd\":\"2011/1/1\",\"plate\":\"A01AA1\",\"platename\":\"A2 要聞\",\"author\":\"A1 要聞\",\"title\":\"打炒匯巨鱷央行祭重砲 3\",\"subtitle\":\"|實施間接熱錢稅，加重炒作成本；金管會亦成立專案小組，徹查異常資金\", \"content\":\"打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒\",\"img\":\"http://designexcite.com/images/s-logo.png\"},{\"clipid\":663001,\"yyyymmdd\":\"2011/1/1\",\"plate\":\"A01AA1\",\"platename\":\"A2 要聞\",\"author\":\"A1 要聞\",\"title\":\"打炒匯巨鱷央行祭重砲 4\",\"subtitle\":\"|實施間接熱錢稅，加重炒作成本；金管會亦成立專案小組，徹查異常資金\", \"content\":\"打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒\",\"img\":\"http://designexcite.com/images/s-logo.png\"}] }, {\"clipid\":662999,\"yyyymmdd\":\"2011/1/1\",\"plate\":\"A01AA1\",\"platename\":\"A1 要聞\",\"author\":\"A1 要聞\",\"title\":\"打炒匯巨鱷央行祭重砲 5\",\"subtitle\":\"|實施間接熱錢稅，加重炒作成本；金管會亦成立專案小組，徹查異常資金\",\"content\":\"打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒\", \"thumb\":\"http://www.williamlong.info/upload/2427_3.jpg\", \"img\":\"http://blog.lib.umn.edu/rade0117/architecture/baby.jpg\"}, {\"clipid\":662999,\"yyyymmdd\":\"2011/1/1\",\"plate\":\"A01AA1\",\"platename\":\"A1 要聞\",\"author\":\"A1 要聞\",\"title\":\"打炒匯巨鱷央行祭重砲 6\",\"subtitle\":\"|實施間接熱錢稅，加重炒作成本；金管會亦成立專案小組，徹查異常資金\",\"content\":\"打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒\", \"thumb\":\"http://www.williamlong.info/upload/2427_3.jpg\", \"img\":\"http://blog.lib.umn.edu/rade0117/architecture/baby.jpg\"}, {\"clipid\":662999,\"yyyymmdd\":\"2011/1/1\",\"plate\":\"A01AA1\",\"platename\":\"A1 要聞\",\"author\":\"A1 要聞\",\"title\":\"打炒匯巨鱷央行祭重砲 7\",\"subtitle\":\"|實施間接熱錢稅，加重炒作成本；金管會亦成立專案小組，徹查異常資金\",\"content\":\"打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒\", \"thumb\":\"http://www.williamlong.info/upload/2427_3.jpg\", \"img\":\"http://blog.lib.umn.edu/rade0117/architecture/baby.jpg\"}]}";
+	NSString* json_string = [[NSString alloc] initWithData:appListData encoding:NSUTF8StringEncoding];
+	//NSString* json_string =
+	//@"{\"status\":\"0\",	   \"errdesc\":null,	   \"updatetime\":\"2012/12/31 08:00:00\",	   \"invalidtime\":\"2010/12/31 22:00:00\",	   \"news\":[{\"clipid\":662999,\"yyyymmdd\":\"2011/1/1\",\"plate\":\"A01AA1\",\"platename\":\"A1 要聞\",\"author\":\"A1 要聞\",\"title\":\"打炒匯巨鱷央行祭重砲打炒匯巨鱷央行祭重砲打炒匯巨鱷央行祭重砲打炒匯巨鱷央行祭重砲\",\"subtitle\":\"|實施間接熱錢稅，加重炒作成本；金管會亦成立專案小組，徹查異常資金\",\"content\":\"content打炒匯巨鱷央行祭重砲打炒匯巨鱷央行祭重砲打炒匯巨鱷央行祭重砲打炒匯巨鱷央行祭重砲打炒匯巨鱷央行祭重砲打炒匯巨鱷央行祭重砲打炒匯巨鱷央行祭重砲打炒匯巨鱷央行祭重砲打炒匯巨鱷央行祭重砲\", \"thumb\":\"http://www.williamlong.info/upload/2427_3.jpg\", \"img\":\"http://blog.lib.umn.edu/rade0117/architecture/baby.jpg\"}, 	{\"clipid\":663000,\"yyyymmdd\":\"2011/1/1\",\"plate\":\"A01AA1\",\"platename\":\"A2 要聞\",\"author\":\"A1 要聞\",\"title\":\"打炒匯巨鱷央行祭重砲 2\",\"subtitle\":\"|實施間接熱錢稅，加重炒作成本；金管會亦成立專案小組，徹查異常資金\", \"content\":\"打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒\",\"thumb\":\"http://designexcite.com/images/s-logo.png\",\"img\":\"http://www.thefrogandtheprincess.com/Images/baby-aspen-welcome-home-baby-blue-set-2.jpg\",\"related\":[{\"clipid\":663001,\"yyyymmdd\":\"2011/1/1\",\"plate\":\"A01AA1\",\"platename\":\"A2 要聞\",\"author\":\"A1 要聞\",\"title\":\"打炒匯巨鱷央行祭重砲 3\",\"subtitle\":\"|實施間接熱錢稅，加重炒作成本；金管會亦成立專案小組，徹查異常資金\", \"content\":\"打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒\",\"img\":\"http://designexcite.com/images/s-logo.png\"},{\"clipid\":663001,\"yyyymmdd\":\"2011/1/1\",\"plate\":\"A01AA1\",\"platename\":\"A2 要聞\",\"author\":\"A1 要聞\",\"title\":\"打炒匯巨鱷央行祭重砲 4\",\"subtitle\":\"|實施間接熱錢稅，加重炒作成本；金管會亦成立專案小組，徹查異常資金\", \"content\":\"打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒\",\"img\":\"http://designexcite.com/images/s-logo.png\"}] }, {\"clipid\":662999,\"yyyymmdd\":\"2011/1/1\",\"plate\":\"A01AA1\",\"platename\":\"A1 要聞\",\"author\":\"A1 要聞\",\"title\":\"打炒匯巨鱷央行祭重砲 5\",\"subtitle\":\"|實施間接熱錢稅，加重炒作成本；金管會亦成立專案小組，徹查異常資金\",\"content\":\"打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒\", \"thumb\":\"http://www.williamlong.info/upload/2427_3.jpg\", \"img\":\"http://blog.lib.umn.edu/rade0117/architecture/baby.jpg\"}, {\"clipid\":662999,\"yyyymmdd\":\"2011/1/1\",\"plate\":\"A01AA1\",\"platename\":\"A1 要聞\",\"author\":\"A1 要聞\",\"title\":\"打炒匯巨鱷央行祭重砲 6\",\"subtitle\":\"|實施間接熱錢稅，加重炒作成本；金管會亦成立專案小組，徹查異常資金\",\"content\":\"打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒\", \"thumb\":\"http://www.williamlong.info/upload/2427_3.jpg\", \"img\":\"http://blog.lib.umn.edu/rade0117/architecture/baby.jpg\"}, {\"clipid\":662999,\"yyyymmdd\":\"2011/1/1\",\"plate\":\"A01AA1\",\"platename\":\"A1 要聞\",\"author\":\"A1 要聞\",\"title\":\"打炒匯巨鱷央行祭重砲 7\",\"subtitle\":\"|實施間接熱錢稅，加重炒作成本；金管會亦成立專案小組，徹查異常資金\",\"content\":\"打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒打炒匯巨鱷央行祭重砲打炒\", \"thumb\":\"http://www.williamlong.info/upload/2427_3.jpg\", \"img\":\"http://blog.lib.umn.edu/rade0117/architecture/baby.jpg\"}]}";
 
-	// NSLog(@"%@",json_string);
-	
 	NSDictionary *jsonObj = [json_string JSONValue];
 	[jsonObj retain];
 	[self handleNewsData:jsonObj];
     self.appListData = nil;
 	
 	[jsonObj release];
+	[json_string release];
 }
 
 - (void)handleNewsData:(NSDictionary*)data
 {
 	NSString *status = [data objectForKey:@"status"];
-	if([status isEqualToString: @"0"]) { 
-		if (data!=nil)
-		{
-			self.newsData = data;
-			[CacheManager cacheData:data withType:dataCacheKey];
-		}
-		else if (self.expiredCachedData!=nil)
-		{
-			[self setNewsData:self.expiredCachedData];
-		}
-		else {
-			[self setNewsData:nil];
-		}
-
-		[self performSelectorOnMainThread:@selector(handleLoadedApps) withObject:nil waitUntilDone:NO];
+	
+	if([status isEqualToString: @"0"] && data!=nil) { 
+		self.newsData = data;
+		[CacheManager cacheData:data withType:dataCacheKey];
 	}
 	else {
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"讀取資料錯誤" message:[data objectForKey:@"errdesc"]  delegate:self  cancelButtonTitle:@"確定" otherButtonTitles:nil, nil];
 		[alert show];
-		[alert release];		
+		[alert release];
+		
+		[self setNewsData:self.expiredCachedData];
 	}
+	
+	[self performSelectorOnMainThread:@selector(handleLoadedApps) withObject:nil waitUntilDone:NO];		
 }
 
 - (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-	[self performSelectorOnMainThread:@selector(handleLoadedApps) withObject:nil waitUntilDone:NO];
+	// [self performSelectorOnMainThread:@selector(handleLoadedApps) withObject:nil waitUntilDone:NO];
+	if (!self.newsData)
+		[self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
@@ -381,7 +382,7 @@
 		
 		[UIView commitAnimations];
 	}
-}
+} 
 
 - (void)showDetailNews:(int)indexPath withBackData:(NSArray*)backData popPreviousView:(BOOL)pop  isRelatedNews:(BOOL)isRelatedNews
 {
@@ -391,11 +392,11 @@
 	
 	UIViewController *detailViewController = [self createNewsDetailViewControllerWithBackData:backData andIndex:indexPath isRelatedNews:isRelatedNews];
 	[detailViewController retain];
-
-	[self.navigationController pushViewController:detailViewController animated:YES];
-	 
+		
+	[self.navigationController setToolbarHidden:NO animated:NO];
+	[self.navigationController pushViewController:detailViewController animated:YES];	
+	
 	[detailViewController release];
-	NSLog(@"detail view retain count %i",[detailViewController retainCount]);
 }
 
 - (UIViewController*)createNewsDetailViewControllerWithBackData:(NSArray*)backData andIndex:(int)indexPath isRelatedNews:(BOOL)isRelatedNews
@@ -414,6 +415,48 @@
 	}
 
 	return detailViewController;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	[self.newsListViewController.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+}
+
+- (void)didLoadAD:(BOOL)show
+{
+	int position = 0;
+	int newsListViewHeight = kDefaultNewsListHeight;
+		
+	if (show)
+	{
+		[UIView beginAnimations:@"showAD" context:nil];
+		[UIView setAnimationDuration:kAnimationSpeed];
+
+		if (self.adViewController)
+		{
+			adViewController.view.frame = CGRectMake(0, 0, adViewController.view.frame.size.width, kDefaultADHeight);
+			
+			position += self.adViewController.view.frame.size.height;
+			newsListViewHeight -= self.adViewController.view.frame.size.height;
+		}
+		
+		self.newsListViewController.view.frame = CGRectMake(0, position, newsListViewController.view.frame.size.width, newsListViewHeight);
+		[UIView commitAnimations];
+	}
+	else {
+		[UIView beginAnimations:@"hideAD" context:nil];
+		[UIView setAnimationDuration:kAnimationSpeed];
+		
+		if (self.adViewController)
+		{  
+			self.adViewController.view.frame = CGRectMake(0, 0, adViewController.view.frame.size.width, 0);
+		}
+		
+		self.newsListViewController.view.frame = CGRectMake(0, position, newsListViewController.view.frame.size.width, newsListViewHeight);
+		[UIView commitAnimations];
+	}
+
 }
 
 - (void)dealloc {

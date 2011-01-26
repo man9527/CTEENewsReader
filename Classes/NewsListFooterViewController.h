@@ -27,6 +27,5 @@
 
 @protocol NewsReloadDelegate 
 - (void)loadNewsData:(bool)forceReload;
-@optional
-- (void)backAndReloadData;
+- (void)reloadAD;
 @end

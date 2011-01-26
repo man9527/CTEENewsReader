@@ -13,18 +13,30 @@
 #import "MBProgressHUD.h"
 #import "UILoginView.h"
 #import "UIAddPayView.h"
-#import "LoginManager.h"
 #import "URLManager.h"
 
 @implementation IBENewsReaderAppDelegate
 
-@synthesize window,newsTabBarViewController, loginManager, loginView, addPayView;
+@synthesize window,newsTabBarViewController, loginManager, loginView, mainLoadingView, addPayView;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-
+	[window addSubview:mainLoadingView.view];
+	
 	newsTabBarViewController= [[NewsTabBarViewController alloc] init];
+	
 	loginManager = [[LoginManager alloc] init];
+	addPayManager = [[AddPayManager alloc] init];
+
+	loginView = [[UILoginView alloc] initWithTitle:@"會員登入" message:nil delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"登入", nil];
+	loginView.loginManager = loginManager;
+	loginView.addPayManager = addPayManager;
+	loginManager.delegate = loginView;
+
+	addPayView = [[UIAddPayView alloc] initWithTitle:@"請輸入儲值碼" message:nil delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"儲值", nil];
+	addPayView.addPayManager = addPayManager;
+	addPayManager.delegate = addPayView;
+	
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLoginForm) name:@"ShowLoginForm" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showAddPayForm) name:@"ShowAddPayForm" object:nil];
@@ -34,14 +46,14 @@
 	
 	// if user/passwd cached, try login and regardless the result
 	if (u != NULL){
-		loginManager.delegate=self;
-		[loginManager login:u];
+		LoginManager *tempManager = [[[LoginManager alloc] init] autorelease];
+		tempManager.delegate=self;
+		[tempManager login:u];
 	}
 	else {
 		[self goToNewsTabBarViewController];
 	}
 
-	// [self goToNewsTabBarViewController];
 	[window makeKeyAndVisible];
 	
 	return YES;
@@ -74,59 +86,14 @@
 
 - (void)showLoginForm // :(NSNotification *)notification
 {
-	// [self.loginView release];
-	
-	// NSDictionary *defaultValue = [notification userInfo];
-	
-	if (!loginView)
-	{
-		loginView = [[UILoginView alloc] initWithTitle:@"會員登入" message:nil delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"登入", nil];
-	}
-	/*
-	if (defaultValue!=nil)
-	{
-		NSString *account = [defaultValue valueForKey:@"account"];
-		NSString *pwd = [defaultValue valueForKey:@"password"];
-		NSString *addpaykey = [defaultValue valueForKey:@"addpaykey"];
-	
-		if (account!=nil)
-		{
-			loginView.idTextField.text = account;
-		}
-		if (pwd!=nil)
-		{
-			loginView.passwordTextField.text = pwd;
-		}
-		if (addpaykey!=nil)
-		{
-			loginView.addPayTextField.text = addpaykey;
-		}
-	}*/
-
 	[loginView show];
+	[loginView.idTextField becomeFirstResponder];
 }
 
 - (void)showAddPayForm // :(NSNotification *)notification
 {
-	// [self.addPayView release];
-	
-	// NSDictionary *defaultValue = [notification userInfo];
-
-	if (!self.addPayView)
-	{
-		self.addPayView = [[UIAddPayView alloc] initWithTitle:@"請輸入儲值碼" message:nil delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"儲值", nil];
-	}
-	/*
-	if (defaultValue!=nil)
-	{
-		NSString *addpaykey = [defaultValue valueForKey:@"addpaykey"];
-		
-		if (addpaykey!=nil)
-		{
-			addPayView.addPayTextField.text = addpaykey;
-		}
-	}*/
 	[addPayView show];
+	[addPayView.addPayTextField becomeFirstResponder];
 }
 
 - (void)showLoading:(BOOL)show withText:(NSString*)message
@@ -204,6 +171,7 @@
 	[loadingView release];
 	[loginView release];
 	[addPayView release];
+	[mainLoadingView release];
 	
 	[super dealloc];
 }

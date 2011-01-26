@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "NewsDigestContainerViewController.h"
 
-@interface NewsSelectedContainerView : NewsDigestContainerViewController {
+@interface NewsSelectedContainerView : NewsDigestContainerViewController <UINavigationControllerDelegate>{
 
 }
 

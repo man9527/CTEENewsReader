@@ -8,14 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol LoadADDelegate
+- (void)didLoadAD:(BOOL)show;
+@end
 
-@interface ADViewController : UIViewController {
+@interface ADViewController : UIViewController <UIWebViewDelegate> {
 	IBOutlet UIWebView *adView;
-	NSString *adpath;
+		
+	NSString *zoneid;
+	NSString *sub;
+	
+	id<LoadADDelegate> delegate;
 }
 
 @property (nonatomic,retain)	IBOutlet UIWebView *adView;
+@property (nonatomic,assign)	id<LoadADDelegate> delegate;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil adpath:(NSString*)path;
-
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil zoneid:(NSString*)zoneidparam sub:(NSString*)subparam;
+- (void)reload;
+- (void)loadADContent;
 @end

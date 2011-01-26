@@ -12,8 +12,11 @@
 @interface NewsIndustryItemListViewController : UITableViewController <UINavigationControllerDelegate> {
 	UserIndustrySetting *userIndustrySetting;
 	NSArray *selectedIndustry;
+	
+	NSMutableDictionary *cachedControllers;
 }
 @property (nonatomic,retain) UserIndustrySetting *userIndustrySetting;
 @property (nonatomic,retain) NSArray *selectedIndustry;
+@property (nonatomic,retain) NSMutableDictionary *cachedControllers;
 
 @end

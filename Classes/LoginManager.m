@@ -52,7 +52,7 @@
 
 	if (delegate!=nil)
 	{
-		[delegate didLoginResult:false andReason:@"連線錯誤" For:self.user];
+		[delegate didLoginResult:false andReason:@"此功能需要網路連線" For:self.user];
 	}
 }
 
@@ -62,9 +62,6 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
 	NSString* json_string = [[NSString alloc] initWithData:self.loginResultData encoding:NSUTF8StringEncoding];
-
-	// used for temporary
-	// json_string = @"{\"status\":\"0\",\"errdesc\":\"aaa\",\"authkey\":\"aaa\",\"enddate\":\"2010/12/31 12:00:00\"}";
 
 	NSDictionary *jsonObj = [json_string JSONValue];
 	loginConnection = nil;

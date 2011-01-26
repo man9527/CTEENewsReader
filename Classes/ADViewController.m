@@ -8,33 +8,69 @@
 
 #import "ADViewController.h"
 
+static NSString *const adURL=@"https://d9.ctee.com.tw/m/adscode.aspx?zone=%@&sub=%@";
+// static NSString *adFilePath=@"advertisement";
 
 @implementation ADViewController
-@synthesize adView;
+@synthesize adView, delegate;
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil adpath:(NSString*)path {
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil zoneid:(NSString*)zoneidparam sub:(NSString*)subparam {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-		adpath = path;
-    }
+	zoneid=zoneidparam;
+	sub=subparam;
     return self;
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+	[self loadADContent];
+	//[self performSelectorOnMainThread:@selector(loadADContent) withObject:nil waitUntilDone:NO];
+}
 
-	NSString *path = [[NSBundle mainBundle] pathForResource:adpath ofType:@"html"];
+- (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
+	if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+		[[UIApplication sharedApplication] openURL:request.URL];
+		return NO;
+	}
+	else {
+		return YES;
+	}
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+	NSLog(@"AD load error");
+	[delegate didLoadAD:NO];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+	NSLog(@"AD load ok");
+	[delegate didLoadAD:YES];
+}
+
+- (void)loadADContent
+{
+	/*
+	NSString *path = [[NSBundle mainBundle] pathForResource:@"advertisement" ofType:@"html"];
 	NSFileHandle *readHandle = [NSFileHandle fileHandleForReadingAtPath:path];
 	
 	NSString *htmlString = [[NSString alloc] initWithData:[readHandle readDataToEndOfFile] encoding:NSUTF8StringEncoding];
-	
-	[self.adView loadHTMLString:htmlString baseURL:nil];
-	[htmlString release];
+	self.adView.delegate = self;
+	[self.adView loadHTMLString:[NSString stringWithFormat:htmlString, [NSString stringWithFormat:adURL, zoneid, sub]] baseURL:nil];
+	[htmlString release];	
+	 */
+	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:adURL, zoneid, sub]];
+	[self.adView loadRequest:[NSURLRequest requestWithURL:url] ];
 }
 
-
+- (void)reload
+{
+	//[self performSelectorOnMainThread:@selector(loadADContent) withObject:nil waitUntilDone:NO];
+	[self loadADContent];
+}
 /*
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
