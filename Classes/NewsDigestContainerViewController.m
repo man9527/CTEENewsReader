@@ -19,16 +19,8 @@
 #import <CFNetwork/CFNetwork.h>
 
 #define kAnimationSpeed		0.3
-#define kDefaultNewsListHeight 336.0
-#define kDefaultADHeight 50.0
-
-// static NSString *const TopPaidAppsFeed = @"https://d9.ctee.com.tw/m/headnewsbyplate.aspx?username=ctee&authkey=dffe744e-a091-45e6-884c-f4ecdb100316";
-// static NSString *NewsTypeName = @"SelectedNews";
-// static NSString *titleTemplate = @"精選(%i/%i)";
-// static NSString *selfTitle = @"工商時報 %@ 精選";
-
-// @"https://d9.ctee.com.tw/m/headnewsbyplate.aspx?username=ctee&authkey=xxxxxxxx";
-// @"http://phobos.apple.com/WebObjects/MZStoreServices.woa/ws/RSS/toppaidapplications/limit=75/xml";
+#define kDefaultNewsListHeight 338.0
+#define kDefaultADHeight 48.0
 
 @implementation NewsDigestContainerViewController
 @synthesize adViewController, appListFeedConnection, appListData,newsListViewController, footer;
@@ -44,10 +36,6 @@
 	[self.dateformatter setDateFormat:@"yyyy/MM/dd HH:mm:ss"];	
 	
 	self.navigationController.toolbar.tintColor = [UIColor colorWithRed:150.0/255.0 green:150.0/255.0 blue:150.0/255.0 alpha:1];
-	
-	UIBarButtonItem *item6 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(viewDidLoad)];
-	NSArray *itemsArray = [[NSArray alloc] initWithObjects:item6, nil ];
-	[self setToolbarItems:itemsArray];
 }
 
 - (void)viewDidLoad {
@@ -231,6 +219,7 @@
 	
     self.appListFeedConnection = nil;   // release our connection
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"此功能需要網路連線" message:nil  delegate:self  cancelButtonTitle:@"確定" otherButtonTitles:nil, nil];
+	alert.tag=1000;
 	[alert show];
 	[alert release];
 	
@@ -272,21 +261,38 @@
 		[CacheManager cacheData:data withType:dataCacheKey];
 	}
 	else {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"讀取資料錯誤" message:[data objectForKey:@"errdesc"]  delegate:self  cancelButtonTitle:@"確定" otherButtonTitles:nil, nil];
-		[alert show];
-		[alert release];
-		
+		if([status isEqualToString: @"3"]) { 
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"讀取資料錯誤" message:[data objectForKey:@"errdesc"]  delegate:self  cancelButtonTitle:@"確定" otherButtonTitles:nil, nil];
+			alert.tag=3000;
+			[alert show];
+			[alert release];
+		}
+		else 
+		{
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"讀取資料錯誤" message:[data objectForKey:@"errdesc"]  delegate:self  cancelButtonTitle:@"確定" otherButtonTitles:nil, nil];
+			alert.tag=2000;
+			[alert show];
+			[alert release];
+		}
 		[self setNewsData:self.expiredCachedData];
 	}
 	
 	[self performSelectorOnMainThread:@selector(handleLoadedApps) withObject:nil waitUntilDone:NO];		
 }
 
-- (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)alertView:(UIAlertView*)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-	// [self performSelectorOnMainThread:@selector(handleLoadedApps) withObject:nil waitUntilDone:NO];
-	if (!self.newsData)
-		[self.navigationController popToRootViewControllerAnimated:YES];
+	if (alertView.tag==1000)
+	{
+		if (!self.newsData)
+		{
+			[self.navigationController popToRootViewControllerAnimated:YES];
+		}
+	}
+	else if (alertView.tag==3000)
+	{
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"ShowLoginForm" object:nil userInfo:nil];
+	}
 }
 
 - (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
@@ -337,22 +343,6 @@
 	[self.navigationController popViewControllerAnimated:NO];
 	[self.navigationController pushViewController:detailViewController animated:NO];
 	[detailViewController release];
-	//[self.navigationController.view addSubview:detailViewController.view] ; // animated:NO];
-/*
-	NSLog(@"slide in new view begin");
-	CGRect frame = detailViewController.view.frame;
-	frame.origin = CGPointMake(0.0, 0.0);
-	
-	[UIView beginAnimations:@"slideIn" context:nil];
-	[UIView setAnimationDuration:kAnimationSpeed];
-
-	detailViewController.view.frame = frame;
-    
-	[UIView commitAnimations];
-	
-	[detailViewController release];
-	NSLog(@"slide in new view done");
-*/	
 }
 
 - (void)showNextDetailNews:(int)indexPath withBackData:(NSArray*)backData  isRelatedNews:(BOOL)isRelatedNews
@@ -408,6 +398,7 @@
 	detailViewController.indexPath = indexPath;
 	if (isRelatedNews)
 	{
+		detailViewController.isRelatedNews = YES;
 		detailViewController.title = [NSString stringWithFormat:@"相關新聞 (%i/%i)",indexPath+1,[backData count]];
 	}
 	else {
@@ -420,7 +411,13 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-	[self.newsListViewController.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+
+	NSLog(@"======================= called from viewWillAppear");	
+	[self loadNewsData:NO];
+	
+	
+	if ([self.newsListViewController.tableView numberOfSections]>0 && [self.newsListViewController.tableView numberOfRowsInSection:0]>0)
+		[self.newsListViewController.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
 
 - (void)didLoadAD:(BOOL)show

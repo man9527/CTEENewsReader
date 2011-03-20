@@ -12,6 +12,8 @@ extern NSString *const UserNameKey;
 extern NSString *const PasswordKey;
 extern NSString *const AuthKey;
 extern NSString *const ExpiredDateKey;
+extern NSString *const InvalidDateKey;
+extern NSString *const FontSizeKey;
 
 extern NSString *const NavigationBarBackground;
 

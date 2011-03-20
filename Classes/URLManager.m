@@ -8,21 +8,20 @@
 
 #import "URLManager.h"
 
-static NSString *const RegisterURL=@"https://d9.ctee.com.tw/m/addmember.aspx";
-static NSString *const ForgetPasswordURL=@"https://d9.ctee.com.tw/m/passwordrecovery.aspx";
-static NSString *const SubscribeURL=@"https://d9.ctee.com.tw/m/order";
+static NSString *const RegisterURL=@"https://d9.ctee.com.tw/m/addmember.aspx"; // 會員註冊
+static NSString *const ForgetPasswordURL=@"https://d9.ctee.com.tw/m/passwordrecovery.aspx"; // Forget password
+static NSString *const SubscribeURL=@"https://d9.ctee.com.tw/m/order"; // 前往訂閱
+static NSString *const ManualURL=@"http://d9.ctee.com.tw/m/OperationManual.pdf";  // 手冊
+static NSString *const LoginURL=@"https://d9.ctee.com.tw/m/checkmember.aspx?username=%@&password=%@"; // 會員登入
+static NSString *const AddPayURL=@"http://d9.ctee.com.tw/m/addpayhistory.aspx?username=%@&password=%@&prememberkey=%@"; // 會員儲值
+static NSString *const ModifyDataURL=@"https://d9.ctee.com.tw/m/profile.aspx?username=%@&password=%@"; // 修改會員資料
+static NSString *const SelectNewsURL=@"https://d9.ctee.com.tw/m/selectnews.aspx?";  // 精選新聞
+static NSString *const HeadNewsURL=@"https://d9.ctee.com.tw/m/headnewsbyplate.aspx?"; // 各版頭條
+static NSString *const NewsByPlateURL=@"https://d9.ctee.com.tw/m/newsbyplate.aspx?plate=%@&";  // 各版新聞
+static NSString *const NewsByIndustryURL=@"https://d9.ctee.com.tw/m/newsbyindustry.aspx?industry=%@&";  // 產業新聞
+static NSString *const adURL=@"https://d9.ctee.com.tw/m/adscode.aspx?zone=%@&sub=%@";  // 廣告
 
-static NSString *const LoginURL=@"https://d9.ctee.com.tw/m/checkmember.aspx?username=%@&password=%@";
-static NSString *const AddPayURL=@"http://d9.ctee.com.tw/m/addpayhistory.aspx?username=%@&password=%@&prememberkey=%@";
-static NSString *const ModifyDataURL=@"https://d9.ctee.com.tw/m/profile.aspx?username=%@&password=%@";
-
-static NSString *const SelectNewsURL=@"https://d9.ctee.com.tw/m/selectnews.aspx?";
-static NSString *const HeadNewsURL=@"https://d9.ctee.com.tw/m/headnewsbyplate.aspx?";
-
-static NSString *const NewsByPlateURL=@"https://d9.ctee.com.tw/m/newsbyplate.aspx?plate=%@&";
-static NSString *const NewsByIndustryURL=@"https://d9.ctee.com.tw/m/newsbyindustry.aspx?industry=%@&";
 static NSString *const NewsParameter=@"username=%@&authkey=%@";
-
 
 @implementation URLManager
 
@@ -41,13 +40,23 @@ static NSString *const NewsParameter=@"username=%@&authkey=%@";
 	return SubscribeURL;
 }
 
++(NSString*) getAdURL
+{
+	return adURL;
+}
+
++(NSString*) getManualURL
+{
+	return ManualURL;
+}
+
 +(NSString*) getLoginURLForUser:(User*)u
 {
 	if (u!=nil) {
 		return [NSString stringWithFormat:LoginURL, u.username, u.password];
 	}
 	else {
-		return LoginURL;
+		return [NSString stringWithFormat:LoginURL, @"", @""];
 	}
 }
 

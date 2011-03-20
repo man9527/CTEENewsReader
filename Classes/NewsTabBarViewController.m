@@ -52,6 +52,7 @@
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {
+	[viewController viewWillAppear:YES];
 	return YES;
 }
 

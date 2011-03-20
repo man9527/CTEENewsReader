@@ -14,6 +14,8 @@
  NSString *const PasswordKey=@"Password";
  NSString *const AuthKey=@"AuthKey";
  NSString *const ExpiredDateKey=@"ExpiredDateKey";
+ NSString *const InvalidDateKey=@"InvaliadDateKey";
+ NSString *const FontSizeKey=@"FontSizeKey";
 
 
  NSString *const NavigationBarBackground = @"_IGP650022";

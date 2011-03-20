@@ -1,8 +1,13 @@
 TCTEENewsReader
 v7
 r0
-t317465178.551818
+t321209325.719802
 cCheck dependencies
+
+N/Users/man9527/Documents/Xcode/0102/IBENewsReader 拷貝 8/build/IBENewsReader.build/Release-iphonesimulator/CTEENewsReader.build/Script-A941FDED12E337E900E47D14.sh
+c00000000000000000000000000000000
+t2
+s0
 
 N/Users/man9527/Documents/Xcode/0102/IBENewsReader/build/IBENewsReader.build/Release-iphonesimulator/CTEENewsReader.build/Script-A941FDED12E337E900E47D14.sh
 c00000000000000000000000000000000
@@ -11,7 +16,10 @@ s0
 
 CCheck dependencies
 r0
-lSLF07#2@18"Check dependencies317465178#317465178#0(0"0(0#1#0"8934206752#0"0#
+lSLF07#2@18"Check dependencies321209325#321209325#0(0"0(0#1#0"8635691008#0"0#
+
+CPhaseScriptExecution "Run Script" "/Users/man9527/Documents/Xcode/0102/IBENewsReader 拷貝 8/build/IBENewsReader.build/Release-iphonesimulator/CTEENewsReader.build/Script-A941FDED12E337E900E47D14.sh"
+r0
 
 CPhaseScriptExecution "Run Script" /Users/man9527/Documents/Xcode/0102/IBENewsReader/build/IBENewsReader.build/Release-iphonesimulator/CTEENewsReader.build/Script-A941FDED12E337E900E47D14.sh
 s316881739.884619

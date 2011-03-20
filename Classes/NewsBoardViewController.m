@@ -9,6 +9,9 @@
 #import "NewsBoardViewController.h"
 #import "CacheManager.h"
 #import "UserIndustrySetting.h"
+#import "User.h"
+#import "UserService.h"
+
 @implementation NewsBoardViewController
 @synthesize aboutText;
 /*
@@ -25,15 +28,8 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-	NSString *path = [[NSBundle mainBundle] pathForResource:@"about" ofType:@"html"];
-	NSFileHandle *readHandle = [NSFileHandle fileHandleForReadingAtPath:path];
-	
-	NSString *htmlString = [[NSString alloc] initWithData:[readHandle readDataToEndOfFile] encoding:NSUTF8StringEncoding];
-	self.aboutText.delegate = self;
-	[self.aboutText loadHTMLString:htmlString baseURL:nil];
-	[htmlString release];
+	[self performSelector:@selector(updateUI) withObject:nil afterDelay:0.0];
 }
-
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
 	if (navigationType == UIWebViewNavigationTypeLinkClicked) {
 		[[UIApplication sharedApplication] openURL:request.URL];
@@ -42,6 +38,36 @@
 	else {
 		return YES;
 	}
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	[self performSelector:@selector(updateUI) withObject:nil afterDelay:0.0];
+}
+
+-(void)updateUI
+{
+	NSString *path = [[NSBundle mainBundle] pathForResource:@"about" ofType:@"html"];
+	NSFileHandle *readHandle = [NSFileHandle fileHandleForReadingAtPath:path];
+	
+	NSString *imagePath = [[NSBundle mainBundle] resourcePath];
+	imagePath = [imagePath stringByReplacingOccurrencesOfString:@"/" withString:@"//"];
+	imagePath = [imagePath stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+	
+	int fontSize = 22;
+	User *u = [UserService currentLogonUser];
+	if (u!=nil)
+	{
+		fontSize = (int)u.fontSize;
+	}
+	
+	
+	NSString *htmlString = [[NSString alloc] initWithData:[readHandle readDataToEndOfFile] encoding:NSUTF8StringEncoding];
+	NSString *htmlString2 = [NSString stringWithFormat:htmlString, fontSize];// [htmlString stringByReplacingOccurrencesOfString:@"[fontSize]" withString:[NSString stringWithFormat:@"%d",fontSize]];
+	self.aboutText.delegate = self;
+	[self.aboutText loadHTMLString:htmlString2 baseURL:[NSURL URLWithString: [NSString stringWithFormat:@"file:/%@//",imagePath]]];
+	[htmlString release];
 }
 
 /*

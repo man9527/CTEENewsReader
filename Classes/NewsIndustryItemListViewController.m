@@ -28,6 +28,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+	self.navigationController.toolbar.tintColor = [UIColor colorWithRed:150.0/255.0 green:150.0/255.0 blue:150.0/255.0 alpha:1];
 	
 	self.cachedControllers = [NSMutableDictionary dictionary];
 	self.userIndustrySetting = [UserIndustrySetting sharedUserIndustrySetting];
@@ -99,12 +101,10 @@
 		{
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
 										   reuseIdentifier:PlaceholderCellIdentifier] autorelease];   
-            cell.detailTextLabel.textAlignment = UITextAlignmentCenter;
 			cell.selectionStyle = UITableViewCellSelectionStyleNone;
-			
         }
 		
-		cell.detailTextLabel.text = @"尚未選擇偏好產業";
+		cell.detailTextLabel.text = @"請按右上方『+』，選擇分類或詳操作手冊。";
 		
 		return cell;
     }
@@ -113,6 +113,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+		cell.textLabel.font=[UIFont boldSystemFontOfSize:20.0];
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
@@ -204,7 +205,7 @@
 	else if ([viewController isKindOfClass:[NewsIndustryContainerViewController class]])
 	{
 		[self.navigationController setToolbarHidden:YES animated:NO];
-		[(NewsIndustryContainerViewController*)viewController loadNewsData:NO];
+		// [(NewsIndustryContainerViewController*)viewController loadNewsData:NO];
 	}
 }
 

@@ -26,7 +26,9 @@
 	NSArray *backData;
 	NSArray *relatedNewsData;
 
+	float fontSize;
 	IconDownloader *iconDownloader;
+	BOOL isRelatedNews;
 }
 
 @property(nonatomic,assign) id<NewsDetailDelegate> delegate;
@@ -43,6 +45,8 @@
 @property(nonatomic,retain) 	NSArray *backData;
 @property(nonatomic,retain) 	NSArray *relatedNewsData;
 @property(nonatomic,retain) 	IconDownloader *iconDownloader;
+@property(nonatomic,assign)		float fontSize;
+@property(nonatomic,assign)		BOOL isRelatedNews;
 
 -(void)startIconDownload:(NSMutableDictionary *)newsRecord; 
 -(void)loadNewsImage;
@@ -51,6 +55,9 @@
 -(void)resetFrame:(UIView*)view withY:(int)y;
 -(void)setRelatedNews;
 -(void)setImageViewHeight:(UIImageView*)view ByImage:(UIImage*)image;
+- (void)composeTextVewBlock:(UITextView*)textView withContent:(NSString*)text andFontSize:(UIFont*)font;
+-(void)saveFontSize;
+
 // - (IBAction)moveToPreviousNews:(id)sender;
 // - (IBAction)moveToNextNews:(id)sender;
 

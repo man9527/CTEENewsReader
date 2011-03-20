@@ -16,6 +16,8 @@
 +(NSString*) getRegisterURL;
 +(NSString*) getForgetPasswordURL;
 +(NSString*) getSubscribeURL;
++(NSString*) getAdURL;
++(NSString*) getManualURL;
 +(NSString*) getLoginURLForUser:(User*)u;
 +(NSString*) getModifyDataURLForUser:(User*)u;
 +(NSString*) getAddPayURLForUser:(User*)u withPayCode:(NSString*)paycode;

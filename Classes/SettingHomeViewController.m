@@ -17,16 +17,6 @@
 
 @synthesize addPayButton, authButton, subscribeButton, changeDataButton, expiredDateLeftLabel, expiredDateLabel, user;
 
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
-
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -34,8 +24,19 @@
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadView) name:@"AuthenticationEvent" object:nil];
 	
 	[self determineLoginStatus];
-	selectedImage = [UIImage imageNamed:@"listbg_320_44-1.png"];
-	selectedBackground = [[UIImageView alloc] initWithImage:selectedImage];
+
+	NSDate *now = [NSDate date];
+	LoginManager *tm = [[[LoginManager alloc] init] autorelease];
+	
+	switch ([user.invalidDate compare:now]) {
+		case NSOrderedAscending:
+		case NSOrderedSame:
+			tm.delegate=self;
+			[tm login:user];
+			break;				
+		default:
+			break;
+	}
 }
 
 -(BOOL)determineLoginStatus
@@ -50,6 +51,15 @@
 		return NO;
 	}
 }
+
+- (void)didLoginResult:(bool)isSuccessful andReason:(NSString*)reason For:(User*) u
+{
+	if (isSuccessful)
+	{
+		[self.tableView reloadData];
+	}
+}
+
 /*
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -73,9 +83,11 @@
 		message = @"ShowAddPayForm";
 		[[NSNotificationCenter defaultCenter] postNotificationName:message object:nil userInfo:nil];
 	}
-	//else {
-	//	message = @"ShowLoginForm";
-	//}
+	else {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"請先登入" message:nil  delegate:nil  cancelButtonTitle:nil otherButtonTitles:@"確定", nil];
+		[alert show];
+		[alert release];		
+	}
 
 	//[[NSNotificationCenter defaultCenter] postNotificationName:message object:nil userInfo:nil];
 }
@@ -95,13 +107,21 @@
 
 -(void)changeDataButtonClick
 {
-	NSURL *url = [NSURL URLWithString:[URLManager getModifyDataURLForUser:user]];
+	NSURL *url;
+	
+	if (user!=nil)
+	{
+		url = [NSURL URLWithString:[URLManager getModifyDataURLForUser:user]];
+	}else {
+		url = [NSURL URLWithString:[URLManager getForgetPasswordURL]];
+	}
+
 	[[UIApplication sharedApplication] openURL:url];	
 }
 
 -(void)subscribeButtonClick
 {
-	NSURL *url = [NSURL URLWithString:[URLManager getSubscribeURL]];
+	NSURL *url = [NSURL URLWithString:[URLManager getManualURL]];
 	[[UIApplication sharedApplication] openURL:url];
 }
 
@@ -120,30 +140,25 @@
 
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
-	if (section==0)
-	{
-		return 2;
-	}
-	else
-	{
-		if (self.user) {
-			return 2;
-		}
-		else {
-			return 1;
-		}
-	}
+	return 2;
 }
 
 - (NSString*)tableView:(UITableView*)tableView titleForHeaderInSection: (NSInteger)section
 {
 	if (section==0)
 	{
-		return @"訂閱";
+		return @"會員儲值";
 	}
 	else
 	{
-		return @"使用者帳號";
+		if (!self.user)
+		{
+			return @"使用狀態";
+		}
+		else {
+			return [@"使用狀態：" stringByAppendingString:self.user.username];
+		}
+
 	}
 }
 
@@ -157,8 +172,6 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
 		cell.selectionStyle = UITableViewCellSelectionStyleBlue;
 		cell.textLabel.textAlignment = UITextAlignmentCenter;
-		//cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-		//cell.selectedBackgroundView = selectedBackground;
     }
     
 	if (indexPath.section==0)
@@ -169,14 +182,16 @@
 				if (!self.user)
 				{
 					cell.selectionStyle = UITableViewCellSelectionStyleNone;
+					[cell.textLabel setTextColor:[UIColor colorWithRed:176.0/256.0 green:176.0/256.0 blue:176.0/256.0 alpha:1.0]];
 				}
 				else {
 					cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+					[cell.textLabel setTextColor:[UIColor blackColor]];
 				}
 
 				break;
 			case 1:
-				cell.textLabel.text = @"前往訂閱";
+				cell.textLabel.text = @"操作手冊";
 				break;
 			default:
 				break;
@@ -194,7 +209,15 @@
 				}
 			break;
 			case 1:
-				cell.textLabel.text = @"會員資料修改";
+				if (self.user)
+				{
+					cell.textLabel.text = @"修改會員資料";
+				}
+				else {
+						
+					cell.textLabel.text = @"忘記密碼";
+				}
+					
 			break;
 			default:
 				break;
@@ -207,8 +230,34 @@
 {
 	if (section==1 && user!=nil)
 	{
-		NSString *tmpStr = @"有效日期至：%@";
-		return [NSString stringWithFormat:tmpStr, [user getExpireDateByString]];
+		NSString *tmpStr, *finalStr;
+		
+		NSDate *today = [NSDate date];
+		NSDate *expiredDate = user.expireDate;
+		
+		NSTimeInterval theTimeInterval = [expiredDate timeIntervalSinceDate:today];
+
+		if (theTimeInterval>0)
+		{
+			// Get the system calendar
+			NSCalendar *sysCalendar = [NSCalendar currentCalendar];
+			
+			// Get conversion to months, days, hours, minutes
+			unsigned int unitFlags = NSDayCalendarUnit;
+			
+			NSDateComponents *conversionInfo = [sysCalendar components:unitFlags fromDate:today  toDate:expiredDate  options:0];
+			
+			NSLog(@"Conversion: %dmin %dhours %ddays %dmoths",[conversionInfo minute], [conversionInfo hour], [conversionInfo day], [conversionInfo month]);
+			tmpStr = @"會員到期日：%@\n剩餘天數 %d 天";
+			finalStr = [NSString stringWithFormat:tmpStr, [user getExpireDateByString], [conversionInfo day]+2];
+		}
+		else 
+		{
+			tmpStr = @"會員到期日：%@\n已過期";
+			finalStr = [NSString stringWithFormat:tmpStr, [user getExpireDateByString]];
+		}
+		
+		return finalStr;
 	}
 	else {
 		return nil;
@@ -221,7 +270,10 @@
 	{
 		switch (indexPath.row) {
 			case 0:
-				[self addPayButtonClick];
+				if (self.user)
+				{
+					[self addPayButtonClick];
+				}
 				break;
 			case 1:
 				[self subscribeButtonClick];
@@ -246,6 +298,13 @@
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	[self.tableView reloadData];
+	NSLog(@" ===================================== reload called");
+}
+
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -261,8 +320,6 @@
 
 
 - (void)dealloc {
-	[selectedBackground release];
-	
     [super dealloc];
 }
 

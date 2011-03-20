@@ -14,6 +14,9 @@
 	NSString *password;
 	NSString *authkey;
 	NSDate *expireDate;
+	NSDate *invalidDate;
+	float fontSize;
+
 	NSDateFormatter *dateformatterForInput; 
 	NSDateFormatter *dateformatterForOutput; 
 }
@@ -22,9 +25,13 @@
 @property (nonatomic, retain) NSString *password;
 @property (nonatomic, retain) NSString *authkey;
 @property (nonatomic, retain) NSDate *expireDate;
+@property (nonatomic, retain) NSDate *invalidDate;
+@property (nonatomic, assign) float fontSize;
 
 -(bool)isPaid;
 -(void)setExpireDateByString:(NSString *)dateString;
 -(NSString*)getExpireDateByString;
+-(void)setInvalidDateByString:(NSString *)dateString;
+-(NSString*)getInvalidDateByString;
 
 @end

@@ -6,7 +6,7 @@
 	<dict>
 		<key>ADViewController.nib</key>
 		<data>
-		LOjaW+5JzLP2aBTlnme4VTKdENo=
+		N4lhlXcR+H7QmWL3oAKw+9l9PDg=
 		</data>
 		<key>Default.png</key>
 		<data>
@@ -18,23 +18,23 @@
 		</data>
 		<key>Icon-Small.png</key>
 		<data>
-		eRSqQlbDziNN9mRT+DJs/Fnu49k=
+		im4SwoaAoeOHsa/foJZrgFPuGBY=
 		</data>
 		<key>Icon-Small@2x.png</key>
 		<data>
-		QqOxZTOTJvUpHqFmyKnk8zL51W4=
+		ECZgAwpcMnI2YxgSbgMWGUb32P0=
 		</data>
 		<key>Icon.png</key>
 		<data>
-		+CVrnY9KHa/wsyZ67nebw6l7Xho=
+		Bsm3QwVAe1AKKuhhuMShoDRAHzI=
 		</data>
 		<key>Icon@2x.png</key>
 		<data>
-		bV9vUrPhNuOZvLWPJLAe6jU9FfA=
+		ZauPG4lGdPZwu5EgcZ5w3zU44pc=
 		</data>
 		<key>IndustryList.plist</key>
 		<data>
-		GM1x+H0UPchgTgV2lBVlHm/sFQk=
+		on8VLfjy4jCEyDK0GSe4XlUpfvs=
 		</data>
 		<key>LoadingView.nib</key>
 		<data>
@@ -46,19 +46,19 @@
 		</data>
 		<key>NewsBoardViewController.nib</key>
 		<data>
-		pqHaB+7n8HeFpq0LvWNky+0jASo=
+		hjUUsRcnPLZDHZcnD3chL+nbh1U=
 		</data>
 		<key>NewsDetailViewController.nib</key>
 		<data>
-		LmjwsjVTNok7Vhr+TTNWW1vnzQY=
+		rmuFsaOtL68euJD32VhNEoC/HPw=
 		</data>
 		<key>NewsDigestContainerViewController.nib</key>
 		<data>
-		+26rd/SLx34/mIWJTFY35z05UnE=
+		AqcW8FHxLioScqHXMH5dZmPeA60=
 		</data>
 		<key>NewsDigestViewController.nib</key>
 		<data>
-		DDp69IfC2eT+kR/Zp4uyoRlcTT4=
+		MI0dWN1kOcVvR8an+/HK6Omz+iA=
 		</data>
 		<key>NewsIndustryContainerViewController.nib</key>
 		<data>
@@ -66,7 +66,7 @@
 		</data>
 		<key>NewsIndustryItemListViewController.nib</key>
 		<data>
-		KNhrA/8N1zOZ3tn4blbSHnKHQow=
+		xXMP9ie7xIeHWYTKgZ8frfJEdK0=
 		</data>
 		<key>NewsIndustryViewController.nib</key>
 		<data>
@@ -74,11 +74,11 @@
 		</data>
 		<key>NewsListFooterViewController.nib</key>
 		<data>
-		Qh4sJte100EcFceNT0O8lR3KusA=
+		Sb2AcgjHXUnGMG9KWzFjCs6e2W0=
 		</data>
 		<key>NewsListViewController.nib</key>
 		<data>
-		d/DJmNFvNf1Y7efe3VEgZCUXGl4=
+		zM/Wj0dj6v+YgyXlUJusD45jz3I=
 		</data>
 		<key>NewsPlateContainerViewController.nib</key>
 		<data>
@@ -90,11 +90,11 @@
 		</data>
 		<key>NewsPlateListViewController.nib</key>
 		<data>
-		2NK7Mlla+O+KbuhA22yaOI5YC3Y=
+		dD82iLW5g2JrmF0dOhUaOYxDqaU=
 		</data>
 		<key>NewsTabBarViewController.nib</key>
 		<data>
-		OTLx5SPL2uvDO1xJ/VYx/51/C5o=
+		SUoQb++5yRVS5jqjh5fL2+QKCUU=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -102,7 +102,7 @@
 		</data>
 		<key>SettingHomeViewController.nib</key>
 		<data>
-		bFNhSaoP2ZPmLTWTBTml6L2lLIw=
+		TZ1WYhOHVWWNa1bxW7AE9WXRGZc=
 		</data>
 		<key>SettingIndustryCellView.nib</key>
 		<data>
@@ -110,7 +110,7 @@
 		</data>
 		<key>SettingIndustryViewController.nib</key>
 		<data>
-		ay2qiUY/5uZvXRM1PfApTble/k4=
+		y24l6BuhzNCdhvmH7mTTDyfRaOQ=
 		</data>
 		<key>SettingViewController.nib</key>
 		<data>
@@ -118,7 +118,7 @@
 		</data>
 		<key>about.html</key>
 		<data>
-		cwlyp+Q+cwCXuYC18o8Yc4iAWag=
+		63XraT0DxdWAHiMVLWypeB2CDJc=
 		</data>
 		<key>about.png</key>
 		<data>
@@ -130,7 +130,23 @@
 		</data>
 		<key>advertisement.html</key>
 		<data>
-		CzCHSCeGVpmRpyOVXXMpUlkbzAI=
+		HlGN01XSo58kGca9k6niwg/9PH4=
+		</data>
+		<key>arrow-left.png</key>
+		<data>
+		Fh1SMrwnJuO4PffWIsVkWXkGXOY=
+		</data>
+		<key>arrow-left@2x.png</key>
+		<data>
+		hBKsQA5yDQGuWu+iCXYF8D0+pFg=
+		</data>
+		<key>arrow-right.png</key>
+		<data>
+		nzT5/bfVOdqO7ZqMUN95MqFmvwk=
+		</data>
+		<key>arrow-right@2x.png</key>
+		<data>
+		Bn1BwfkaNCHbfrHtnyGHjhjdpm0=
 		</data>
 		<key>checkbox-checked.png</key>
 		<data>
@@ -144,9 +160,17 @@
 		<data>
 		fWerIkCXz2uasgrsSbiLth4Mfkk=
 		</data>
+		<key>company_logo-1.png</key>
+		<data>
+		rRNL1t2h98YaR/EJYWQb5eIYWMM=
+		</data>
+		<key>company_logo-2.png</key>
+		<data>
+		0XIHU9c7jBe06pQJwHvxWYeFuis=
+		</data>
 		<key>embedded.mobileprovision</key>
 		<data>
-		WCqE0vpGs1uuVeYlm4YiP2anWMA=
+		u0rFWTPJawUErnhmOe0/dNFBdBk=
 		</data>
 		<key>eye.png</key>
 		<data>
@@ -155,6 +179,22 @@
 		<key>eye@2x.png</key>
 		<data>
 		ro8HGIc7HOMTf9JsvMAL8P0x2GY=
+		</data>
+		<key>font_decrese.png</key>
+		<data>
+		iY8VQ+Wg59D64TNCW8YsPRuXwww=
+		</data>
+		<key>font_decrese@2x.png</key>
+		<data>
+		kKykoQt8jFcjpCIK8rqola+XuA0=
+		</data>
+		<key>font_increse.png</key>
+		<data>
+		ZxZEAglBfZV8D4HdtCVps6VZ6tk=
+		</data>
+		<key>font_increse@2x.png</key>
+		<data>
+		ZkgBeTwCbb8bfDHXVMiOb+T7v0I=
 		</data>
 		<key>gears.png</key>
 		<data>
@@ -166,11 +206,7 @@
 		</data>
 		<key>iTunesArtwork</key>
 		<data>
-		IRVQp+eT6hYvMlLdLX/KhHUBnMY=
-		</data>
-		<key>icon28_2.png</key>
-		<data>
-		yAtwxGyQuBrluDMvpq0bu/x4eZw=
+		zS6Z/aI9D2XDxZ2ukRe/p3WRnmQ=
 		</data>
 		<key>information.png</key>
 		<data>
@@ -206,7 +242,7 @@
 		</data>
 		<key>zh.lproj/Localizable.strings</key>
 		<data>
-		UhVLwWemB7sE0BHc33xH75a+9GE=
+		Fo6hRmvO0696/cXwjczdHsnGj8U=
 		</data>
 	</dict>
 	<key>rules</key>

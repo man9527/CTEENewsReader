@@ -7,8 +7,9 @@
 //
 
 #import "ADViewController.h"
+#import "URLManager.h"
 
-static NSString *const adURL=@"https://d9.ctee.com.tw/m/adscode.aspx?zone=%@&sub=%@";
+// static NSString *const adURL=@"https://d9.ctee.com.tw/m/adscode.aspx?zone=%@&sub=%@";
 // static NSString *adFilePath=@"advertisement";
 
 @implementation ADViewController
@@ -26,7 +27,6 @@ static NSString *const adURL=@"https://d9.ctee.com.tw/m/adscode.aspx?zone=%@&sub
 - (void)viewDidLoad {
     [super viewDidLoad];
 	[self loadADContent];
-	//[self performSelectorOnMainThread:@selector(loadADContent) withObject:nil waitUntilDone:NO];
 }
 
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
@@ -41,7 +41,7 @@ static NSString *const adURL=@"https://d9.ctee.com.tw/m/adscode.aspx?zone=%@&sub
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-	NSLog(@"AD load error");
+	NSLog(@"load ad fail %@", error);
 	[delegate didLoadAD:NO];
 }
 
@@ -62,7 +62,8 @@ static NSString *const adURL=@"https://d9.ctee.com.tw/m/adscode.aspx?zone=%@&sub
 	[self.adView loadHTMLString:[NSString stringWithFormat:htmlString, [NSString stringWithFormat:adURL, zoneid, sub]] baseURL:nil];
 	[htmlString release];	
 	 */
-	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:adURL, zoneid, sub]];
+	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:[URLManager getAdURL], zoneid, sub]];
+	NSLog(@"ad url %@", url);
 	[self.adView loadRequest:[NSURLRequest requestWithURL:url] ];
 }
 

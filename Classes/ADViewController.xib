@@ -41,7 +41,7 @@
 			<object class="IBUIWebView" id="45840146">
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">301</int>
-				<string key="NSFrameSize">{1045, 50}</string>
+				<string key="NSFrameSize">{320, 48}</string>
 				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -53,13 +53,12 @@
 				<int key="IBUIContentMode">4</int>
 				<bool key="IBUIMultipleTouchEnabled">YES</bool>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-				<bool key="IBUIScalesPageToFit">YES</bool>
 				<int key="IBUIDataDetectorTypes">8</int>
 			</object>
 			<object class="IBUIView" id="191373211">
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">301</int>
-				<string key="NSFrameSize">{300, 50}</string>
+				<string key="NSFrameSize">{300, 48}</string>
 				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
@@ -153,12 +152,12 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>ADViewController</string>
 					<string>UIResponder</string>
-					<string>{{360, 157}, {300, 50}}</string>
+					<string>{{360, 159}, {300, 48}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAADBoAAAwogAAA</bytes>
 					</object>
-					<string>{{377, 630}, {1045, 50}}</string>
+					<string>{{377, 632}, {320, 48}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform"/>
 				</object>

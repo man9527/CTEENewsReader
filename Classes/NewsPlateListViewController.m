@@ -31,7 +31,8 @@
 	self.entries = [[NSMutableArray alloc] init];
 	self.plateName = [[NSMutableArray alloc] init];
 	self.cachedControllers = [NSMutableDictionary dictionary];
-		
+
+	self.navigationController.toolbar.tintColor = [UIColor colorWithRed:150.0/255.0 green:150.0/255.0 blue:150.0/255.0 alpha:1];
 	self.navigationController.delegate = self;
 }
 
@@ -137,7 +138,6 @@
 {
 	User *user = [UserService currentLogonUser];
 	NSString *url = [URLManager getHeadNewsURLForUser:user];
-	NSLog(@"head news url: %@", url);
 	return url;
 }
 
@@ -178,13 +178,12 @@
 		{
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
 										   reuseIdentifier:HeadNewsIdentifier] autorelease];   
-            cell.detailTextLabel.textAlignment = UITextAlignmentCenter;
+			cell.textLabel.font=[UIFont boldSystemFontOfSize:20.0];
 			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 			cell.selectionStyle = UITableViewCellSelectionStyleBlue;
         }
 		
 		cell.textLabel.text = @"各版頭條";
-		
 		return cell;
     }
 	else 
@@ -197,6 +196,7 @@
 		{
 			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
 										   reuseIdentifier:PlateNewsIdentifier] autorelease];
+			cell.textLabel.font=[UIFont boldSystemFontOfSize:20.0];
 			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 			cell.selectionStyle = UITableViewCellSelectionStyleBlue;
 		}
@@ -338,13 +338,19 @@
 		[CacheManager cacheData:data withType:cachekey];
 	}
 	else {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"讀取資料錯誤" message:[data objectForKey:@"errdesc"]  delegate:self  cancelButtonTitle:@"確定" otherButtonTitles:nil, nil];
-		[alert show];
-		[alert release];		
+		if([status isEqualToString: @"3"]) { 
+			[[NSNotificationCenter defaultCenter] postNotificationName:@"ShowLoginForm" object:nil userInfo:nil];
+		}
+		else 
+		{
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"讀取資料錯誤" message:[data objectForKey:@"errdesc"]  delegate:self  cancelButtonTitle:@"確定" otherButtonTitles:nil, nil];
+			[alert show];
+			[alert release];
+		}
 
 		[self setNewsData:self.expiredCachedData];
 	}
-
+	
 	[self performSelectorOnMainThread:@selector(handleLoadedApps) withObject:nil waitUntilDone:NO];
 }
 
@@ -369,21 +375,31 @@
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-	if ([viewController isKindOfClass:[NewsPlateListViewController class]])
+	
+	/*if ([viewController isKindOfClass:[NewsPlateListViewController class]])
 	{
 		[self loadNewsData:NO];
 	}
-	else if ([viewController isKindOfClass:[NewsPlateContainerViewController class]])
+	
+	else */if ([viewController isKindOfClass:[NewsPlateContainerViewController class]])
 	{
-		[(NewsPlateContainerViewController*)viewController loadNewsData:NO];
+		[self.navigationController setToolbarHidden:YES animated:NO];
+		// [(NewsPlateContainerViewController*)viewController loadNewsData:NO];
 	}
 	else if ([viewController isKindOfClass:[NewsPlateHeadContainerViewController class]])
 	{
 		[self.navigationController setToolbarHidden:YES animated:NO];
-		[(NewsPlateHeadContainerViewController*)viewController loadNewsData:NO];
-	}	
+		//[(NewsPlateHeadContainerViewController*)viewController loadNewsData:NO];
+	}
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	
+	NSLog(@"======================= called from NewsPlateListViewController viewWillAppear");	
+	[self loadNewsData:NO];
+}
 #pragma mark -
 #pragma mark Memory management
 

@@ -63,6 +63,7 @@
 {
 	NSString* json_string = [[NSString alloc] initWithData:self.loginResultData encoding:NSUTF8StringEncoding];
 
+	NSLog(@"%@",json_string);
 	NSDictionary *jsonObj = [json_string JSONValue];
 	loginConnection = nil;
 
@@ -72,11 +73,10 @@
 	bool status;
 	
 	if([result isEqualToString: @"0"] || [result isEqualToString: @"1"]) {
-		NSLog(@"authkey: %@",self.user.authkey);
-
 		status = true;
 		self.user.authkey = [jsonObj objectForKey:@"authkey"];
 		[self.user setExpireDateByString:[jsonObj objectForKey:@"enddate"]];
+		[self.user setInvalidDateByString:[jsonObj objectForKey:@"invalidtime"]];
 		[UserService setCurrentLogonUser:self.user];
 	}
 	else 

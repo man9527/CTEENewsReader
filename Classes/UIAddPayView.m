@@ -14,6 +14,7 @@
 #define kAddPayStatusSuccess		0
 #define kAddPayStatusLoginFail		1
 #define kAddPayStatusFail			4
+#define NUMBERS	@"0123456789"
 
 @implementation UIAddPayView
 @synthesize addPayTextField, failDelegate, addPayManager;
@@ -31,9 +32,10 @@
 		addPayTextField = [[UITextField alloc] initWithFrame:CGRectZero]; 
 		addPayTextField.autocorrectionType = UITextAutocorrectionTypeNo;
 		addPayTextField.keyboardType = UIKeyboardTypeNumberPad;
+		addPayTextField.delegate = self;
 		[addPayTextField setBorderStyle:UITextBorderStyleRoundedRect];
 		
-		[self addSubview:addPayLabel];
+		//[self addSubview:addPayLabel];
 		[self addSubview:addPayTextField];
 		
 	}
@@ -70,7 +72,7 @@
 	buttonTop -= 35; // buttonTop -= 23;
 	
 	addPayLabel.frame = CGRectMake(12, buttonTop, self.frame.size.width - 52, 30);
-	addPayTextField.frame = CGRectMake(80, addPayLabel.frame.origin.y, 185, addPayLabel.frame.size.height);
+	addPayTextField.frame = CGRectMake(52, addPayLabel.frame.origin.y, 180, addPayLabel.frame.size.height);
 }
 
 - (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -129,13 +131,21 @@
 {
 	NSString *addpayCode = addPayTextField.text;
 	
+	NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:NUMBERS] invertedSet];
+    NSString *filtered = [[addpayCode componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+	
 	if (addpayCode==nil || [addpayCode isEqual:@""])
 	{
 		[self showResultDialogWithTitle:@"儲值失敗" message:@"請輸入儲值碼" showAgain:YES];
 		
 		return FALSE;
 	}
-	
+	else if (addpayCode.length!=8 || ![addpayCode isEqualToString:filtered]) {
+		[self showResultDialogWithTitle:@"儲值失敗" message:@"儲值碼數字長度錯誤，請重新輸入。" showAgain:YES];
+		
+		return FALSE;
+	}
+
 	return TRUE;
 }
 
@@ -153,6 +163,17 @@
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message  delegate:fail  cancelButtonTitle:nil otherButtonTitles:@"確定", nil];
 	[alert show];
 	[alert release];
+}
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+	NSNumberFormatter *nf = [[[NSNumberFormatter alloc] init] autorelease];
+	
+	if (textField.text.length<=7 || ![nf numberFromString:string])
+		return TRUE;
+	else {
+		return FALSE;
+	}
+	
 }
 
 -(void) dealloc

@@ -9,12 +9,13 @@
 #import "NewsDetailViewController.h"
 #import "CacheManager.h"
 #import "IconDownloader.h"
+#import "UserService.h"
 static NSString *imagekey = @"img";
 static NSString *savedImageKey = @"savetimg";
 
 @implementation NewsDetailViewController
 @synthesize delegate,container,indexPath,maintitle,subtitle,ddate, authur, imageView, content, news,iconDownloader;
-@synthesize relatedNewsData, relatedNewsView, backData;
+@synthesize relatedNewsData, relatedNewsView, backData, fontSize, isRelatedNews;
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -30,15 +31,21 @@ static NSString *savedImageKey = @"savetimg";
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+	User *user = [UserService currentLogonUser];
+	fontSize = user.fontSize;
+
 	UIBarButtonItem *btnPrev = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"arrow-left.png"] style:UIBarButtonItemStylePlain target:self action:@selector(moveToPreviousNews)];
 	UIBarButtonItem *btnNext = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"arrow-right.png"] style:UIBarButtonItemStylePlain target:self action:@selector(moveToNextNews)];
+	UIBarButtonItem *fontIncrease = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"font_increse.png"] style:UIBarButtonItemStylePlain target:self action:@selector(zoomIn)];
+	UIBarButtonItem *fontDecrease = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"font_decrese.png"] style:UIBarButtonItemStylePlain target:self action:@selector(zoomOut)];
+
 	UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 	
-	NSArray *itemsArray = [[NSArray alloc] initWithObjects:btnPrev, flexibleSpace, btnNext, nil ];
+	NSArray *itemsArray = [[NSArray alloc] initWithObjects:btnPrev, flexibleSpace, fontDecrease, flexibleSpace, fontIncrease, flexibleSpace, btnNext, nil ];
 	[self setToolbarItems:itemsArray animated:NO];
 	
 	[btnPrev release]; [btnNext release]; [flexibleSpace release], [itemsArray release];
-	
+	[fontIncrease release]; [fontDecrease release];
 	self.news = [self.backData objectAtIndex:indexPath];
 	
 	NSString *originalContent = [self.news objectForKey:@"content"];
@@ -51,39 +58,11 @@ static NSString *savedImageKey = @"savetimg";
 	{
 		NSMutableString *tempContent = [NSMutableString stringWithString:originalContent];
 		[tempContent replaceOccurrencesOfString:@"<p>" withString:@"\n\r" options:NSLiteralSearch range:NSMakeRange(0, [tempContent length])];
-		[self.content setText:tempContent];
+		[self composeTextVewBlock:(UITextView*)self.content withContent:(NSString*)tempContent andFontSize:[UIFont systemFontOfSize:fontSize]];
 	}
 
-	CGRect c = self.content.frame;
-	c.size.height = self.content.contentSize.height;
-	self.content.frame = c;
-	
-	if (![lmaintitle isEqual:[NSNull null]])
-	{
-		[self.maintitle setText:lmaintitle];
-	}
-	self.maintitle.contentInset = UIEdgeInsetsMake(-4, 0, 0, 0);
-	UIFont *font = [UIFont boldSystemFontOfSize:24.0f];
-	self.maintitle.font = font;
-	CGRect c1 = self.maintitle.frame;
-	c1.size.height = self.maintitle.contentSize.height;
-	self.maintitle.frame = c1;
-	
-	if (![lsubtitle isEqual:[NSNull null]])
-	{
-		[self.subtitle setText:lsubtitle];
-	}
-	self.subtitle.contentInset = UIEdgeInsetsMake(-8, 0, 0, 0);
-	UIFont *font2 = [UIFont systemFontOfSize:20.0f];
-	self.subtitle.font=font2;
-	CGRect c2 = self.subtitle.frame;
-	c2.size.height = self.subtitle.contentSize.height;
-	self.subtitle.frame = c2;
-	
-	CGRect c3 = self.authur.frame;
-	c3.size.height = self.authur.contentSize.height;
-	self.authur.frame = c3;	
-	self.authur.contentInset = UIEdgeInsetsMake(-8, 0, 0, 0);
+	[self composeTextVewBlock:(UITextView*)self.maintitle withContent:(NSString*)lmaintitle andFontSize:[UIFont boldSystemFontOfSize:(fontSize+12.0f)]];
+	[self composeTextVewBlock:(UITextView*)self.subtitle withContent:(NSString*)lsubtitle andFontSize:[UIFont systemFontOfSize:(fontSize+6.0f)]];
 
 	if (![lddate isEqual:[NSNull null]])
 	{
@@ -94,27 +73,33 @@ static NSString *savedImageKey = @"savetimg";
 		{
 			dateString = [dateString stringByAppendingString:lauthor];
 		}
-		[self.ddate setText:dateString];
+		[self composeTextVewBlock:(UITextView*)self.ddate withContent:(NSString*)dateString andFontSize:[UIFont systemFontOfSize:(fontSize-2.0f)]];
 	}	
-	CGRect c4 = self.ddate.frame;
-	c4.size.height = self.ddate.contentSize.height;
-	self.ddate.frame = c4;		
-	self.ddate.contentInset = UIEdgeInsetsMake(-8, 0, 0, 0);
 
 	[self setRelatedNews];
 	[self loadNewsImage];
-
 	[self resizeContent];
-
 	[self setGesture];
-	NSLog(@"view did load done");
+}
+
+- (void)composeTextVewBlock:(UITextView*)textView withContent:(NSString*)text andFontSize:(UIFont*)font
+{
+	if (text && ![text isEqual:[NSNull null]])
+	{
+		[textView setText:text];
+	}
+	
+	textView.font = font;
+	CGRect c1 = textView.frame;
+	c1.size.height = textView.contentSize.height;
+	textView.frame = c1;
 }
 
 - (void)setRelatedNews
 {
 	self.relatedNewsData = [news objectForKey:@"related"];
 	
-	if (self.relatedNewsData!=nil)
+	if ( self.relatedNewsData && ![self.relatedNewsData isEqual:[NSNull null]])
 	{
 		self.relatedNewsView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
 		self.relatedNewsView.delegate = self;
@@ -134,13 +119,11 @@ static NSString *savedImageKey = @"savetimg";
 	UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(moveToPreviousNews)];
 	swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
 	swipeRight.delegate = self;
-	//[self.view addGestureRecognizer:swipeRight];
 	[self.container addGestureRecognizer:swipeRight];
 	
 	UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(moveToNextNews)];
 	swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
 	swipeLeft.delegate = self;
-	// [self.view addGestureRecognizer:swipeLeft];	
 	[self.container addGestureRecognizer:swipeLeft];
 	
 	[swipeRight release];
@@ -149,7 +132,7 @@ static NSString *savedImageKey = @"savetimg";
 
 - (void)loadNewsImage
 {
-	if ( [news objectForKey:imagekey]!=nil )
+	if ( ![[news objectForKey:imagekey] isEqual:[NSNull null]] )
 	{
 		UIImage *image = [news objectForKey:savedImageKey];
 
@@ -201,6 +184,8 @@ static NSString *savedImageKey = @"savetimg";
 		ypos = 436.0;
 	
 	[self.container setContentSize:CGSizeMake(container.frame.size.width, ypos)];
+	[self.container scrollsToTop];		
+
 	[viewList release];
 }
 
@@ -234,35 +219,67 @@ static NSString *savedImageKey = @"savetimg";
 	[self resizeContent];
 }
 
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations.
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
- - (IBAction)moveToPreviousNews:(id)sender;
- {
- [delegate showPreviousDetailNews:self.indexPath withBackData:self.backData isRelatedNews:NO];
- }
- - (IBAction)moveToNextNews:(id)sender;
- {
- [delegate showNextDetailNews:self.indexPath withBackData:self.backData isRelatedNews:NO];
- }
- 
- 
- */
 -(void)moveToPreviousNews
 {
-	[delegate showPreviousDetailNews:self.indexPath withBackData:self.backData isRelatedNews:NO];
+	[delegate showPreviousDetailNews:self.indexPath withBackData:self.backData isRelatedNews:isRelatedNews];
 }
 
 
 -(void)moveToNextNews
 {
-	[delegate showNextDetailNews:self.indexPath withBackData:self.backData isRelatedNews:NO];
+	[delegate showNextDetailNews:self.indexPath withBackData:self.backData isRelatedNews:isRelatedNews];
+}
+
+-(void)zoomIn
+{
+	if (fontSize < 28.0f) {
+		fontSize+=1.0f;
+		[self.container setContentSize:CGSizeMake(container.frame.size.width, 0)];
+		[self composeTextVewBlock:(UITextView*)self.maintitle withContent:(NSString*)self.maintitle.text andFontSize:[UIFont boldSystemFontOfSize:(fontSize+12.0f)]];
+		[self composeTextVewBlock:(UITextView*)self.subtitle withContent:(NSString*)self.subtitle.text andFontSize:[UIFont systemFontOfSize:(fontSize+6.0f)]];
+		[self composeTextVewBlock:(UITextView*)self.ddate withContent:(NSString*)self.ddate.text andFontSize:[UIFont systemFontOfSize:(fontSize-2.0f)]];
+		[self composeTextVewBlock:(UITextView*)self.content withContent:(NSString*)self.content.text andFontSize:[UIFont systemFontOfSize:(fontSize)]];
+		[self resizeContent];
+		[self saveFontSize];
+	}
+}
+
+
+-(void)zoomOut
+{
+	if (fontSize > 16.0f) {
+		fontSize-=1.0f;
+		[self.container setContentSize:CGSizeMake(container.frame.size.width, 0)];
+		[self composeTextVewBlock:(UITextView*)self.maintitle withContent:(NSString*)self.maintitle.text andFontSize:[UIFont boldSystemFontOfSize:(fontSize+12.0f)]];
+		[self composeTextVewBlock:(UITextView*)self.subtitle withContent:(NSString*)self.subtitle.text andFontSize:[UIFont systemFontOfSize:(fontSize+6.0f)]];
+		[self composeTextVewBlock:(UITextView*)self.ddate withContent:(NSString*)self.ddate.text andFontSize:[UIFont systemFontOfSize:(fontSize-2.0f)]];
+		[self composeTextVewBlock:(UITextView*)self.content withContent:(NSString*)self.content.text andFontSize:[UIFont systemFontOfSize:(fontSize)]];
+		[self resizeContent];
+		[self saveFontSize];
+	}	
+}
+
+-(void)saveFontSize
+{
+	User *user = [UserService currentLogonUser];
+	user.fontSize = fontSize;
+	[UserService saveUserLocal:user];
 }
 
 #pragma mark implement UITableViewDelegate
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+	if (self.relatedNewsData && ![self.relatedNewsData isEqual:[NSNull null]])
+	{
+		return 1;
+	}
+	else {
+		NSLog(@"related news section no");
+		return 0;
+	}
+
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 	int count = [self.relatedNewsData count];
@@ -323,7 +340,6 @@ static NSString *savedImageKey = @"savetimg";
 		CGRect frame = CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, image.size.height);		
 		view.frame = frame;
 		view.clipsToBounds = YES;
-		NSLog(@"size: %i",view.frame.size.height);
 	}
 	else {
 		view.frame = CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, 0);		

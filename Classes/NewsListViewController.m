@@ -123,18 +123,31 @@ static NSString *savedImageKey = @"savethumb";
 		NSMutableDictionary *newsRecord = [self.entries objectAtIndex:indexPath.row]; 
         cell.accessoryView = nil;
 		cell.textLabel.text = [newsRecord objectForKey:@"title"];
-		cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
+		//UIFont *font = [UIFont boldSystemFontOfSize:22.0f];
+		//cell.textLabel.font = font;
+
+		cell.textLabel.lineBreakMode = UILineBreakModeTailTruncation;
 		cell.textLabel.textColor = [UIColor colorWithRed:34.0f/255.0f green:34.0f/255.0f blue:34.0f/255.0f alpha:1.0f];
-		cell.textLabel.numberOfLines = 2;
+		cell.textLabel.numberOfLines = 1; //2;
+
+		NSString *subtitle = [newsRecord objectForKey:@"subtitle"];
+
+		if (![subtitle isEqual:[NSNull null]])
+		{
+			cell.detailTextLabel.text = subtitle;
+		}
+		else {
+			cell.detailTextLabel.text = [newsRecord objectForKey:@"content"];
+		}
 		
-		cell.detailTextLabel.text = [newsRecord objectForKey:@"content"];
 		cell.detailTextLabel.lineBreakMode = UILineBreakModeWordWrap;// UILineBreakModeTailTruncation;
 		cell.detailTextLabel.textColor = [UIColor colorWithRed:104.0f/255.0f green:104.0f/255.0f blue:104.0f/255.0f alpha:1.0f];
 		cell.detailTextLabel.numberOfLines = 2;
 		
         // Only load cached images; defer new downloads until scrolling ends
 		// first: get from memory
-		if ( [newsRecord objectForKey:imagekey]!=nil )
+
+		if ( ![[newsRecord objectForKey:imagekey] isEqual:[NSNull null]] )
 		{
 			if ([newsRecord objectForKey:savedImageKey])
 			{
@@ -196,7 +209,7 @@ static NSString *savedImageKey = @"savethumb";
         {
 			NSMutableDictionary *newsRecord = [self.entries objectAtIndex:indexPath.row]; 
             
-            if ([newsRecord objectForKey:imagekey]!=nil && [newsRecord objectForKey:savedImageKey]==nil) // avoid the app icon download if the app already has an icon
+            if ( ![[newsRecord objectForKey:imagekey] isEqual:[NSNull null]] && [newsRecord objectForKey:savedImageKey]==nil) // avoid the app icon download if the app already has an icon
             {
                 [self startIconDownload:newsRecord forIndexPath:indexPath];
             }

@@ -10,7 +10,7 @@
 #import "AddPayManager.h"
 #import "UIAddPayFailDelegate.h"
 
-@interface UIAddPayView : UIAlertView<UIAlertViewDelegate, DidAddPayDelegate> {
+@interface UIAddPayView : UIAlertView<UIAlertViewDelegate, DidAddPayDelegate, UITextFieldDelegate> {
 	UITextField *addPayTextField;
 	UILabel *addPayLabel;
 	

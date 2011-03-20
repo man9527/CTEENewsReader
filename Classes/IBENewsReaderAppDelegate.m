@@ -33,7 +33,7 @@
 	loginView.addPayManager = addPayManager;
 	loginManager.delegate = loginView;
 
-	addPayView = [[UIAddPayView alloc] initWithTitle:@"請輸入儲值碼" message:nil delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"儲值", nil];
+	addPayView = [[UIAddPayView alloc] initWithTitle:@"請輸入儲值碼(8位數字)" message:nil delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"儲值", nil];
 	addPayView.addPayManager = addPayManager;
 	addPayManager.delegate = addPayView;
 	
@@ -51,6 +51,9 @@
 		[tempManager login:u];
 	}
 	else {
+		// workaround for make webview can open https with wrong certificate
+		LoginManager *tempManager = [[[LoginManager alloc] init] autorelease];
+		[tempManager login:u];
 		[self goToNewsTabBarViewController];
 	}
 

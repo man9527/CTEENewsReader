@@ -58,7 +58,7 @@
 		addPayTextField.clearButtonMode = UITextFieldViewModeAlways;
 		
 		registerAccountButton = [[UIWebView alloc] initWithFrame:CGRectZero];
-		[registerAccountButton loadHTMLString:[NSString stringWithFormat: @"<a href='%@'>註冊新會員</a>", [URLManager getRegisterURL]] baseURL:nil];
+		[registerAccountButton loadHTMLString:[NSString stringWithFormat: @"<a href='%@'>操作手冊</a>", [URLManager getManualURL]] baseURL:nil];
 		[registerAccountButton setOpaque:NO];
 		registerAccountButton.backgroundColor = [UIColor clearColor];
 		registerAccountButton.delegate = self;
@@ -93,7 +93,8 @@
 
 - (void)setFrame:(CGRect)rect {
 	NSLog(@"draw rect again");
-	[super setFrame:CGRectMake(0, 0, rect.size.width, 260)];
+	[super setFrame:CGRectMake(0, 0, rect.size.width, 230)];
+	// [super setFrame:CGRectMake(0, 0, rect.size.width, 260)];
 	self.center = CGPointMake(160.0, 150.0);
 }
 
@@ -115,17 +116,17 @@
 	registerAccountButton.frame = CGRectMake(48, buttonTop, 100, 30);
 	forgetPasswordButton.frame = CGRectMake(138, buttonTop, 100, 30);
 	
-	buttonTop -= 30;
-	addPayLabel.frame = CGRectMake(12, buttonTop, self.frame.size.width - 52, 30);
-	addPayTextField.frame = CGRectMake(80, addPayLabel.frame.origin.y, 185, addPayLabel.frame.size.height);
+	//buttonTop -= 30;
+	//addPayLabel.frame = CGRectMake(12, buttonTop, self.frame.size.width - 52, 30);
+	//addPayTextField.frame = CGRectMake(80, addPayLabel.frame.origin.y, 185, addPayLabel.frame.size.height);
 	
 	buttonTop -= 35;
-	passwordLabel.frame = CGRectMake(32, buttonTop, self.frame.size.width - 52, 30);
-	passwordTextField.frame = CGRectMake(80, passwordLabel.frame.origin.y, 185, passwordLabel.frame.size.height);
+	passwordLabel.frame = CGRectMake(20, buttonTop, self.frame.size.width - 52, 30);
+	passwordTextField.frame = CGRectMake(70, passwordLabel.frame.origin.y, 185, passwordLabel.frame.size.height);
 
 	buttonTop -= 35;
-	idLabel.frame = CGRectMake(32, buttonTop, self.frame.size.width - 52, 30);
-	idTextField.frame = CGRectMake(80, idLabel.frame.origin.y, 185, idLabel.frame.size.height);
+	idLabel.frame = CGRectMake(20, buttonTop, self.frame.size.width - 52, 30);
+	idTextField.frame = CGRectMake(70, idLabel.frame.origin.y, 185, idLabel.frame.size.height);
 
 	//[idTextField becomeFirstResponder];
 }

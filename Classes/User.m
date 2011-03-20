@@ -9,7 +9,7 @@
 #import "User.h"
 
 @implementation User
-@synthesize username,password,authkey,expireDate;
+@synthesize username,password,authkey,expireDate, invalidDate, fontSize;
 
 - (id)init {
 	if (self = [super init]) {
@@ -17,6 +17,9 @@
 		[dateformatterForInput setDateFormat:@"yyyy/MM/dd HH:mm:ss"];
 		dateformatterForOutput = [[NSDateFormatter alloc] init];
 		[dateformatterForOutput setDateFormat:@"yyyy/MM/dd"];
+		fontSize = 22.0F;
+		
+		NSLog(@"font size %f", fontSize);
 	}
 
 	return self;
@@ -50,9 +53,18 @@
 
 -(NSString*)getExpireDateByString
 {
-	// NSDateFormatter *dateFormatTmp = [[[NSDateFormatter alloc] init] autorelease];
-	// [dateFormatTmp setDateFormat:@"yyyy/MM/dd"];
 	return [dateformatterForOutput stringFromDate:expireDate];
+}
+
+-(void)setInvalidDateByString:(NSString *)dateString
+{
+	NSDate *date = [dateformatterForInput dateFromString:dateString]; 
+	self.invalidDate = date;
+}
+
+-(NSString*)getInvalidDateByString
+{
+	return [dateformatterForOutput stringFromDate:invalidDate];
 }
 
 - (void)dealloc {
@@ -60,6 +72,7 @@
 	[password release];
 	[authkey release];
 	[expireDate release];
+	[invalidDate release];
 	[dateformatterForInput release];
 	[dateformatterForOutput release];
 

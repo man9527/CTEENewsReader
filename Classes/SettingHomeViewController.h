@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "User.h"
+#import "LoginManager.h"
 
-@interface SettingHomeViewController : UITableViewController <UIAlertViewDelegate> {
+@interface SettingHomeViewController : UITableViewController <UIAlertViewDelegate,DidLoginDelegate> {
 	User *user;
-	UIImageView *selectedBackground; 
-	UIImage *selectedImage;
+	//UIImageView *selectedBackground; 
+	//UIImage *selectedImage;
 }
 
 @property (nonatomic,retain) IBOutlet UIButton* addPayButton;

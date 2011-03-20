@@ -17,7 +17,10 @@
 	NSString *username = [prefs stringForKey:UserNameKey];
 	NSString *password = [prefs stringForKey:PasswordKey];
 	NSString *authkey = [prefs stringForKey:AuthKey];
-	NSDate *expiredDate = [prefs objectForKey:ExpiredDateKey];
+	NSDate *expiredDate = [prefs objectForKey:ExpiredDateKey]; 
+	NSDate *invalidDate = [prefs objectForKey:InvalidDateKey];
+	
+	float fontSize = [prefs floatForKey:FontSizeKey];
 	
 	if (username!=NULL && password!=NULL)
 	{
@@ -26,6 +29,11 @@
 		u.password = password;
 		u.authkey = authkey;
 		u.expireDate = expiredDate;
+		u.invalidDate = invalidDate;
+
+		if (fontSize>0)
+			u.fontSize = fontSize;
+		
 		[u autorelease];
 
 		return u;
@@ -42,6 +50,8 @@
 	[prefs setObject:u.password forKey:PasswordKey];
 	[prefs setObject:u.authkey forKey:AuthKey];
 	[prefs setObject:u.expireDate forKey:ExpiredDateKey];
+	[prefs setObject:u.invalidDate forKey:InvalidDateKey];
+	[prefs setFloat:u.fontSize forKey:FontSizeKey];
 	
 	[prefs synchronize];
 }
@@ -53,6 +63,8 @@
 	[prefs removeObjectForKey:PasswordKey];
 	[prefs removeObjectForKey:AuthKey];
 	[prefs removeObjectForKey:ExpiredDateKey];
+	[prefs removeObjectForKey:InvalidDateKey];
+	[prefs removeObjectForKey:FontSizeKey];
 	
 	[prefs synchronize];
 }
